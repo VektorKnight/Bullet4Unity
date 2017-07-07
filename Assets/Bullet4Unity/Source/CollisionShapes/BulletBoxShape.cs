@@ -19,6 +19,7 @@ namespace Bullet4Unity {
         [SerializeField] private Vector3 _localScale = Vector3.one;
         
         //Draw Gizmos
+        //TODO: Make this do stuff
         protected override void OnDrawGizmosSelected() {}
         
         //Get Collision shape

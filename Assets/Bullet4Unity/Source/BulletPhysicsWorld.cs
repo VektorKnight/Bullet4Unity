@@ -63,7 +63,7 @@ namespace Bullet4Unity {
 			if (!_initlialized) {
 				InitializeWorld(BulletUpdate);
 				Debug.LogWarning("An object attempted to register with the simulation before it was initialized!\n" +
-				                 "Please chekc your script execution order");
+				                 "Please check your script execution order");
 			}
 			
 			//Register the Bullet object with the simulation and callback
@@ -81,18 +81,18 @@ namespace Bullet4Unity {
 			if (!_initlialized) InitializeWorld(BulletUpdate);
 		}
 		
-		//Per-Frame Update
+		//Unity Per-Frame Update
 		private void Update() {
 			//Step the simulation
 			_dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
 		}
 		
-		//Bullet callback function (equivalent to Unity's FixedUpdate but for Bullet)
+		//Bullet callback method (equivalent to Unity's FixedUpdate but for Bullet)
 		private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
 			//Log debug info if enabled
 			if (_debugging) {
-				Debug.Log(string.Format("<b>Bullet Callback:</b> Simulation stepped by {0} seconds", bulletTimeStep));
-				Debug.Log(string.Format("<b>Bullet Callback:</b> {0} bullet objects to update", _bulletBehaviors.Count));
+				Debug.Log(string.Format("<b>Bullet Callback:</b> Simulation stepped by {0} seconds\n", bulletTimeStep) +
+						  string.Format("<b>Bullet Callback:</b> Updating {0} Bullet Behaviors", _bulletBehaviors.Count));
 			}
 			
 			//Return if no behaviors to update
