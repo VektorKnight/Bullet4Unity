@@ -21,13 +21,18 @@ namespace Bullet4Unity {
 		public static BulletPhysicsWorld Instance { get; private set; }
 		
 		//Unity Inspector
-		[Header("Physics World Config")]
+		[Header("Physics World Config")] 
+		[SerializeField] private bool _debugging = false;
 		[SerializeField] private float _timeStep = 0.02f;
 		[SerializeField] private int _maxSubSteps = 10;
 		[SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
 		
 		//Internal private
+		private bool _initlialized;
 		private BulletSharp.Math.Vector3 _btGravity;
+		
+		//Bullet bheaviors to update with the simulation
+		private List<BulletBehavior> _bulletBehaviors = new List<BulletBehavior>();
 
 		private BulletSharp.DefaultCollisionConfiguration _collisionConfig;
 		private BulletSharp.CollisionDispatcher _collisionDispatcher;
@@ -47,7 +52,23 @@ namespace Bullet4Unity {
 			//Set up custom parameters
 			_dynamicsWorld.SetInternalTickCallback(tickCallBack);
 			_btGravity = _gravity.ToBullet();
-			_dynamicsWorld.SetGravity(ref _btGravity);	
+			_dynamicsWorld.SetGravity(ref _btGravity);
+			_initlialized = true;
+			if (_debugging) Debug.Log("<b>Bullet4Unity:</b> Initialized Bullet Physics World");
+		}
+		
+		//Register a BulletBehavior with the simulation and callback
+		public void RegisterBulletObject(BulletBehavior behavior, BulletSharp.RigidBody rigidBody) {
+			//Initialize the world and warn the user if it hasn't already been initialized
+			if (!_initlialized) {
+				InitializeWorld(BulletUpdate);
+				Debug.LogWarning("An object attempted to register with the simulation before it was initialized!\n" +
+				                 "Please chekc your script execution order");
+			}
+			
+			//Register the Bullet object with the simulation and callback
+			_bulletBehaviors.Add(behavior);
+			_dynamicsWorld.AddRigidBody(rigidBody);
 		}
 		
 		//Unity Pre-Initialization
@@ -56,19 +77,31 @@ namespace Bullet4Unity {
 			if (Instance == null) Instance = this;
 			else if (Instance != this) Destroy(gameObject);
 			
-			//Initialize the physics world
-			InitializeWorld(BulletUpdate);
+			//Initialize the world if it hasn't already been initialized
+			if (!_initlialized) InitializeWorld(BulletUpdate);
 		}
 		
 		//Per-Frame Update
 		private void Update() {
-			//Step the simulation(deltaTime, max sub-steps, fixedTimeStep)
+			//Step the simulation
 			_dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
 		}
 		
-		//TODO: Implement a way streamlined ways to call this method on all Bullet objects
-		//Bullet callback function (equivalent to Unity's FixedUpdate for Bullet)
-		private void BulletUpdate(DynamicsWorld world, float timeStep) {
+		//Bullet callback function (equivalent to Unity's FixedUpdate but for Bullet)
+		private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
+			//Log debug info if enabled
+			if (_debugging) {
+				Debug.Log(string.Format("<b>Bullet Callback:</b> Simulation stepped by {0} seconds", bulletTimeStep));
+				Debug.Log(string.Format("<b>Bullet Callback:</b> {0} bullet objects to update", _bulletBehaviors.Count));
+			}
+			
+			//Return if no behaviors to update
+			if (_bulletBehaviors.Count == 0) return;
+			
+			//Update all bullet behaviors
+			foreach (var behavior in _bulletBehaviors) {
+				behavior.BulletUpdate(world, bulletTimeStep);
+			}
 		}
 	}
 }
