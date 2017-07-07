@@ -16,6 +16,7 @@ namespace Bullet4Unity {
 	/// TODO: Implement interop code for inspector-friendly components
 	/// -Author: VektorKnight
 	/// </summary>
+	[AddComponentMenu("BulletPhysics/Worlds/PhysicsWorld")]
 	public class BulletPhysicsWorld : MonoBehaviour {
 		
 		//Static Singleton Instance
