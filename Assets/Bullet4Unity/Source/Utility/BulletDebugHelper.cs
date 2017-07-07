@@ -3,7 +3,7 @@ using System.Collections;
 using BulletSharp;
 
 namespace Bullet4Unity {
-    public class B4UDebug {
+    public class BulletDebugHelper {
         public const float Two_PI = 6.283185307179586232f;
         public const float RADS_PER_DEG = Two_PI / 360.0f;
         public const float SQRT12 = 0.7071067811865475244008443621048490f;

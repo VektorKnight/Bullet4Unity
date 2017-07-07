@@ -98,7 +98,7 @@ namespace BulletSharp
 		[DllImport(Native.Dll, CallingConvention = Native.Conv), SuppressUnmanagedCodeSecurity]
 		static extern void btDefaultCollisionConstructionInfo_delete(IntPtr obj);
 	}
-
+	
 	public class DefaultCollisionConfiguration : CollisionConfiguration
 	{
         private VoronoiSimplexSolver _simplexSolver;

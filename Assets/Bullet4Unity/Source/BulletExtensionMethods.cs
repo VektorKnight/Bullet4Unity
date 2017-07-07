@@ -9,7 +9,7 @@ namespace Bullet4Unity {
     /// Extension methods for converting common data types between BulletSharp and Unity
     /// - Reimplemented from BulletSharpUnity3D
     /// </summary>
-    public static class B4UExtensionMethods {
+    public static class BulletExtensionMethods {
         
         /// <summary>
         /// Convert a Unity Quaternion to BulletSharp
