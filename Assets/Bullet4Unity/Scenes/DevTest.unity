@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugging: 0
-  _timeStep: 0.016666668
+  _timeStep: 0.02
   _maxSubSteps: 10
   _gravity: {x: 0, y: -9.81, z: 0}
 --- !u!4 &1029683169

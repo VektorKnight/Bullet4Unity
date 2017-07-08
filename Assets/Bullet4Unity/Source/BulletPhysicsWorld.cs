@@ -27,13 +27,16 @@ namespace Bullet4Unity {
 		[SerializeField] private int _maxSubSteps = 10;
 		[SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
 		
-		//Internal private
+		//Internal Private
 		private bool _initlialized;
 		private bool _disposing;
 		private BulletSharp.Math.Vector3 _btGravity;
 		
-		//Bullet Behaviors to update with the simulation (InstanceID, Behavior)
-		private List<BulletBehavior> _bulletBehaviors = new List<BulletBehavior>();
+		//Bullet RigidBodies registered with the simulation
+		private readonly List<BulletSharp.RigidBody> _bulletRigidBodies = new List<RigidBody>();
+		
+		//Bullet Behaviors to update with the simulation
+		private readonly List<BulletBehavior> _bulletBehaviors = new List<BulletBehavior>();
 
 		//Required components to initialize a Bullet Discrete Dynamics World
 		private BulletSharp.DefaultCollisionConfiguration _collisionConfig;
@@ -59,25 +62,71 @@ namespace Bullet4Unity {
 			if (_debugging) Debug.Log("<b>Bullet4Unity:</b> Initialized Bullet Physics World");
 		}
 		
-		//Register a BulletBehavior with the simulation and callback
-		public void RegisterBulletObject(BulletBehavior behavior, BulletSharp.RigidBody rigidBody) {
+		//Register a Bullet RigidBody with the simulation
+		public void RegisterBulletRigidBody(BulletSharp.RigidBody rigidBody) {
 			//Initialize the world and warn the user if it hasn't already been initialized
 			if (!_initlialized) {
 				InitializeWorld(BulletUpdate);
-				Debug.LogWarning("An object attempted to register with the simulation before it was initialized!\n" +
+				Debug.LogWarning("A Bullet RigidBody attempted to register with the simulation before it was initialized!\n" +
 				                 "Please check your script execution order");
 			}
 			
-			//Register the Bullet object with the simulation and callback
-			_bulletBehaviors.Add(behavior);
+			//Check if already registered and warn the user
+			if (_bulletRigidBodies.Contains(rigidBody)) {
+				Debug.LogError("Specified Bullet RigidBody has already been registered with the simulation!\n");
+				return;
+			}
+			
+			//Register the Bullet RigidBody with the simulation and list for tracking
+			_bulletRigidBodies.Add(rigidBody);
 			_dynamicsWorld.AddRigidBody(rigidBody);
 		}
 		
-		//Unregister a BulletBehavior with the simulation and callback
-		public void UnregisterBulletObject(BulletBehavior behavior, BulletSharp.RigidBody rigidBody) {
+		//Unregister a Bullet RigidBody from the simulation
+		public void UnregisterBulletRigidBody(BulletSharp.RigidBody rigidBody) {
 			//Warn the user if the physics world has not been initialized
 			if (!_initlialized) {
 				Debug.LogError("An object attempted to unregister from the simulation before it was initialized!\n" +
+				               "Please check your scene setup!");
+				return;
+			}
+
+			//Check if the specified Object has been registered
+			if (!_bulletRigidBodies.Contains(rigidBody)) {
+				Debug.LogError("Specified Bullet RigidBody has not been registered with this simulation!\n" +
+				               "Please check your scene setup!");
+				return;
+			}
+			
+			//Unregister the Bullet object from the simulation and callback
+			_bulletRigidBodies.Remove(rigidBody);
+			_dynamicsWorld.RemoveRigidBody(rigidBody);
+		}
+		
+		//Register a BulletBehavior with the simulation callback
+		public void RegisterBulletBehavior(BulletBehavior behavior) {
+			//Initialize the world and warn the user if it hasn't already been initialized
+			if (!_initlialized) {
+				InitializeWorld(BulletUpdate);
+				Debug.LogWarning("A BulletBehavior attempted to register with the simulation callback before it was initialized!\n" +
+				                 "Please check your script execution order");
+			}
+			
+			//Check if already registered and warn the user
+			if (_bulletBehaviors.Contains(behavior)) {
+				Debug.LogError("Specified BulletBehavior has already been registered with the simulation callback!\n");
+				return;
+			}
+			
+			//Register the BulletBehavior with the simulation callback
+			_bulletBehaviors.Add(behavior);
+		}
+		
+		//Unregister a BulletBehavior from the simulation callback
+		public void UnregisterBulletBehavior(BulletBehavior behavior) {
+			//Warn the user if the physics world has not been initialized
+			if (!_initlialized) {
+				Debug.LogError("A BulletBehavior attempted to unregister from the simulation callback before it was initialized!\n" +
 				               "Please check your scene setup!");
 				return;
 			}
@@ -91,15 +140,16 @@ namespace Bullet4Unity {
 			
 			//Unregister the Bullet object from the simulation and callback
 			_bulletBehaviors.Remove(behavior);
-			_dynamicsWorld.RemoveRigidBody(rigidBody);
 		}
 		
 		//Bullet callback method (equivalent to Unity's FixedUpdate but for Bullet)
 		private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
 			//Log debug info if enabled
 			if (_debugging) {
-				Debug.Log(string.Format("<b>Bullet Callback:</b> Simulation stepped by {0} seconds\n", bulletTimeStep) +
-				          string.Format("<b>Bullet Callback:</b> Updating {0} Bullet Behaviors", _bulletBehaviors.Count));
+				Debug.Log(string.Format("<b>Bullet4Unity:</b> Simulation stepped by {0} seconds\n" +
+				                        "<b>Bullet4Unity:</b> Simulation opdating {1} rigidbodies",
+										bulletTimeStep, _bulletRigidBodies.Count));
+				Debug.Log(string.Format("<b>Bullet4Unity:</b> Callback updating {0} Bullet Behaviors\n", _bulletBehaviors.Count));
 			}
 			
 			//Return if no behaviors to update
@@ -114,6 +164,7 @@ namespace Bullet4Unity {
 		//Dispose Method
 		public void Dispose() {
 			//Dispose of the Bullet components in reverse order
+			_disposing = true;
 			_dynamicsWorld.Dispose();
 			_constraintSolver.Dispose();
 			_overlapPairCache.Dispose();

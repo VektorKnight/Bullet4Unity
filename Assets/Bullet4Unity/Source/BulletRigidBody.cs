@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BulletSharp;
 using Bullet4Unity;
@@ -12,7 +13,7 @@ namespace Bullet4Unity {
 	/// -Author: vektorKnight
 	/// </summary>
 	[AddComponentMenu("BulletPhysics/RigidBody")]
-	public class BulletRigidBody : BulletBehavior {
+	public class BulletRigidBody : MonoBehaviour, IDisposable {
 		
 		//Unity Inspector
 		[Header("Basic Settings")]
@@ -35,6 +36,7 @@ namespace Bullet4Unity {
 		
 		//Internal Private
 		private bool _initialized;
+		private bool _disposing;
 		private BulletSharp.Math.Matrix _currentTransform;
 		private BulletSharp.Math.Vector3 _localInternia;
 		
@@ -86,6 +88,15 @@ namespace Bullet4Unity {
 			_initialized = true;
 		}
 		
+		//Dispose Method
+		public void Dispose() {
+			//Dispose of all the components in reverse order
+			_rigidBody.Dispose();
+			_constructionInfo.Dispose();
+			_motionState.Dispose();
+			_bulletCollisionShape.Dispose();
+		}
+		
 		//Unity Pre-Initialization
 		private void Awake() {
 			//Initialize the RigidBody
@@ -94,7 +105,7 @@ namespace Bullet4Unity {
 		
 		//Unity Start
 		private void Start() {
-			BulletPhysicsWorld.Instance.RegisterBulletObject(this, _rigidBody);
+			BulletPhysicsWorld.Instance.RegisterBulletRigidBody(_rigidBody);
 		}
 		
 		//Unity OnEnable
@@ -103,15 +114,11 @@ namespace Bullet4Unity {
 
 		// Update is called once per frame
 		private void Update() {
-			if (!_initialized) return;
+			if (!_initialized || _disposing) return;
 			
 			_motionState.GetWorldTransform(out _currentTransform);
 			transform.position = _currentTransform.Origin.ToUnity();
 			transform.rotation = _currentTransform.GetOrientation().ToUnity();
-		}
-
-		public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
-			
 		}
 	}
 }
