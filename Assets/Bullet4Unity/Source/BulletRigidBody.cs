@@ -11,6 +11,7 @@ namespace Bullet4Unity {
 	/// Interop class for a basic Bullet RigidBody
 	/// -Author: vektorKnight
 	/// </summary>
+	[AddComponentMenu("BulletPhysics/RigidBody")]
 	public class BulletRigidBody : BulletBehavior {
 		
 		//Unity Inspector
@@ -24,7 +25,8 @@ namespace Bullet4Unity {
 		[SerializeField] private float _rollingFriction;
 
 		[Header("World Constraints")] 
-		[SerializeField] private Vector3 _linearConstraints;
+		[SerializeField] private Vector3 _linearConstraints = Vector3.one;
+		[SerializeField] private Vector3 _angularConstraints = Vector3.one;
 
 		[Header("Advanced Settings")]
 		[SerializeField] private float _restitution = 0f;
@@ -34,6 +36,7 @@ namespace Bullet4Unity {
 		//Internal Private
 		private bool _initialized;
 		private BulletSharp.Math.Matrix _currentTransform;
+		private BulletSharp.Math.Vector3 _localInternia;
 		
 		//Required components for a Bullet RigidBody
 		private BulletCollisionShape _bulletCollisionShape;
@@ -52,6 +55,9 @@ namespace Bullet4Unity {
 				return;
 			}
 			
+			//Calculate the local intertial of the given shape
+			_bulletCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
+			
 			//Initialize the Bullet transform matrix and set the values based on Unity transform
 			_initialTransform = new Matrix { Origin = transform.position.ToBullet(), Orientation = transform.rotation.ToBullet() };
 			
@@ -60,6 +66,7 @@ namespace Bullet4Unity {
 			
 			//Initialize the Bullet rigidbody construction info and assign the relevant values
 			_constructionInfo = new RigidBodyConstructionInfo(_mass, _motionState, _bulletCollisionShape.GetCollisionShape()) {
+				LocalInertia = _localInternia,
 				LinearDamping = _linearDamping,
 				AngularDamping = _angularDamping,
 				Friction = _friction,
@@ -70,8 +77,11 @@ namespace Bullet4Unity {
 			};
 			
 			//Create the Bullet RigidBody
-			_rigidBody = new BulletSharp.RigidBody(_constructionInfo);
-			
+			_rigidBody = new BulletSharp.RigidBody(_constructionInfo) {
+				LinearFactor = _linearConstraints.ToBullet(),
+				AngularFactor = _angularConstraints.ToBullet()
+			};
+
 			//Initialization complete
 			_initialized = true;
 		}
@@ -95,9 +105,9 @@ namespace Bullet4Unity {
 		private void Update() {
 			if (!_initialized) return;
 			
-			_rigidBody.GetWorldTransform(out _currentTransform);
+			_motionState.GetWorldTransform(out _currentTransform);
 			transform.position = _currentTransform.Origin.ToUnity();
-			transform.rotation = _rigidBody.Orientation.ToUnity(); //_currentTransform.Orientation.ToUnity();
+			transform.rotation = _currentTransform.GetOrientation().ToUnity();
 		}
 
 		public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {

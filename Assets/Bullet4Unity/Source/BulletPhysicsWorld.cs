@@ -15,7 +15,7 @@ namespace Bullet4Unity {
 	/// -Author: VektorKnight
 	/// </summary>
 	[AddComponentMenu("BulletPhysics/Worlds/PhysicsWorld")]
-	public class BulletPhysicsWorld : MonoBehaviour {
+	public class BulletPhysicsWorld : MonoBehaviour, IDisposable {
 		
 		//Static Singleton Instance
 		public static BulletPhysicsWorld Instance { get; private set; }
@@ -29,10 +29,11 @@ namespace Bullet4Unity {
 		
 		//Internal private
 		private bool _initlialized;
+		private bool _disposing;
 		private BulletSharp.Math.Vector3 _btGravity;
 		
 		//Bullet Behaviors to update with the simulation (InstanceID, Behavior)
-		private Dictionary<int, BulletBehavior> _bulletBehaviors = new Dictionary<int, BulletBehavior>();
+		private List<BulletBehavior> _bulletBehaviors = new List<BulletBehavior>();
 
 		//Required components to initialize a Bullet Discrete Dynamics World
 		private BulletSharp.DefaultCollisionConfiguration _collisionConfig;
@@ -68,7 +69,7 @@ namespace Bullet4Unity {
 			}
 			
 			//Register the Bullet object with the simulation and callback
-			_bulletBehaviors.Add(behavior.GetInstanceID(), behavior);
+			_bulletBehaviors.Add(behavior);
 			_dynamicsWorld.AddRigidBody(rigidBody);
 		}
 		
@@ -82,16 +83,43 @@ namespace Bullet4Unity {
 			}
 
 			//Check if the specified Object has been registered
-			var objectKey = behavior.GetInstanceID();
-			if (!_bulletBehaviors.ContainsKey(objectKey)) {
+			if (!_bulletBehaviors.Contains(behavior)) {
 				Debug.LogError("Specified object has not been registered with this simulation!\n" +
 				               "Please check your scene setup!");
 				return;
 			}
 			
 			//Unregister the Bullet object from the simulation and callback
-			_bulletBehaviors.Remove(objectKey);
+			_bulletBehaviors.Remove(behavior);
 			_dynamicsWorld.RemoveRigidBody(rigidBody);
+		}
+		
+		//Bullet callback method (equivalent to Unity's FixedUpdate but for Bullet)
+		private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
+			//Log debug info if enabled
+			if (_debugging) {
+				Debug.Log(string.Format("<b>Bullet Callback:</b> Simulation stepped by {0} seconds\n", bulletTimeStep) +
+				          string.Format("<b>Bullet Callback:</b> Updating {0} Bullet Behaviors", _bulletBehaviors.Count));
+			}
+			
+			//Return if no behaviors to update
+			if (_bulletBehaviors.Count == 0) return;
+			
+			//Update all bullet behaviors
+			foreach (var behavior in _bulletBehaviors) {
+				behavior.BulletUpdate(world, bulletTimeStep);
+			}
+		}
+		
+		//Dispose Method
+		public void Dispose() {
+			//Dispose of the Bullet components in reverse order
+			_dynamicsWorld.Dispose();
+			_constraintSolver.Dispose();
+			_overlapPairCache.Dispose();
+			_collisionDispatcher.Dispose();
+			_collisionConfig.Dispose();		
+			_bulletBehaviors.Clear();
 		}
 		
 		//Unity Pre-Initialization
@@ -106,25 +134,17 @@ namespace Bullet4Unity {
 		
 		//Unity Per-Frame Update
 		private void Update() {
-			//Step the simulation
+			//Make sure we are in play mode and cleanup hasnt started
+			if (!Application.isPlaying && _disposing) return;
+			
+			//Step the simulation world
 			_dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
 		}
 		
-		//Bullet callback method (equivalent to Unity's FixedUpdate but for Bullet)
-		private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
-			//Log debug info if enabled
-			if (_debugging) {
-				Debug.Log(string.Format("<b>Bullet Callback:</b> Simulation stepped by {0} seconds\n", bulletTimeStep) +
-						  string.Format("<b>Bullet Callback:</b> Updating {0} Bullet Behaviors", _bulletBehaviors.Count));
-			}
-			
-			//Return if no behaviors to update
-			if (_bulletBehaviors.Count == 0) return;
-			
-			//Update all bullet behaviors
-			foreach (var kvp in _bulletBehaviors) {
-				kvp.Value.BulletUpdate(world, bulletTimeStep);
-			}
+		//Unity Destroy
+		private void OnDestroy() {
+			if (_disposing) return;
+			Dispose();
 		}
 	}
 }

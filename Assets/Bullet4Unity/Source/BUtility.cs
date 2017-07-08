@@ -3,9 +3,13 @@ using System.Collections;
 using BulletSharp;
 
 namespace Bullet4Unity {
-    public class BulletDebugHelper {
-        public const float Two_PI = 6.283185307179586232f;
-        public const float RADS_PER_DEG = Two_PI / 360.0f;
+    /// <summary>
+    /// Re-implemented from the BulletSharpUnity3d project
+    /// Portions of code credit to Phong13
+    /// </summary>
+    public class BUtility {
+        public const float TWO_PI = 6.283185307179586232f;
+        public const float RADS_PER_DEG = TWO_PI / 360.0f;
         public const float SQRT12 = 0.7071067811865475244008443621048490f;
 
         public static void DebugDrawRope(Vector3 position, Quaternion rotation, Vector3 scale, Vector3 begin, Vector3 end, int res, Color color) {
@@ -98,46 +102,102 @@ namespace Bullet4Unity {
             for (var iy = 0; iy < resY; ++iy) {
                 for (var ix = 0; ix < resX; ++ix) {
                     // point 00
-                    var tx_00 = ix * 1.0f / (resX - 1);
-                    var ty_00 = iy * 1.0f / (resY - 1);
+                    var tx00 = ix * 1.0f / (resX - 1);
+                    var ty00 = iy * 1.0f / (resY - 1);
 
-                    var py0_00 = Vector3.Lerp(p00, p01, ty_00);
-                    var py1_00 = Vector3.Lerp(p10, p11, ty_00);
-                    var pxy_00 = Vector3.Lerp(py0_00, py1_00, tx_00);
+                    var py000 = Vector3.Lerp(p00, p01, ty00);
+                    var py100 = Vector3.Lerp(p10, p11, ty00);
+                    var pxy00 = Vector3.Lerp(py000, py100, tx00);
 
                     // point 01
-                    var tx_01 = (ix + 1) * 1.0f / (resX - 1);
-                    var ty_01 = iy * 1.0f / (resY - 1);
+                    var tx01 = (ix + 1) * 1.0f / (resX - 1);
+                    var ty01 = iy * 1.0f / (resY - 1);
 
-                    var py0_01 = Vector3.Lerp(p00, p01, ty_01);
-                    var py1_01 = Vector3.Lerp(p10, p11, ty_01);
-                    var pxy_01 = Vector3.Lerp(py0_01, py1_01, tx_01);
+                    var py001 = Vector3.Lerp(p00, p01, ty01);
+                    var py101 = Vector3.Lerp(p10, p11, ty01);
+                    var pxy01 = Vector3.Lerp(py001, py101, tx01);
 
                     //point 10
-                    var tx_10 = ix * 1.0f / (resX - 1);
-                    var ty_10 = (iy + 1) * 1.0f / (resY - 1);
+                    var tx10 = ix * 1.0f / (resX - 1);
+                    var ty10 = (iy + 1) * 1.0f / (resY - 1);
 
-                    var py0_10 = Vector3.Lerp(p00, p01, ty_10);
-                    var py1_10 = Vector3.Lerp(p10, p11, ty_10);
-                    var pxy_10 = Vector3.Lerp(py0_10, py1_10, tx_10);
+                    var py010 = Vector3.Lerp(p00, p01, ty10);
+                    var py110 = Vector3.Lerp(p10, p11, ty10);
+                    var pxy10 = Vector3.Lerp(py010, py110, tx10);
 
                     //point 11
-                    var tx_11 = (ix + 1) * 1.0f / (resX - 1);
-                    var ty_11 = (iy + 1) * 1.0f / (resY - 1);
+                    var tx11 = (ix + 1) * 1.0f / (resX - 1);
+                    var ty11 = (iy + 1) * 1.0f / (resY - 1);
 
-                    var py0_11 = Vector3.Lerp(p00, p01, ty_11);
-                    var py1_11 = Vector3.Lerp(p10, p11, ty_11);
-                    var pxy_11 = Vector3.Lerp(py0_11, py1_11, tx_11);
+                    var py011 = Vector3.Lerp(p00, p01, ty11);
+                    var py111 = Vector3.Lerp(p10, p11, ty11);
+                    var pxy11 = Vector3.Lerp(py011, py111, tx11);
 
-                    Gizmos.DrawLine(pxy_00, pxy_01);
-                    Gizmos.DrawLine(pxy_01, pxy_11);
-                    Gizmos.DrawLine(pxy_00, pxy_11);
-                    Gizmos.DrawLine(pxy_00, pxy_10);
-                    Gizmos.DrawLine(pxy_10, pxy_11);
+                    Gizmos.DrawLine(pxy00, pxy01);
+                    Gizmos.DrawLine(pxy01, pxy11);
+                    Gizmos.DrawLine(pxy00, pxy11);
+                    Gizmos.DrawLine(pxy00, pxy10);
+                    Gizmos.DrawLine(pxy10, pxy11);
                 }
             }
         }
 
+
+        /*	
+            //it is very slow, so don't use it if you don't need it indeed..
+            public static void DebugDrawPolyhedron(Vector3 position,Quaternion rotation,Vector3 scale,btPolyhedralConvexShape shape,Color color)
+            {
+                if( shape == null )
+                    return;
+
+                Matrix4x4 matrix = Matrix4x4.TRS(position,rotation,scale);
+                Gizmos.color = color;
+                btConvexPolyhedron poly = shape.getConvexPolyhedron();
+                if( poly == null )
+                    return;
+
+                int faceSize = poly.m_faces.size();
+                for (int i=0;i < faceSize;i++)
+                {
+                    Vector3 centroid = new Vector3(0,0,0);
+                    btFace face = poly.m_faces.at(i);
+                    int numVerts = face.m_indices.size();
+                    if (numVerts > 0)
+                    {
+                        int lastV = face.m_indices.at(numVerts-1);
+                        for (int v=0;v < numVerts;v++)
+                        {
+                            int curVert = face.m_indices.at(v);
+                            BulletSharp.Math.Vector3 curVertObject = BulletSharp.Math.Vector3.GetObjectFromSwigPtr(poly.m_vertices.at(curVert));
+                            centroid.x += curVertObject.x();
+                            centroid.y += curVertObject.y();
+                            centroid.z += curVertObject.z();
+                            BulletSharp.Math.Vector3 btv1 = BulletSharp.Math.Vector3.GetObjectFromSwigPtr(poly.m_vertices.at(lastV));
+                            BulletSharp.Math.Vector3 btv2 = BulletSharp.Math.Vector3.GetObjectFromSwigPtr(poly.m_vertices.at(curVert));
+                            Vector3 v1 = new Vector3(btv1.x(),btv1.y(),btv1.z());
+                            Vector3 v2 = new Vector3(btv2.x(),btv2.y(),btv2.z());
+                            v1 = matrix.MultiplyPoint(v1);
+                            v2 = matrix.MultiplyPoint(v2);
+                            Gizmos.DrawLine(v1,v2);
+                            lastV = curVert;
+                        }
+                    }
+                    float s = 1.0f/numVerts;
+                    centroid.x *= s;
+                    centroid.y *= s;
+                    centroid.z *= s;
+
+                    //normal draw
+        //            {
+        //                Vector3 normalColor = new Vector3(1,1,0);
+        //				 
+        //                BulletSharp.Math.Vector3 faceNormal(face.m_plane[0],poly->m_faces[i].m_plane[1],poly->m_faces[i].m_plane[2]);
+        //                getDebugDrawer()->drawLine(worldTransform*centroid,worldTransform*(centroid+faceNormal),normalColor);
+        //            }
+
+                }
+            }
+        */
         public static void DebugDrawBox(Vector3 position, Quaternion rotation, Vector3 scale, Vector3 maxVec, Color color) {
             var minVec = new Vector3(0 - maxVec.x, 0 - maxVec.y, 0 - maxVec.z);
 
@@ -227,8 +287,8 @@ namespace Bullet4Unity {
             xaxis[(upAxis + 1) % 3] = 1.0f;
 
             var r = offsetRadius.magnitude;
-            DebugDrawArc(start - rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, r, r, 0, Two_PI, color, false, 10.0f);
-            DebugDrawArc(start + rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, r, r, 0, Two_PI, color, false, 10.0f);
+            DebugDrawArc(start - rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, r, r, 0, TWO_PI, color, false, 10.0f);
+            DebugDrawArc(start + rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, r, r, 0, TWO_PI, color, false, 10.0f);
         }
 
         public static void DebugDrawCone(Vector3 position, Quaternion rotation, Vector3 scale, float radius, float height, int upAxis, Color color) {
@@ -257,7 +317,7 @@ namespace Bullet4Unity {
             yaxis[upAxis] = 1.0f;
             var xaxis = new Vector3(0, 0, 0);
             xaxis[(upAxis + 1) % 3] = 1.0f;
-            DebugDrawArc(start - rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, offsetRadius.magnitude, offset2Radius.magnitude, 0, Two_PI, color, false, 10.0f);
+            DebugDrawArc(start - rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, offsetRadius.magnitude, offset2Radius.magnitude, 0, TWO_PI, color, false, 10.0f);
         }
 
         public static void DebugDrawPlane(Vector3 position, Quaternion rotation, Vector3 scale, Vector3 planeNormal, float planeConst, Color color) {
