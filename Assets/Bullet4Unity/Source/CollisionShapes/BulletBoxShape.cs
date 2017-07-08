@@ -20,9 +20,7 @@ namespace Bullet4Unity {
         
         //Draw Gizmos
         //TODO: Make this do stuff
-        protected override void OnDrawGizmosSelected() {
-            BulletSharp.DebugDraw
-        }
+        protected override void OnDrawGizmosSelected() {}
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {

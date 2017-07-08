@@ -31,8 +31,8 @@ namespace Bullet4Unity {
 		private bool _initlialized;
 		private BulletSharp.Math.Vector3 _btGravity;
 		
-		//Bullet Behaviors to update with the simulation
-		private Dictionary<string, BulletBehavior> _bulletBehaviors = new Dictionary<string, BulletBehavior>();
+		//Bullet Behaviors to update with the simulation (InstanceID, Behavior)
+		private Dictionary<int, BulletBehavior> _bulletBehaviors = new Dictionary<int, BulletBehavior>();
 
 		//Required components to initialize a Bullet Discrete Dynamics World
 		private BulletSharp.DefaultCollisionConfiguration _collisionConfig;
@@ -68,7 +68,7 @@ namespace Bullet4Unity {
 			}
 			
 			//Register the Bullet object with the simulation and callback
-			_bulletBehaviors.Add(behavior.GetType().Name, behavior);
+			_bulletBehaviors.Add(behavior.GetInstanceID(), behavior);
 			_dynamicsWorld.AddRigidBody(rigidBody);
 		}
 		
@@ -82,10 +82,10 @@ namespace Bullet4Unity {
 			}
 
 			//Check if the specified Object has been registered
-			var objectKey = behavior.GetType().Name;
+			var objectKey = behavior.GetInstanceID();
 			if (!_bulletBehaviors.ContainsKey(objectKey)) {
 				Debug.LogError("Specified object has not been registered with this simulation!\n" +
-				               "Please chekc your scene setup!");
+				               "Please check your scene setup!");
 				return;
 			}
 			

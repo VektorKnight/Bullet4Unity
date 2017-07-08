@@ -11,7 +11,7 @@ namespace Bullet4Unity {
 	/// Interop class for a basic Bullet RigidBody
 	/// -Author: vektorKnight
 	/// </summary>
-	public class BulletRigidBody : MonoBehaviour {
+	public class BulletRigidBody : BulletBehavior {
 		
 		//Unity Inspector
 		[Header("Basic Settings")]
@@ -23,7 +23,7 @@ namespace Bullet4Unity {
 		[SerializeField] private float _friction = 0f;
 		[SerializeField] private float _rollingFriction;
 
-		[Header("World COnstraints")] 
+		[Header("World Constraints")] 
 		[SerializeField] private Vector3 _linearConstraints;
 
 		[Header("Advanced Settings")]
@@ -33,13 +33,14 @@ namespace Bullet4Unity {
 		
 		//Internal Private
 		private bool _initialized;
+		private BulletSharp.Math.Matrix _currentTransform;
 		
 		//Required components for a Bullet RigidBody
 		private BulletCollisionShape _bulletCollisionShape;
-		private BulletSharp.Math.Matrix _transformMatrix;
+		private BulletSharp.Math.Matrix _initialTransform;
 		private DefaultMotionState _motionState;
 		private RigidBodyConstructionInfo _constructionInfo;
-		private BulletRigidBody _rigidBody;
+		private BulletSharp.RigidBody _rigidBody;
 		
 		//Initialize the Bullet RigidBody
 		private void InitializeRigidBody() {
@@ -52,10 +53,10 @@ namespace Bullet4Unity {
 			}
 			
 			//Initialize the Bullet transform matrix and set the values based on Unity transform
-			_transformMatrix = new Matrix { Origin = transform.position.ToBullet(), Orientation = transform.rotation.ToBullet() };
+			_initialTransform = new Matrix { Origin = transform.position.ToBullet(), Orientation = transform.rotation.ToBullet() };
 			
 			//Initialize the Bullet default motion state using the transform matrix
-			_motionState = new DefaultMotionState(_transformMatrix);
+			_motionState = new DefaultMotionState(_initialTransform);
 			
 			//Initialize the Bullet rigidbody construction info and assign the relevant values
 			_constructionInfo = new RigidBodyConstructionInfo(_mass, _motionState, _bulletCollisionShape.GetCollisionShape()) {
@@ -67,11 +68,23 @@ namespace Bullet4Unity {
 				LinearSleepingThreshold = _linearSleepThreshold,
 				AngularSleepingThreshold = _angularSleepThreshold
 			};
+			
+			//Create the Bullet RigidBody
+			_rigidBody = new BulletSharp.RigidBody(_constructionInfo);
+			
+			//Initialization complete
+			_initialized = true;
 		}
 		
 		//Unity Pre-Initialization
 		private void Awake() {
+			//Initialize the RigidBody
 			if (!_initialized) InitializeRigidBody();
+		}
+		
+		//Unity Start
+		private void Start() {
+			BulletPhysicsWorld.Instance.RegisterBulletObject(this, _rigidBody);
 		}
 		
 		//Unity OnEnable
@@ -79,6 +92,16 @@ namespace Bullet4Unity {
 		}
 
 		// Update is called once per frame
-		void Update() { }
+		private void Update() {
+			if (!_initialized) return;
+			
+			_rigidBody.GetWorldTransform(out _currentTransform);
+			transform.position = _currentTransform.Origin.ToUnity();
+			transform.rotation = _rigidBody.Orientation.ToUnity(); //_currentTransform.Orientation.ToUnity();
+		}
+
+		public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
+			
+		}
 	}
 }
