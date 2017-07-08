@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dae09bc8-73ee-4dba-a9c3-288354dcf38f" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Utility.meta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.Bullet4UnitySC/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Bullet4UnitySC/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Scenes/DevTest.unity" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Scenes/DevTest.unity" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" />
@@ -197,7 +198,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1431">
-              <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+              <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding>
                 <marker date="1499547597298" expanded="true" signature="6:192" ph="..." />
                 <marker date="1499547597298" expanded="true" signature="217:4193" ph="{...}" />
@@ -404,12 +405,12 @@
       <workItem from="1499448766678" duration="369000" />
       <workItem from="1499449206624" duration="6031000" />
       <workItem from="1499496603229" duration="9524000" />
-      <workItem from="1499537612664" duration="8953000" />
+      <workItem from="1499537612664" duration="9054000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46858000" />
+    <option name="totallyTimeSpent" value="46959000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -422,7 +423,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1548,7 +1548,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1431">
-          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding>
             <marker date="1499547597298" expanded="true" signature="6:192" ph="..." />
             <marker date="1499547597298" expanded="true" signature="217:4193" ph="{...}" />
