@@ -17,7 +17,7 @@ namespace Bullet4Unity {
         /// <param name="q">Quaternion to be converted</param>
         /// <returns></returns>
         public static BulletSharp.Math.Quaternion ToBullet(this UnityEngine.Quaternion q) {
-            return new BulletSharp.Math.Quaternion(q.x, q.y, q.z, q.w);
+            return new BulletSharp.Math.Quaternion(q.x, q.y, q.z, -q.w);
         }
         
         /// <summary>
