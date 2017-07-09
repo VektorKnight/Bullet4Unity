@@ -25,9 +25,9 @@ namespace Bullet4Unity {
 		[SerializeField] private float _friction = 0f;
 		[SerializeField] private float _rollingFriction;
 
-		[Header("World Constraints")] 
-		[SerializeField] private Vector3 _linearConstraints = Vector3.one;
-		[SerializeField] private Vector3 _angularConstraints = Vector3.one;
+		[Header("World Factors")] 
+		[SerializeField] private Vector3 _linearFactor = Vector3.one;
+		[SerializeField] private Vector3 _angularFactor = Vector3.one;
 
 		[Header("Advanced Settings")]
 		[SerializeField] private float _restitution = 0f;
@@ -36,6 +36,7 @@ namespace Bullet4Unity {
 		
 		//Internal Private
 		private bool _initialized;
+		private bool _registered;
 		private bool _disposing;
 		private BulletSharp.Math.Matrix _currentTransform;
 		private BulletSharp.Math.Vector3 _localInternia;
@@ -47,8 +48,11 @@ namespace Bullet4Unity {
 		private RigidBodyConstructionInfo _constructionInfo;
 		private BulletSharp.RigidBody _rigidBody;
 		
-		//Initialize the Bullet RigidBody
-		private void InitializeRigidBody() {
+		//Initialize the Bullet RigidBody and register with the simulation
+		public void InitializeRigidBody() {
+			//Check if already initialized
+			if (_initialized) return;
+			
 			//Make sure a BulletCollisionShape is attached and reference it if possible
 			_bulletCollisionShape = GetComponent<BulletCollisionShape>();
 			if (_bulletCollisionShape == null) {
@@ -80,9 +84,13 @@ namespace Bullet4Unity {
 			
 			//Create the Bullet RigidBody
 			_rigidBody = new BulletSharp.RigidBody(_constructionInfo) {
-				LinearFactor = _linearConstraints.ToBullet(),
-				AngularFactor = _angularConstraints.ToBullet()
+				LinearFactor = _linearFactor.ToBullet(),
+				AngularFactor = _angularFactor.ToBullet()
 			};
+			
+			//Register with the physics world
+			BulletPhysicsWorld.Instance.RegisterBulletRigidBody(_rigidBody);
+			_registered = true;
 
 			//Initialization complete
 			_initialized = true;
@@ -91,25 +99,35 @@ namespace Bullet4Unity {
 		//Dispose Method
 		public void Dispose() {
 			//Dispose of all the components in reverse order
+			if (_disposing) return;
+			
+			_disposing = true;
 			_rigidBody.Dispose();
 			_constructionInfo.Dispose();
 			_motionState.Dispose();
 			_bulletCollisionShape.Dispose();
 		}
 		
-		//Unity Pre-Initialization
-		private void Awake() {
-			//Initialize the RigidBody
-			if (!_initialized) InitializeRigidBody();
-		}
-		
-		//Unity Start
-		private void Start() {
-			BulletPhysicsWorld.Instance.RegisterBulletRigidBody(_rigidBody);
-		}
-		
 		//Unity OnEnable
 		private void OnEnable() {
+			//Check if initialized and already registered
+			//TODO: Physics world should probably implement a method to return registration status
+			if (!_initialized || _registered) return;
+			
+			//Register with the physics world
+			BulletPhysicsWorld.Instance.RegisterBulletRigidBody(_rigidBody);
+			_registered = true;
+		}
+		
+		//Unity OnDisable
+		private void OnDisable() {
+			//Check if registered
+			//TODO: See OnEnable()
+			if (!_registered || !_initialized) return;
+			
+			//Unregister from the physics world
+			BulletPhysicsWorld.Instance.UnregisterBulletRigidBody(_rigidBody);
+			_registered = false;
 		}
 
 		// Update is called once per frame
@@ -119,6 +137,12 @@ namespace Bullet4Unity {
 			_motionState.GetWorldTransform(out _currentTransform);
 			transform.position = _currentTransform.Origin.ToUnity();
 			transform.rotation = _currentTransform.GetOrientation().ToUnity();
+		}
+		
+		//Unity Destroy
+		private void OnDestroy() {
+			BulletPhysicsWorld.Instance.UnregisterBulletRigidBody(_rigidBody);
+			Dispose();
 		}
 	}
 }

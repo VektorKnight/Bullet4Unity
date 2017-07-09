@@ -44,7 +44,7 @@ namespace Bullet4Unity {
 		private BulletSharp.BroadphaseInterface _overlapPairCache;
 		private BulletSharp.SequentialImpulseConstraintSolver _constraintSolver;
 		private BulletSharp.DiscreteDynamicsWorld _dynamicsWorld;
-		
+
 		//Initialize the Physics World
 		private void InitializeWorld(BulletSharp.DynamicsWorld.InternalTickCallback tickCallBack) {
 			//Set up default parameters
@@ -161,18 +161,6 @@ namespace Bullet4Unity {
 			}
 		}
 		
-		//Dispose Method
-		public void Dispose() {
-			//Dispose of the Bullet components in reverse order
-			_disposing = true;
-			_dynamicsWorld.Dispose();
-			_constraintSolver.Dispose();
-			_overlapPairCache.Dispose();
-			_collisionDispatcher.Dispose();
-			_collisionConfig.Dispose();		
-			_bulletBehaviors.Clear();
-		}
-		
 		//Unity Pre-Initialization
 		private void Awake() {
 			//Enforce Single Instance
@@ -181,6 +169,14 @@ namespace Bullet4Unity {
 			
 			//Initialize the world if it hasn't already been initialized
 			if (!_initlialized) InitializeWorld(BulletUpdate);
+			
+			//Find all Bullet rigidbodies and tell them to initialize
+			var rigidBodies = (BulletRigidBody[])FindObjectsOfType(typeof(BulletRigidBody));
+			if (rigidBodies.Length == 0) return;
+			foreach (var rb in rigidBodies) {
+				rb.InitializeRigidBody();
+			}
+			rigidBodies = null;
 		}
 		
 		//Unity Per-Frame Update
@@ -196,6 +192,31 @@ namespace Bullet4Unity {
 		private void OnDestroy() {
 			if (_disposing) return;
 			Dispose();
+		}
+		
+		//Dispose Method
+		public void Dispose() {
+			//Unregister all registered rigidbodies
+			foreach (var rb in _bulletRigidBodies) {
+				_dynamicsWorld.RemoveRigidBody(rb);
+			}
+			
+			//Find all Bullet rigidbody instances and tell them to dispose
+			var rigidBodies = (BulletRigidBody[])FindObjectsOfType(typeof(BulletRigidBody));
+			if (rigidBodies.Length == 0) return;
+			foreach (var rb in rigidBodies) {
+				rb.Dispose();
+			}
+			rigidBodies = null;
+			
+			//Dispose of the physics world components in reverse order
+			_disposing = true;
+			_dynamicsWorld.Dispose();
+			_constraintSolver.Dispose();
+			_overlapPairCache.Dispose();
+			_collisionDispatcher.Dispose();
+			_collisionConfig.Dispose();		
+			_bulletBehaviors.Clear();
 		}
 	}
 }
