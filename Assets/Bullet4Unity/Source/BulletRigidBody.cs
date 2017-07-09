@@ -17,13 +17,13 @@ namespace Bullet4Unity {
 		
 		//Unity Inspector
 		[Header("Basic Settings")]
-		[SerializeField] private float _mass;
+		[SerializeField] private float _mass = 1f;
 		[SerializeField] private float _linearDamping = 0f;
 		[SerializeField] private float _angularDamping = 0f;
 		
 		[Header("Friction Settings")]
-		[SerializeField] private float _friction = 0f;
-		[SerializeField] private float _rollingFriction;
+		[SerializeField] private float _friction = 0.2f;
+		[SerializeField] private float _rollingFriction = 0.5f;
 
 		[Header("World Factors")] 
 		[SerializeField] private Vector3 _linearFactor = Vector3.one;
@@ -31,8 +31,8 @@ namespace Bullet4Unity {
 
 		[Header("Advanced Settings")]
 		[SerializeField] private float _restitution = 0f;
-		[SerializeField] private float _linearSleepThreshold = 1f;
-		[SerializeField] private float _angularSleepThreshold = 1f;
+		[SerializeField] private float _linearSleepThreshold = 0.1f;
+		[SerializeField] private float _angularSleepThreshold = 0.11f;
 		
 		//Internal Private
 		private bool _initialized;
