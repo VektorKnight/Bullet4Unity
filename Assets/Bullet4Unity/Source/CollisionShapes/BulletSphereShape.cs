@@ -20,6 +20,7 @@ namespace Bullet4Unity {
         
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
+            if (!DrawGizmo) return;
             BUtility.DebugDrawSphere(transform.position, transform.rotation, _localScale, _radius * Vector3.one, GizmoColor);
         }
         

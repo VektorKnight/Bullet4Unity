@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dae09bc8-73ee-4dba-a9c3-288354dcf38f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.Bullet4UnitySC/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Bullet4UnitySC/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Blue.mat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Blue.mat.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Green.mat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Green.mat.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Grey.mat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Grey.mat.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Purple.mat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Purple.mat.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Red.mat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Red.mat.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Yellow.mat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Materials/Yellow.mat.meta" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Scenes/DevTest.unity" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Scenes/DevTest.unity" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletExtensionMethods.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletExtensionMethods.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +31,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BulletPhysicsWorld.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BulletPhysicsWorld.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="196" column="23" lean-forward="false" selection-start-line="196" selection-start-column="23" selection-end-line="196" selection-end-column="23" />
+            <state relative-caret-position="612">
+              <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
               <folding>
                 <marker date="1499594041618" expanded="false" signature="6:131" ph="..." />
                 <marker date="1499594041618" expanded="true" signature="156:8426" ph="{...}" />
@@ -59,10 +72,10 @@
       <file leaf-file-name="DebugDrawUnity.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/DebugDrawUnity.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="9" selection-end-column="18" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1499541483242" expanded="true" signature="6:87" ph="..." />
+                <marker date="1499541483242" expanded="false" signature="6:87" ph="..." />
                 <marker date="1499541483242" expanded="true" signature="112:9029" ph="{...}" />
                 <marker date="1499541483242" expanded="true" signature="118:252" ph="/// Re-implemented from the BulletSharpUnity3d project ... " />
                 <marker date="1499541483242" expanded="true" signature="297:9027" ph="{...}" />
@@ -93,50 +106,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BUtility.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BUtility.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <marker date="1499541494592" expanded="false" signature="6:63" ph="..." />
-                <marker date="1499541494592" expanded="true" signature="88:17613" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="94:228" ph="/// Re-implemented from the BulletSharpUnity3d project ... " />
-                <marker date="1499541494592" expanded="true" signature="255:17611" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="596:1513" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="977:1503" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="1255:1329" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="1641:3280" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="2339:2594" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="2676:2931" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="3013:3268" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="3463:5581" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="3873:5571" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="3925:5557" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="5592:8360" ph="/* it is very slow, so don't use it if you don't need it indeed.. ... */" />
-                <marker date="1499541494592" expanded="true" signature="8484:9791" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="9948:11315" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="11473:12751" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="12901:14438" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="14588:15334" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="15440:16482" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="15494:15980" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="16699:17605" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="17114:17176" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="17223:17506" ph="{...}" />
-                <marker date="1499541494592" expanded="true" signature="17533:17595" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BulletCollisionShape.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCollisionShape.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+            <state relative-caret-position="544">
+              <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
               <folding>
                 <marker date="1499461723224" expanded="false" signature="6:131" ph="..." />
+                <marker date="1499461723224" expanded="true" signature="156:1061" ph="{...}" />
                 <marker date="1499461723224" expanded="true" signature="159:365" ph="/// Abstract interop class for Bullet collision shapes and Unity ... " />
                 <marker date="1499461723224" expanded="true" signature="439:1059" ph="{...}" />
                 <marker date="1499461723224" expanded="true" signature="854:907" ph="{...}" />
@@ -149,15 +126,15 @@
       <file leaf-file-name="BulletBoxShape.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="22" column="107" lean-forward="false" selection-start-line="22" selection-start-column="107" selection-end-line="22" selection-end-column="107" />
+            <state relative-caret-position="374">
+              <caret line="27" column="24" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
               <folding>
-                <marker date="1499540741375" expanded="false" signature="6:131" ph="..." />
-                <marker date="1499540741375" expanded="true" signature="156:1114" ph="{...}" />
-                <marker date="1499540741375" expanded="true" signature="162:279" ph="/// Interop class for a Bullet box collision shape ... " />
-                <marker date="1499540741375" expanded="true" signature="394:1112" ph="{...}" />
-                <marker date="1499540741375" expanded="true" signature="707:828" ph="{...}" />
-                <marker date="1499540741375" expanded="true" signature="927:1104" ph="{...}" />
+                <marker date="1499627611547" expanded="false" signature="6:131" ph="..." />
+                <marker date="1499627611547" expanded="true" signature="156:1150" ph="{...}" />
+                <marker date="1499627611547" expanded="true" signature="162:279" ph="/// Interop class for a Bullet box collision shape ... " />
+                <marker date="1499627611547" expanded="true" signature="394:1148" ph="{...}" />
+                <marker date="1499627611547" expanded="true" signature="707:864" ph="{...}" />
+                <marker date="1499627611547" expanded="true" signature="963:1140" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -166,31 +143,96 @@
       <file leaf-file-name="BulletSphereShape.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="61" />
+            <state relative-caret-position="289">
+              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
               <folding>
-                <marker date="1499541066425" expanded="false" signature="6:131" ph="..." />
-                <marker date="1499541066425" expanded="true" signature="156:1102" ph="{...}" />
-                <marker date="1499541066425" expanded="true" signature="162:282" ph="/// Interop class for a Bullet sphere collision shape ... " />
-                <marker date="1499541066425" expanded="true" signature="403:1100" ph="{...}" />
-                <marker date="1499541066425" expanded="true" signature="688:825" ph="{...}" />
-                <marker date="1499541066425" expanded="true" signature="924:1092" ph="{...}" />
+                <marker date="1499627651496" expanded="false" signature="6:131" ph="..." />
+                <marker date="1499627651496" expanded="true" signature="156:1138" ph="{...}" />
+                <marker date="1499627651496" expanded="true" signature="162:282" ph="/// Interop class for a Bullet sphere collision shape ... " />
+                <marker date="1499627651496" expanded="true" signature="403:1136" ph="{...}" />
+                <marker date="1499627651496" expanded="true" signature="688:861" ph="{...}" />
+                <marker date="1499627651496" expanded="true" signature="960:1128" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BulletBehavior.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletBehavior.cs">
+      <file leaf-file-name="BulletCapsuleShape.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCapsuleShape.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="10" column="58" lean-forward="false" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
+            <state relative-caret-position="391">
+              <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
               <folding>
-                <marker date="1499459810543" expanded="false" signature="6:117" ph="..." />
-                <marker date="1499459810543" expanded="true" signature="142:636" ph="{...}" />
-                <marker date="1499459810543" expanded="true" signature="145:244" ph="/// Abstract base class for MonoBehaviors which intend to use Bullet ... " />
-                <marker date="1499459810543" expanded="true" signature="299:634" ph="{...}" />
-                <marker date="1499459810543" expanded="true" signature="306:551" ph="/// Called once per Bullet time step ... " />
+                <marker date="1499627663382" expanded="true" signature="6:131" ph="..." />
+                <marker date="1499627663382" expanded="true" signature="156:1208" ph="{...}" />
+                <marker date="1499627663382" expanded="true" signature="162:283" ph="/// Interop class for a Bullet capsule collision shape ... " />
+                <marker date="1499627663382" expanded="true" signature="406:1206" ph="{...}" />
+                <marker date="1499627663382" expanded="true" signature="744:921" ph="{...}" />
+                <marker date="1499627663382" expanded="true" signature="1020:1198" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BulletCylinderShape.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCylinderShape.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding>
+                <marker date="1499628219470" expanded="false" signature="6:131" ph="..." />
+                <marker date="1499628219470" expanded="true" signature="156:1206" ph="{...}" />
+                <marker date="1499628219470" expanded="true" signature="162:284" ph="/// Interop class for a Bullet cylinder collision shape ... " />
+                <marker date="1499628219470" expanded="true" signature="409:1204" ph="{...}" />
+                <marker date="1499628219470" expanded="true" signature="724:911" ph="{...}" />
+                <marker date="1499628219470" expanded="true" signature="1010:1196" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BulletConeShape.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConeShape.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <marker date="1499629136698" expanded="false" signature="6:131" ph="..." />
+                <marker date="1499629136698" expanded="true" signature="156:1188" ph="{...}" />
+                <marker date="1499629136698" expanded="true" signature="162:280" ph="/// Interop class for a Bullet cone collision shape ... " />
+                <marker date="1499629136698" expanded="true" signature="397:1186" ph="{...}" />
+                <marker date="1499629136698" expanded="true" signature="735:904" ph="{...}" />
+                <marker date="1499629136698" expanded="true" signature="1003:1178" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CylinderShape.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/BulletSharpPInvoke/BulletSharp/Collision/CylinderShape.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+              <folding>
+                <marker date="1499374647103" expanded="false" signature="6:98" ph="..." />
+                <marker date="1499374647103" expanded="true" signature="121:3881" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="173:2095" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="234:242" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="335:343" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="510:530" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="570:698" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="581:694" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="741:872" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="752:868" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="895:957" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="978:1040" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="2141:2809" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="2238:2246" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="2415:2435" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="2855:3523" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="2952:2960" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="3129:3149" ph="{...}" />
+                <marker date="1499374647103" expanded="true" signature="3609:3879" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -199,24 +241,24 @@
       <file leaf-file-name="BulletRigidBody.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1023">
-              <caret line="142" column="34" lean-forward="false" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
+            <state relative-caret-position="833">
+              <caret line="83" column="12" lean-forward="false" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
               <folding>
-                <marker date="1499592887351" expanded="true" signature="6:192" ph="..." />
-                <marker date="1499592887351" expanded="true" signature="217:4973" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
-                <marker date="1499592887351" expanded="true" signature="431:4971" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="1755:3589" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="2006:2165" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="2881:3201" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="3301:3398" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="3636:3866" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="3915:4236" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="3920:4055" ph="/* Check if initialized and already registered ... */" />
-                <marker date="1499592887351" expanded="true" signature="4287:4526" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="4292:4339" ph="/* Check if registered ... */" />
-                <marker date="1499592887351" expanded="true" signature="4589:4830" ph="{...}" />
-                <marker date="1499592887351" expanded="true" signature="4879:4968" ph="{...}" />
+                <marker date="1499627466859" expanded="false" signature="6:192" ph="..." />
+                <marker date="1499627466859" expanded="true" signature="217:4992" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
+                <marker date="1499627466859" expanded="true" signature="431:4990" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="1774:3608" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="2025:2184" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="2900:3220" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="3320:3417" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="3655:3885" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="3934:4255" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="3939:4074" ph="/* Check if initialized and already registered ... */" />
+                <marker date="1499627466859" expanded="true" signature="4306:4545" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="4311:4358" ph="/* Check if registered ... */" />
+                <marker date="1499627466859" expanded="true" signature="4608:4849" ph="{...}" />
+                <marker date="1499627466859" expanded="true" signature="4898:4987" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -253,12 +295,16 @@
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletBehavior.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCollisionShape.cs" />
         <option value="$PROJECT_DIR$/../BulletSharpUnity3D/UnityProject/Assets/BulletUnity/Scripts/CollisionShapes/BCapsuleShape.cs" />
-        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs" />
-        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/DebugDrawUnity.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BUtility.cs" />
-        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletExtensionMethods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCapsuleShape.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCylinderShape.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConeShape.cs" />
       </list>
     </option>
   </component>
@@ -289,6 +335,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="SolutionExplorer">
         <subPane>
           <PATH>
@@ -305,7 +352,6 @@
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -411,11 +457,12 @@
       <workItem from="1499496603229" duration="9524000" />
       <workItem from="1499537612664" duration="9054000" />
       <workItem from="1499589775786" duration="5756000" />
+      <workItem from="1499622978186" duration="5512000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52715000" />
+    <option name="totallyTimeSpent" value="58227000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -428,6 +475,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -463,98 +511,17 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletExtensionMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletBehavior.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="85" lean-forward="false" selection-start-line="16" selection-start-column="85" selection-end-line="16" selection-end-column="85" />
-          <folding>
-            <marker date="1499459810543" expanded="false" signature="6:117" ph="..." />
-            <marker date="1499459810543" expanded="true" signature="142:636" ph="{...}" />
-            <marker date="1499459810543" expanded="true" signature="145:244" ph="/// Abstract base class for MonoBehaviors which intend to use Bullet ... " />
-            <marker date="1499459810543" expanded="true" signature="299:634" ph="{...}" />
-            <marker date="1499459810543" expanded="true" signature="306:551" ph="/// Called once per Bullet time step ... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="69" column="14" lean-forward="true" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
-          <folding>
-            <marker date="1499592887351" expanded="true" signature="6:192" ph="..." />
-            <marker date="1499592887351" expanded="true" signature="217:4973" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
-            <marker date="1499592887351" expanded="true" signature="431:4971" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="1755:3589" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="2006:2165" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="2881:3201" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3301:3398" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3636:3866" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3915:4236" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3920:4055" ph="/* Check if initialized and already registered ... */" />
-            <marker date="1499592887351" expanded="true" signature="4287:4526" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="4292:4339" ph="/* Check if registered ... */" />
-            <marker date="1499592887351" expanded="true" signature="4589:4830" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="4879:4968" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="89" column="72" lean-forward="false" selection-start-line="89" selection-start-column="72" selection-end-line="89" selection-end-column="72" />
-          <folding>
-            <marker date="1499594041618" expanded="false" signature="6:131" ph="..." />
-            <marker date="1499594041618" expanded="true" signature="156:8426" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="159:535" ph="/// Basic Bullet physics world implementation for Unity ... " />
-            <marker date="1499594041618" expanded="true" signature="655:8424" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="1989:2673" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="2800:3517" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="2907:3129" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="3232:3351" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="3648:4353" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="3738:3916" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="4021:4191" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="4478:5145" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="4585:4814" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="4914:5040" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="5274:5933" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="5364:5558" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="5660:5820" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="6086:6724" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="6138:6494" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="6664:6720" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="6780:7313" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="7250:7286" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="7368:7587" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="7636:7682" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="7729:8421" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="7816:7862" ph="{...}" />
-            <marker date="1499594041618" expanded="true" signature="8092:8116" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding>
-            <marker date="1499540741375" expanded="false" signature="6:131" ph="..." />
-            <marker date="1499540741375" expanded="true" signature="156:1114" ph="{...}" />
-            <marker date="1499540741375" expanded="true" signature="162:279" ph="/// Interop class for a Bullet box collision shape ... " />
-            <marker date="1499540741375" expanded="true" signature="394:1112" ph="{...}" />
-            <marker date="1499540741375" expanded="true" signature="707:828" ph="{...}" />
-            <marker date="1499540741375" expanded="true" signature="927:1104" ph="{...}" />
+            <marker date="1499627611547" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499627611547" expanded="true" signature="156:1150" ph="{...}" />
+            <marker date="1499627611547" expanded="true" signature="162:279" ph="/// Interop class for a Bullet box collision shape ... " />
+            <marker date="1499627611547" expanded="true" signature="394:1148" ph="{...}" />
+            <marker date="1499627611547" expanded="true" signature="707:864" ph="{...}" />
+            <marker date="1499627611547" expanded="true" signature="963:1140" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -579,6 +546,7 @@
           <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
           <folding>
             <marker date="1499461723224" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499461723224" expanded="true" signature="156:1061" ph="{...}" />
             <marker date="1499461723224" expanded="true" signature="159:365" ph="/// Abstract interop class for Bullet collision shapes and Unity ... " />
             <marker date="1499461723224" expanded="true" signature="439:1059" ph="{...}" />
             <marker date="1499461723224" expanded="true" signature="854:907" ph="{...}" />
@@ -592,21 +560,21 @@
         <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <marker date="1499592887351" expanded="true" signature="6:192" ph="..." />
-            <marker date="1499592887351" expanded="true" signature="217:4973" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
-            <marker date="1499592887351" expanded="true" signature="431:4971" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="1755:3589" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="2006:2165" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="2881:3201" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3301:3398" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3636:3866" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3915:4236" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3920:4055" ph="/* Check if initialized and already registered ... */" />
-            <marker date="1499592887351" expanded="true" signature="4287:4526" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="4292:4339" ph="/* Check if registered ... */" />
-            <marker date="1499592887351" expanded="true" signature="4589:4830" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="4879:4968" ph="{...}" />
+            <marker date="1499627466859" expanded="false" signature="6:192" ph="..." />
+            <marker date="1499627466859" expanded="true" signature="217:4992" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
+            <marker date="1499627466859" expanded="true" signature="431:4990" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="1774:3608" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="2025:2184" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="2900:3220" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3320:3417" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3655:3885" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3934:4255" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3939:4074" ph="/* Check if initialized and already registered ... */" />
+            <marker date="1499627466859" expanded="true" signature="4306:4545" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="4311:4358" ph="/* Check if registered ... */" />
+            <marker date="1499627466859" expanded="true" signature="4608:4849" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="4898:4987" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -837,77 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletExtensionMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCollisionShape.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-          <folding>
-            <marker date="1499461723224" expanded="false" signature="6:131" ph="..." />
-            <marker date="1499461723224" expanded="true" signature="159:365" ph="/// Abstract interop class for Bullet collision shapes and Unity ... " />
-            <marker date="1499461723224" expanded="true" signature="439:1059" ph="{...}" />
-            <marker date="1499461723224" expanded="true" signature="854:907" ph="{...}" />
-            <marker date="1499461723224" expanded="true" signature="984:1056" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="107" lean-forward="false" selection-start-line="22" selection-start-column="107" selection-end-line="22" selection-end-column="107" />
-          <folding>
-            <marker date="1499540741375" expanded="false" signature="6:131" ph="..." />
-            <marker date="1499540741375" expanded="true" signature="156:1114" ph="{...}" />
-            <marker date="1499540741375" expanded="true" signature="162:279" ph="/// Interop class for a Bullet box collision shape ... " />
-            <marker date="1499540741375" expanded="true" signature="394:1112" ph="{...}" />
-            <marker date="1499540741375" expanded="true" signature="707:828" ph="{...}" />
-            <marker date="1499540741375" expanded="true" signature="927:1104" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/DebugDrawUnity.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <marker date="1499541483242" expanded="true" signature="6:87" ph="..." />
-            <marker date="1499541483242" expanded="true" signature="112:9029" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="118:252" ph="/// Re-implemented from the BulletSharpUnity3d project ... " />
-            <marker date="1499541483242" expanded="true" signature="297:9027" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="403:586" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="715:898" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="1002:1295" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="1421:1863" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="1958:2183" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="2282:2706" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="2899:3243" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="3378:3685" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="3835:4007" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="4078:4144" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="4229:4299" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="4393:4483" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="4585:4646" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="4727:5462" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="5677:5756" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="5990:6235" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="6443:6535" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="6762:6841" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="6970:7389" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="7519:7934" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="8056:8468" ph="{...}" />
-            <marker date="1499541483242" expanded="true" signature="8597:9021" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BUtility.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -943,49 +840,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletExtensionMethods.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="61" />
+        <state relative-caret-position="816">
+          <caret line="52" column="67" lean-forward="false" selection-start-line="52" selection-start-column="67" selection-end-line="52" selection-end-column="67" />
           <folding>
-            <marker date="1499541066425" expanded="false" signature="6:131" ph="..." />
-            <marker date="1499541066425" expanded="true" signature="156:1102" ph="{...}" />
-            <marker date="1499541066425" expanded="true" signature="162:282" ph="/// Interop class for a Bullet sphere collision shape ... " />
-            <marker date="1499541066425" expanded="true" signature="403:1100" ph="{...}" />
-            <marker date="1499541066425" expanded="true" signature="688:825" ph="{...}" />
-            <marker date="1499541066425" expanded="true" signature="924:1092" ph="{...}" />
+            <marker date="1499623674627" expanded="false" signature="6:100" ph="..." />
+            <marker date="1499623674627" expanded="true" signature="125:14265" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="131:331" ph="/// Extension methods for converting common data types between BulletSharp and Unity ... " />
+            <marker date="1499623674627" expanded="true" signature="379:14263" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="398:583" ph="/// Convert a Unity Quaternion to BulletSharp ... " />
+            <marker date="1499623674627" expanded="true" signature="674:758" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="776:961" ph="/// Convert a BulletSharp Quaternion to Unity ... " />
+            <marker date="1499623674627" expanded="true" signature="1051:1129" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="1147:1326" ph="/// Convert a Unity Vector3 to BulletSharp ... " />
+            <marker date="1499623674627" expanded="true" signature="1411:1486" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="1500:1679" ph="/// Convert a BulletSharp Vector3 to Unity ... " />
+            <marker date="1499623674627" expanded="true" signature="1763:1833" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="1843:2032" ph="/// Convert a BulletSharp Matrix4x4 to Unity ... " />
+            <marker date="1499623674627" expanded="true" signature="2126:3001" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="3011:3226" ph="/// Get Quaternion rotation from BulletSharp Matrix4x4 ... " />
+            <marker date="1499623674627" expanded="true" signature="3333:6187" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="4646:4981" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="5041:5389" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="5428:5776" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="5776:6146" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="6303:7053" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="7141:7260" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="7361:7903" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="8032:8341" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="8351:8683" ph="/// Extract translation from transform matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="8765:8951" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="9048:9234" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="9244:9613" ph="/// Extract rotation quaternion from transform matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="9695:10044" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="10141:10490" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="10500:10820" ph="/// Extract scale from transform matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="10896:11239" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="11330:11673" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="11683:12138" ph="/// Extract position, rotation and scale from TRS matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="12285:12494" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="12504:12822" ph="/// Set transform component from TRS matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="12916:13155" ph="{...}" />
+            <marker date="1499623674627" expanded="true" signature="13186:13396" ph="/// Identity quaternion. ... " />
+            <marker date="1499623674627" expanded="true" signature="13489:13694" ph="/// Identity matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="13782:14006" ph="/// Get translation matrix. ... " />
+            <marker date="1499623674627" expanded="true" signature="14073:14257" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/DebugDrawUnity.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1023">
-          <caret line="142" column="34" lean-forward="false" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1499592887351" expanded="true" signature="6:192" ph="..." />
-            <marker date="1499592887351" expanded="true" signature="217:4973" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
-            <marker date="1499592887351" expanded="true" signature="431:4971" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="1755:3589" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="2006:2165" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="2881:3201" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3301:3398" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3636:3866" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3915:4236" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="3920:4055" ph="/* Check if initialized and already registered ... */" />
-            <marker date="1499592887351" expanded="true" signature="4287:4526" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="4292:4339" ph="/* Check if registered ... */" />
-            <marker date="1499592887351" expanded="true" signature="4589:4830" ph="{...}" />
-            <marker date="1499592887351" expanded="true" signature="4879:4968" ph="{...}" />
+            <marker date="1499541483242" expanded="false" signature="6:87" ph="..." />
+            <marker date="1499541483242" expanded="true" signature="112:9029" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="118:252" ph="/// Re-implemented from the BulletSharpUnity3d project ... " />
+            <marker date="1499541483242" expanded="true" signature="297:9027" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="403:586" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="715:898" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="1002:1295" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="1421:1863" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="1958:2183" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="2282:2706" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="2899:3243" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="3378:3685" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="3835:4007" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="4078:4144" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="4229:4299" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="4393:4483" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="4585:4646" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="4727:5462" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="5677:5756" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="5990:6235" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="6443:6535" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="6762:6841" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="6970:7389" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="7519:7934" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="8056:8468" ph="{...}" />
+            <marker date="1499541483242" expanded="true" signature="8597:9021" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysicsWorld.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="196" column="23" lean-forward="false" selection-start-line="196" selection-start-column="23" selection-end-line="196" selection-end-column="23" />
+        <state relative-caret-position="612">
+          <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
           <folding>
             <marker date="1499594041618" expanded="false" signature="6:131" ph="..." />
             <marker date="1499594041618" expanded="true" signature="156:8426" ph="{...}" />
@@ -1014,6 +957,148 @@
             <marker date="1499594041618" expanded="true" signature="7729:8421" ph="{...}" />
             <marker date="1499594041618" expanded="true" signature="7816:7862" ph="{...}" />
             <marker date="1499594041618" expanded="true" signature="8092:8116" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="83" column="12" lean-forward="false" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+          <folding>
+            <marker date="1499627466859" expanded="false" signature="6:192" ph="..." />
+            <marker date="1499627466859" expanded="true" signature="217:4992" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="220:324" ph="/// Interop class for a basic Bullet RigidBody ... " />
+            <marker date="1499627466859" expanded="true" signature="431:4990" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="1774:3608" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="2025:2184" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="2900:3220" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3320:3417" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3655:3885" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3934:4255" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="3939:4074" ph="/* Check if initialized and already registered ... */" />
+            <marker date="1499627466859" expanded="true" signature="4306:4545" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="4311:4358" ph="/* Check if registered ... */" />
+            <marker date="1499627466859" expanded="true" signature="4608:4849" ph="{...}" />
+            <marker date="1499627466859" expanded="true" signature="4898:4987" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCollisionShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+          <folding>
+            <marker date="1499461723224" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499461723224" expanded="true" signature="156:1061" ph="{...}" />
+            <marker date="1499461723224" expanded="true" signature="159:365" ph="/// Abstract interop class for Bullet collision shapes and Unity ... " />
+            <marker date="1499461723224" expanded="true" signature="439:1059" ph="{...}" />
+            <marker date="1499461723224" expanded="true" signature="854:907" ph="{...}" />
+            <marker date="1499461723224" expanded="true" signature="984:1056" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="27" column="24" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding>
+            <marker date="1499627611547" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499627611547" expanded="true" signature="156:1150" ph="{...}" />
+            <marker date="1499627611547" expanded="true" signature="162:279" ph="/// Interop class for a Bullet box collision shape ... " />
+            <marker date="1499627611547" expanded="true" signature="394:1148" ph="{...}" />
+            <marker date="1499627611547" expanded="true" signature="707:864" ph="{...}" />
+            <marker date="1499627611547" expanded="true" signature="963:1140" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <marker date="1499627651496" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499627651496" expanded="true" signature="156:1138" ph="{...}" />
+            <marker date="1499627651496" expanded="true" signature="162:282" ph="/// Interop class for a Bullet sphere collision shape ... " />
+            <marker date="1499627651496" expanded="true" signature="403:1136" ph="{...}" />
+            <marker date="1499627651496" expanded="true" signature="688:861" ph="{...}" />
+            <marker date="1499627651496" expanded="true" signature="960:1128" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BulletSharpPInvoke/BulletSharp/Collision/CylinderShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+          <folding>
+            <marker date="1499374647103" expanded="false" signature="6:98" ph="..." />
+            <marker date="1499374647103" expanded="true" signature="121:3881" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="173:2095" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="234:242" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="335:343" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="510:530" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="570:698" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="581:694" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="741:872" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="752:868" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="895:957" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="978:1040" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="2141:2809" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="2238:2246" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="2415:2435" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="2855:3523" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="2952:2960" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="3129:3149" ph="{...}" />
+            <marker date="1499374647103" expanded="true" signature="3609:3879" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCylinderShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <marker date="1499628219470" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499628219470" expanded="true" signature="156:1206" ph="{...}" />
+            <marker date="1499628219470" expanded="true" signature="162:284" ph="/// Interop class for a Bullet cylinder collision shape ... " />
+            <marker date="1499628219470" expanded="true" signature="409:1204" ph="{...}" />
+            <marker date="1499628219470" expanded="true" signature="724:911" ph="{...}" />
+            <marker date="1499628219470" expanded="true" signature="1010:1196" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCapsuleShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding>
+            <marker date="1499627663382" expanded="true" signature="6:131" ph="..." />
+            <marker date="1499627663382" expanded="true" signature="156:1208" ph="{...}" />
+            <marker date="1499627663382" expanded="true" signature="162:283" ph="/// Interop class for a Bullet capsule collision shape ... " />
+            <marker date="1499627663382" expanded="true" signature="406:1206" ph="{...}" />
+            <marker date="1499627663382" expanded="true" signature="744:921" ph="{...}" />
+            <marker date="1499627663382" expanded="true" signature="1020:1198" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConeShape.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <marker date="1499629136698" expanded="false" signature="6:131" ph="..." />
+            <marker date="1499629136698" expanded="true" signature="156:1188" ph="{...}" />
+            <marker date="1499629136698" expanded="true" signature="162:280" ph="/// Interop class for a Bullet cone collision shape ... " />
+            <marker date="1499629136698" expanded="true" signature="397:1186" ph="{...}" />
+            <marker date="1499629136698" expanded="true" signature="735:904" ph="{...}" />
+            <marker date="1499629136698" expanded="true" signature="1003:1178" ph="{...}" />
           </folding>
         </state>
       </provider>

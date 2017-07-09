@@ -7,27 +7,28 @@ using UnityEngine;
 
 namespace Bullet4Unity {
     /// <summary>
-    /// Interop class for a Bullet box collision shape
+    /// Interop class for a Bullet capsule collision shape
     /// -Author: VektorKnight
     /// </summary>
-    [AddComponentMenu("BulletPhysics/Collision/BoxShape")]
-    public class BulletBoxShape : BulletCollisionShape {
+    [AddComponentMenu("BulletPhysics/Collision/CapsuleShape")]
+    public class BulletCapsuleShape : BulletCollisionShape {
         
         //Unity Inspector
         [Header("Shape Config")] 
-        [SerializeField] private Vector3 _extents = new Vector3(0.5f, 0.5f, 0.5f);
+        [SerializeField] private float _radius = 0.5f;
+        [SerializeField] private float _height = 1f;
         [SerializeField] private Vector3 _localScale = Vector3.one;
         
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
             if (!DrawGizmo) return;
-            BUtility.DebugDrawBox(transform.position, transform.rotation, _localScale, _extents, GizmoColor);
+            BUtility.DebugDrawCapsule(transform.position, transform.rotation, _localScale, _radius, _height / 2f, 1, GizmoColor);
         }
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            Shape = new BoxShape(_extents.ToBullet()) {LocalScaling = _localScale.ToBullet()};
+            Shape = new CapsuleShape(_radius, _height) {LocalScaling = _localScale.ToBullet()};
             return Shape;
         }  
     }

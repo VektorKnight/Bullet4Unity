@@ -7,7 +7,7 @@ using System.Reflection;
 namespace Bullet4Unity {
     /// <summary>
     /// Extension methods for converting common data types between BulletSharp and Unity
-    /// - Reimplemented from BulletSharpUnity3D
+    /// - Credit to Phong13 for oortions reimplemented from BulletSharpUnity3d
     /// </summary>
     public static class BulletExtensionMethods {
         
