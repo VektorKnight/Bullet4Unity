@@ -89,7 +89,7 @@ namespace Bullet4Unity {
 			};
 			
 			//Register with the physics world
-			BulletPhysicsWorld.Instance.RegisterBulletRigidBody(_rigidBody);
+			BulletPhysics.Register(_rigidBody);
 			_registered = true;
 
 			//Initialization complete
@@ -107,15 +107,19 @@ namespace Bullet4Unity {
 			_motionState.Dispose();
 			_bulletCollisionShape.Dispose();
 		}
-		
-		//Unity OnEnable
-		private void OnEnable() {
+
+        public BulletSharp.RigidBody GetUnderlyingRigidbodyInstance() {
+            return _rigidBody;
+        }
+
+        //Unity OnEnable
+        private void OnEnable() {
 			//Check if initialized and already registered
 			//TODO: Physics world should probably implement a method to return registration status
 			if (!_initialized || _registered) return;
 			
 			//Register with the physics world
-			BulletPhysicsWorld.Instance.RegisterBulletRigidBody(_rigidBody);
+			BulletPhysics.Register(_rigidBody);
 			_registered = true;
 		}
 		
@@ -126,7 +130,7 @@ namespace Bullet4Unity {
 			if (!_registered || !_initialized) return;
 			
 			//Unregister from the physics world
-			BulletPhysicsWorld.Instance.UnregisterBulletRigidBody(_rigidBody);
+			BulletPhysics.Unregister(_rigidBody);
 			_registered = false;
 		}
 
@@ -141,7 +145,6 @@ namespace Bullet4Unity {
 		
 		//Unity Destroy
 		private void OnDestroy() {
-			BulletPhysicsWorld.Instance.UnregisterBulletRigidBody(_rigidBody);
 			Dispose();
 		}
 	}
