@@ -17,7 +17,6 @@ namespace Bullet4Unity {
         [Header("Shape Config")] 
         [SerializeField] private float _radius = 0.5f;
         [SerializeField] private float _height = 1f;
-        [SerializeField] private Vector3 _localScale = Vector3.one;
         
         #if UNITY_EDITOR
         //Draw Shape Gizmo
@@ -30,14 +29,14 @@ namespace Bullet4Unity {
             _gizmoScale.x = 2f *_radius;
             _gizmoScale.y = _height;
             _gizmoScale.z =  2f *_radius;
-            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(_localScale, _gizmoScale));
+            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(transform.localScale, _gizmoScale));
         }
         #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            Shape = new CapsuleShape(_radius, _height) {LocalScaling = _localScale.ToBullet()};
+            Shape = new CapsuleShape(_radius, _height) {LocalScaling = transform.localScale.ToBullet()};
             return Shape;
         }  
     }

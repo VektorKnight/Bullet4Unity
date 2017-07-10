@@ -17,20 +17,19 @@ namespace Bullet4Unity {
         [Header("Shape Config")] 
         [SerializeField] private float _radius = 0.5f;
         [SerializeField] private float _height = 1f;
-        [SerializeField] private Vector3 _localScale = Vector3.one;
         
         #if UNITY_EDITOR
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
             if (!DrawGizmo) return;
-            BUtility.DebugDrawCone(transform.position, transform.rotation, _localScale, _radius, _height, 1, GizmoColor);
+            BUtility.DebugDrawCone(transform.position, transform.rotation, transform.localScale, _radius, _height, 1, GizmoColor);
         }
         #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            Shape = new ConeShape(_radius, _height) {LocalScaling = _localScale.ToBullet()};
+            Shape = new ConeShape(_radius, _height) {LocalScaling = transform.localScale.ToBullet()};
             return Shape;
         }  
     }

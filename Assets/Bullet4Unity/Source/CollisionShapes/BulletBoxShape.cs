@@ -16,7 +16,6 @@ namespace Bullet4Unity {
         //Unity Inspector
         [Header("Shape Config")] 
         [SerializeField] private Vector3 _extents = new Vector3(0.5f, 0.5f, 0.5f);
-        [SerializeField] private Vector3 _localScale = Vector3.one;
         
         #if UNITY_EDITOR
         //Draw Shape Gizmo
@@ -25,14 +24,15 @@ namespace Bullet4Unity {
             if (!DrawGizmo) return;
             if (_shapeMesh == null) _shapeMesh = UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Bullet4Unity/Resources/Primitives/BulletCube.fbx");
             Gizmos.color = GizmoColor;
-            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(_localScale, 2f * _extents));
+            //Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(_localScale, 2f * _extents));
+            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(transform.localScale, 2f * _extents));
         }
         #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            Shape = new BoxShape(_extents.ToBullet()) {LocalScaling = _localScale.ToBullet()};
+            Shape = new BoxShape(_extents.ToBullet()) {LocalScaling = transform.localScale.ToBullet()};
             return Shape;
         }  
     }

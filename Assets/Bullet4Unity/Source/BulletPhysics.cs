@@ -13,7 +13,7 @@ namespace Bullet4Unity {
 	/// Based on Page 6 of the documentation located at:
 	/// https://github.com/bulletphysics/bullet3/blob/master/docs/BulletQuickstart.pdf
 	/// TODO: Implement interop code for inspector-friendly components
-	/// -Author: VektorKnight
+	/// -Authors: VektorKnight, Techgeek1
 	/// </summary>
 	[AddComponentMenu("BulletPhysics/Worlds/PhysicsWorld")]
     [ScriptExecutionOrder(Order = -30000)]
@@ -64,7 +64,6 @@ namespace Bullet4Unity {
         }
 
         // World registration
-
         private void Register_Internal(BulletBehavior behaviour) {
             // Select the world and register with it
             _discretePhysicsWorld.Register(behaviour);
@@ -75,14 +74,14 @@ namespace Bullet4Unity {
             _discretePhysicsWorld.Unregister(behaviour);
         }
 
-        private void Register_Internal(RigidBody rigidbody) {
+        private void Register_Internal(RigidBody rigidBody) {
             // Select the world and register with it
-            _discretePhysicsWorld.Register(rigidbody);
+            _discretePhysicsWorld.Register(rigidBody);
         }
 
-        private void Unregister_Internal(RigidBody rigidbody) {
+        private void Unregister_Internal(RigidBody rigidBody) {
             // Select the world and unregister with it
-            _discretePhysicsWorld.Unregister(rigidbody);
+            _discretePhysicsWorld.Unregister(rigidBody);
         }
 
         private void Register_Internal(SoftBody softbody) {
@@ -150,16 +149,12 @@ namespace Bullet4Unity {
             get
             {
                 // Locate/Initialize instance if missing. Acts as a failsafe in the event the user doesn't manually configure the physics system
-                if (_instance == null) {
-                    // Look for preexisting instance
-                    _instance = FindObjectOfType<BulletPhysics>();
-                    if (_instance == null && Application.isPlaying) {
-                        GameObject instanceObj = new GameObject("[BulletPhysics]");
-                        instanceObj.hideFlags = HideFlags.HideAndDontSave;
-                        _instance = instanceObj.AddComponent<BulletPhysics>();
-                    }
-                }
-
+                if (_instance != null) return _instance;
+                // Look for preexisting instance
+                _instance = FindObjectOfType<BulletPhysics>();
+                if (_instance != null || !Application.isPlaying) return _instance;
+                var instanceObj = new GameObject("[BulletPhysics]") {hideFlags = HideFlags.HideAndDontSave};
+                _instance = instanceObj.AddComponent<BulletPhysics>();
                 return _instance;
             }
         }

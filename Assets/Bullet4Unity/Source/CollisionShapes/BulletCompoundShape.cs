@@ -9,12 +9,16 @@ using UnityEngine;
 
 namespace Bullet4Unity {
     /// <summary>
-    /// Interop class for a Bullet box collision shape
+    /// Interop class for a Bullet compound collision shape
     /// -Author: VektorKnight
     /// </summary>
-    [AddComponentMenu("BulletPhysics/Collision/ConvexHullShape")]
+    [AddComponentMenu("BulletPhysics/Collision/CompoundShape")]
     [RequireComponent(typeof(MeshFilter))]
-    public class BulletConvexHullShape : BulletCollisionShape {
+    public class BulletCompoundShape : BulletCollisionShape {
+        
+        //Unity Inspector
+        [Header("Shape Config")] 
+        [SerializeField] private Vector3 _localScale = Vector3.one;
         
         //Private Internal (Optimized Hull Generation)
         private Mesh _mesh;
@@ -30,7 +34,7 @@ namespace Bullet4Unity {
             _rawHull = new ConvexHullShape(_vertices);
             _optimizer = new ShapeHull(_rawHull);
             _optimizer.BuildHull(_rawHull.Margin);
-            Shape = new ConvexHullShape(_optimizer.Vertices) {LocalScaling = transform.localScale.ToBullet()};
+            Shape = new ConvexHullShape(_optimizer.Vertices) {LocalScaling = _localScale.ToBullet()};
             
             //Cleanup BulletSharp components and placeholders
             _optimizer.Dispose();
@@ -38,16 +42,13 @@ namespace Bullet4Unity {
             _optimizer = null;
             _rawHull = null;
             _vertices.Clear();
+            _mesh = null;
         }
         
         #if UNITY_EDITOR
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
-            //TODO: Visualize the actual hull, a bounding box is used for now
-            if (!DrawGizmo) return;
-            if (Shape ==null) GenerateOptimizedConvexHull();
-            Gizmos.color = GizmoColor;
-            Gizmos.DrawWireCube(transform.position, Vector3.Scale(2f * _mesh.bounds.extents, transform.localScale));
+            //TODO: Need to figure out a way to visualize the convex hull
         }
         #endif
         

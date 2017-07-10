@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using Bullet4Unity;
 using BulletSharp;
 
 namespace Bullet4Unity {
+    /// <summary>
+    /// Implements a Bullet Discrete Dynamics World
+    /// - Authors: VektorKnight, Techgeek1
+    /// </summary>
     [Serializable]
     public class DiscreteRigidDynamicsWorld : PhysicsWorld {
         //Unity Inspector
         [Header("Physics World Config")]
-        [SerializeField]
-        private bool _debugging = false;
         [SerializeField] private float _timeStep = 0.02f;
         [SerializeField] private int _maxSubSteps = 10;
         [SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
+        
+        [Header("Physics World Debugging")]
+        [SerializeField] private bool _debugging = false;
+        [SerializeField] private Text _debugText;
 
         //Internal Private
         private bool _initlialized;
@@ -181,11 +188,12 @@ namespace Bullet4Unity {
         //Bullet callback method (equivalent to Unity's FixedUpdate but for Bullet)
         private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
             //Log debug info if enabled
-            if (_debugging) {
-                Debug.Log(string.Format("<b>Bullet4Unity:</b> Simulation stepped by {0} seconds\n" +
-                                        "<b>Bullet4Unity:</b> Simulation opdating {1} rigidbodies",
-                                        bulletTimeStep, _bulletRigidBodies.Count));
-                Debug.Log(string.Format("<b>Bullet4Unity:</b> Callback updating {0} Bullet Behaviors\n", _bulletBehaviors.Count));
+            if (_debugging && _debugText != null) {
+                _debugText.text = "[BulletDiscreteDynamicsWorld]\n" +
+                                  string.Format("RenderDelta: {0}(s)\n", Time.deltaTime) +
+                                  string.Format("PhysicsDelta: {0}(s)\n", bulletTimeStep) +
+                                  string.Format("Rigidbodies: {0} Active\n", _bulletRigidBodies.Count) +
+                                  string.Format("SimCallback: {0} Listeners\n", _bulletBehaviors.Count);
             }
 
             //Return if no behaviors to update
