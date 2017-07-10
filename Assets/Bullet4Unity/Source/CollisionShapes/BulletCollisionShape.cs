@@ -21,8 +21,10 @@ namespace Bullet4Unity {
 		//Protected Internal
 		protected CollisionShape Shape;
 		
+		#if UNITY_EDITOR
 		//Draw Gizmos
 		protected abstract void OnDrawGizmosSelected();
+		#endif
 		
 		//Get Collision Shape
 		public abstract CollisionShape GetCollisionShape();

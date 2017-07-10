@@ -19,11 +19,20 @@ namespace Bullet4Unity {
         [SerializeField] private float _height = 1f;
         [SerializeField] private Vector3 _localScale = Vector3.one;
         
+        #if UNITY_EDITOR
         //Draw Shape Gizmo
+        private static Mesh _shapeMesh;
+        private Vector3 _gizmoScale;
         protected override void OnDrawGizmosSelected() {
             if (!DrawGizmo) return;
-            BUtility.DebugDrawCapsule(transform.position, transform.rotation, _localScale, _radius, _height / 2f, 1, GizmoColor);
+            if (_shapeMesh == null) _shapeMesh = UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Bullet4Unity/Resources/Primitives/BulletCapsule.fbx");
+            Gizmos.color = GizmoColor;
+            _gizmoScale.x = 2f *_radius;
+            _gizmoScale.y = _height;
+            _gizmoScale.z =  2f *_radius;
+            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(_localScale, _gizmoScale));
         }
+        #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {

@@ -18,11 +18,16 @@ namespace Bullet4Unity {
         [SerializeField] private Vector3 _extents = new Vector3(0.5f, 0.5f, 0.5f);
         [SerializeField] private Vector3 _localScale = Vector3.one;
         
+        #if UNITY_EDITOR
         //Draw Shape Gizmo
+        private static Mesh _shapeMesh;
         protected override void OnDrawGizmosSelected() {
             if (!DrawGizmo) return;
-            BUtility.DebugDrawBox(transform.position, transform.rotation, _localScale, _extents, GizmoColor);
+            if (_shapeMesh == null) _shapeMesh = UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Bullet4Unity/Resources/Primitives/BulletCube.fbx");
+            Gizmos.color = GizmoColor;
+            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(_localScale, 2f * _extents));
         }
+        #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {

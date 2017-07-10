@@ -19,11 +19,13 @@ namespace Bullet4Unity {
         [SerializeField] private float _height = 1f;
         [SerializeField] private Vector3 _localScale = Vector3.one;
         
+        #if UNITY_EDITOR
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
             if (!DrawGizmo) return;
             BUtility.DebugDrawCone(transform.position, transform.rotation, _localScale, _radius, _height, 1, GizmoColor);
         }
+        #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
