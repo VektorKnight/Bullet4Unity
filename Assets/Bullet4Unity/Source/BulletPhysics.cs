@@ -20,7 +20,7 @@ namespace Bullet4Unity {
 	public class BulletPhysics : MonoBehaviour, IDisposable {
 
         [SerializeField]
-        private DiscreteRigidDynamicsWorld _discretePhysicsWorld = null;
+        private DiscreteRigidDynamicsWorld _discretePhysicsWorld = new DiscreteRigidDynamicsWorld();
 
         private bool _disposing = false;
 
@@ -34,7 +34,7 @@ namespace Bullet4Unity {
                 Destroy(this);
             }
 
-            _discretePhysicsWorld = new DiscreteRigidDynamicsWorld();
+            //_discretePhysicsWorld = new DiscreteRigidDynamicsWorld();
             _discretePhysicsWorld.Initialize();
 		}
 		

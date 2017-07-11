@@ -864,11 +864,12 @@ MonoBehaviour:
   _mass: 0
   _linearDamping: 0
   _angularDamping: 0
+  _restitution: 0
   _friction: 1
   _rollingFriction: 0
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
-  _restitution: 0
+  _neverSleep: 0
   _linearSleepThreshold: 1
   _angularSleepThreshold: 1
 --- !u!114 &548650984
@@ -1398,8 +1399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _discretePhysicsWorld:
-    _timeStep: 0.01
-    _maxSubSteps: 10
+    _syncToRender: 0
+    _timeStep: 0.016666668
+    _maxSubSteps: 6
     _gravity: {x: 0, y: -9.81, z: 0}
     _debugging: 1
     _debugText: {fileID: 1438654329}

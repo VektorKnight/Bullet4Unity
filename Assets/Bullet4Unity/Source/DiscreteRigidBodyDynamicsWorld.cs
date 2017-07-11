@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Bullet4Unity;
 using BulletSharp;
+using Object = UnityEngine.Object;
 
 namespace Bullet4Unity {
     /// <summary>
@@ -15,7 +16,8 @@ namespace Bullet4Unity {
     [Serializable]
     public class DiscreteRigidDynamicsWorld : PhysicsWorld {
         //Unity Inspector
-        [Header("Physics World Config")]
+        [Header("Physics World Config")] 
+        [SerializeField] private bool _syncToRender = false;
         [SerializeField] private float _timeStep = 0.02f;
         [SerializeField] private int _maxSubSteps = 10;
         [SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
@@ -47,7 +49,7 @@ namespace Bullet4Unity {
             if (!_initlialized) InitializeWorld(BulletUpdate);
 
             //Find all Bullet rigidbodies and tell them to initialize
-            var rigidBodies = (BulletRigidBody[])GameObject.FindObjectsOfType(typeof(BulletRigidBody));
+            var rigidBodies = (BulletRigidBody[])Object.FindObjectsOfType(typeof(BulletRigidBody));
             if (rigidBodies.Length == 0) return;
             foreach (var rb in rigidBodies) {
                 rb.InitializeRigidBody();
@@ -100,9 +102,18 @@ namespace Bullet4Unity {
         public override void StepSimulation() {
             //Make sure we are in play mode and cleanup hasnt started
             if (_disposing) return;
-
-            //Step the simulation world
-            _dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
+            
+            //Set the simulation
+            if (_syncToRender) {
+                //Step with renderer
+                _dynamicsWorld.StepSimulation(Time.deltaTime, 0);
+            }
+            else {
+                //Step with fixed interval (fixed timestep)
+                _dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
+            }
+            
+            
         }
 
         //Register a Bullet RigidBody with the simulation
@@ -190,8 +201,8 @@ namespace Bullet4Unity {
             //Log debug info if enabled
             if (_debugging && _debugText != null) {
                 _debugText.text = "[BulletDiscreteDynamicsWorld]\n" +
-                                  string.Format("RenderDelta: {0}(s)\n", Time.deltaTime) +
-                                  string.Format("PhysicsDelta: {0}(s)\n", bulletTimeStep) +
+                                  string.Format("RenderDelta: {0:n3}(ms)\n", 1000f * Time.deltaTime) +
+                                  string.Format("PhysicsDelta: {0:n3}(ms)\n", 1000f * bulletTimeStep) +
                                   string.Format("Rigidbodies: {0} Active\n", _bulletRigidBodies.Count) +
                                   string.Format("SimCallback: {0} Listeners\n", _bulletBehaviors.Count);
             }

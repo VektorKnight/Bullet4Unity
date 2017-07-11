@@ -6,6 +6,7 @@ using Bullet4Unity;
 using BulletSharp.Math;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
+using Quaternion = UnityEngine.Quaternion;
 
 namespace Bullet4Unity {
 	/// <summary>
@@ -18,8 +19,9 @@ namespace Bullet4Unity {
 		//Unity Inspector
 		[Header("Basic Settings")]
 		[SerializeField] private float _mass = 1f;
-		[SerializeField] private float _linearDamping = 0f;
-		[SerializeField] private float _angularDamping = 0f;
+		[SerializeField] private float _linearDamping = 0.05f;
+		[SerializeField] private float _angularDamping = 0.05f;
+		[SerializeField] private float _restitution = 0f;
 		
 		[Header("Friction Settings")]
 		[SerializeField] private float _friction = 0.2f;
@@ -29,10 +31,10 @@ namespace Bullet4Unity {
 		[SerializeField] private Vector3 _linearFactor = Vector3.one;
 		[SerializeField] private Vector3 _angularFactor = Vector3.one;
 
-		[Header("Advanced Settings")]
-		[SerializeField] private float _restitution = 0f;
+		[Header("Sleep Settings")] 
+		[SerializeField] private bool _neverSleep = false;
 		[SerializeField] private float _linearSleepThreshold = 0.1f;
-		[SerializeField] private float _angularSleepThreshold = 0.11f;
+		[SerializeField] private float _angularSleepThreshold = 0.1f;
 		
 		//Internal Private
 		private bool _initialized;
@@ -88,6 +90,9 @@ namespace Bullet4Unity {
 				AngularFactor = _angularFactor.ToBullet()
 			};
 			
+			//Set sleeping flag
+			if (_neverSleep) _rigidBody.ActivationState = ActivationState.DisableDeactivation;
+			
 			//Register with the physics world
 			BulletPhysics.Register(_rigidBody);
 			_registered = true;
@@ -116,7 +121,8 @@ namespace Bullet4Unity {
         private void OnEnable() {
 			//Check if initialized and already registered
 			//TODO: Physics world should probably implement a method to return registration status
-			if (!_initialized || _registered) return;
+			if (!_initialized) InitializeRigidBody();
+	        if (_registered) return;
 			
 			//Register with the physics world
 			BulletPhysics.Register(_rigidBody);
@@ -138,9 +144,9 @@ namespace Bullet4Unity {
 		private void Update() {
 			if (!_initialized || _disposing) return;
 			
-			_motionState.GetWorldTransform(out _currentTransform);
+			_currentTransform = _motionState.WorldTransform;
 			transform.position = _currentTransform.Origin.ToUnity();
-			transform.rotation = _currentTransform.GetOrientation().ToUnity();
+			transform.rotation = _currentTransform.Orientation.ToUnity();
 		}
 		
 		//Unity Destroy

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using BulletSharp;
 using Bullet4Unity;
+using BulletSharp.Math;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Bullet4Unity {
     /// <summary>
@@ -13,50 +15,57 @@ namespace Bullet4Unity {
     /// -Author: VektorKnight
     /// </summary>
     [AddComponentMenu("BulletPhysics/Collision/CompoundShape")]
-    [RequireComponent(typeof(MeshFilter))]
     public class BulletCompoundShape : BulletCollisionShape {
         
-        //Unity Inspector
-        [Header("Shape Config")] 
-        [SerializeField] private Vector3 _localScale = Vector3.one;
-        
-        //Private Internal (Optimized Hull Generation)
-        private Mesh _mesh;
-        private List<BulletSharp.Math.Vector3> _vertices = new List<BulletSharp.Math.Vector3>();
-        private ConvexHullShape _rawHull;
-        private ShapeHull _optimizer;
+        //Private Internal (Compound Shape Generation)
+        private CompoundShape _compoundShape;
+        private BulletSharp.Math.Matrix _childTransform;
+        private List<BulletCollisionShape> _childShapes = new List<BulletCollisionShape>();
 
         //Generate and return an optimized Bullet ConvexHullShape
-        private void GenerateOptimizedConvexHull() {
-            //Build the optimized hull
-            _mesh = GetComponent<MeshFilter>().sharedMesh;
-            _vertices = _mesh.vertices.Select(vertex => vertex.ToBullet()).ToList();
-            _rawHull = new ConvexHullShape(_vertices);
-            _optimizer = new ShapeHull(_rawHull);
-            _optimizer.BuildHull(_rawHull.Margin);
-            Shape = new ConvexHullShape(_optimizer.Vertices) {LocalScaling = _localScale.ToBullet()};
+        private void GenerateCompoundCollider() {
+            //Get all child collision shapes
+            _childShapes = GetComponentsInChildren<BulletCollisionShape>().ToList();
             
-            //Cleanup BulletSharp components and placeholders
-            _optimizer.Dispose();
-            _rawHull.Dispose();
-            _optimizer = null;
-            _rawHull = null;
-            _vertices.Clear();
-            _mesh = null;
+            //Warn the user if no child colliders
+            if (_childShapes.Count < 2) {
+                Debug.LogError("Bullet Compound Shape requires at least two or more child collision shapes!\n" +
+                               "Please add two or more primitive collision shapes as child objects.");
+                return;
+            }
+            
+            //Generate the compound collider
+            _compoundShape = new CompoundShape() {LocalScaling = transform.localScale.ToBullet()};
+            _childTransform = new Matrix();
+            foreach (var child in _childShapes) {
+                if (child == this) continue;
+                _childTransform.Origin = child.transform.localPosition.ToBullet();
+                _childTransform.Orientation = child.transform.rotation.ToBullet();
+                _compoundShape.AddChildShape(_childTransform, child.GetCollisionShape());
+            }
+            
+            //Assign the compound collider to inherited member "Shape"
+            Shape = _compoundShape;
         }
         
         #if UNITY_EDITOR
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
-            //TODO: Need to figure out a way to visualize the convex hull
         }
         #endif
         
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            GenerateOptimizedConvexHull();
+            GenerateCompoundCollider();
             return Shape;
-        }  
+        } 
+        
+        //Overriden Dispose Method
+        protected override void Dispose(bool disposing) {
+            if (_compoundShape == null) return;
+            _compoundShape.Dispose();
+            _compoundShape = null;
+        }
     }
 }

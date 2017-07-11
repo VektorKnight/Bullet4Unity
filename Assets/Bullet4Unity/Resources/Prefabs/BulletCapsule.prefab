@@ -98,7 +98,6 @@ MonoBehaviour:
   GizmoColor: {r: 0, g: 0, b: 1, a: 1}
   _radius: 0.5
   _height: 1
-  _localScale: {x: 1, y: 1, z: 1}
 --- !u!114 &114725492440527200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,16 +109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810a8098883bf784fb41dec38af8898c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mass: 2
-  _linearDamping: 0
-  _angularDamping: 0
+  _mass: 1
+  _linearDamping: 0.05
+  _angularDamping: 0.05
+  _restitution: 0
   _friction: 0.2
   _rollingFriction: 0.5
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
-  _restitution: 0
+  _neverSleep: 0
   _linearSleepThreshold: 0.1
-  _angularSleepThreshold: 0.11
+  _angularSleepThreshold: 0.1
 --- !u!136 &136030050693127972
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -96,7 +96,6 @@ MonoBehaviour:
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0, b: 1, a: 1}
   _radius: 0.5
-  _localScale: {x: 1, y: 1, z: 1}
 --- !u!114 &114630882367953802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,12 +108,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mass: 1
-  _linearDamping: 0
-  _angularDamping: 0
+  _linearDamping: 0.05
+  _angularDamping: 0.05
+  _restitution: 0
   _friction: 0.2
   _rollingFriction: 0.5
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
-  _restitution: 0
+  _neverSleep: 0
   _linearSleepThreshold: 0.1
-  _angularSleepThreshold: 0.11
+  _angularSleepThreshold: 0.1
