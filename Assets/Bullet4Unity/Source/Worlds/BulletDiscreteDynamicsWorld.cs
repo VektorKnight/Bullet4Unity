@@ -33,7 +33,8 @@ namespace Bullet4Unity {
         
         [Header("Multihreaded Solver Config")]
         [SerializeField] private TaskSchedulerType _schedulerType = TaskSchedulerType.Ppl;
-        [SerializeField] private int _maxSolverThreads = 64;
+        [SerializeField] private int _threadPoolSize = 8;
+        [SerializeField] private int _solverThreads = 4;
         
         [Header("Physics World Debugging")]
         [SerializeField] private bool _debugging = false;
@@ -115,7 +116,8 @@ namespace Bullet4Unity {
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                    _threadedSolver = new ConstraintSolverPoolMultiThreaded(_maxSolverThreads);
+                    _threadedSolver = new ConstraintSolverPoolMultiThreaded(_solverThreads);
+                    Threads.TaskScheduler.NumThreads = _threadPoolSize;
                     _collisionDispatcher = new CollisionDispatcherMultiThreaded(_collisionConfig);
                     break;
                 default:
