@@ -1,0 +1,24 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using Bullet4Unity;
+using BulletSharp;
+using UnityEngine;
+
+public class ForceTorqueTest : BulletBehavior {
+
+	public Vector3 Force;
+	public Vector3 Torque;
+
+	private BulletRigidBody _rigidBody;
+
+	// Use this for initialization
+	void Start () {
+		_rigidBody = GetComponent<BulletRigidBody>();
+		BulletPhysics.Register(this);
+	}
+
+	public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
+		_rigidBody.ApplyForce(Force);
+		_rigidBody.ApplyTorque(Torque);
+	}
+}

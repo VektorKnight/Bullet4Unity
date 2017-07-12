@@ -16,6 +16,7 @@ namespace Bullet4Unity {
 	[AddComponentMenu("BulletPhysics/RigidBody")]
 	public class BulletRigidBody : MonoBehaviour, IDisposable {
 		
+		#region Unity Inspector
 		//Unity Inspector
 		[Header("Basic Settings")]
 		[SerializeField] private float _mass = 1f;
@@ -33,24 +34,99 @@ namespace Bullet4Unity {
 
 		[Header("Sleep Settings")] 
 		[SerializeField] private bool _neverSleep = false;
-		[SerializeField] private float _linearSleepThreshold = 0.1f;
-		[SerializeField] private float _angularSleepThreshold = 0.1f;
+		[SerializeField] private float _linearSleepThreshold = 0.01f;
+		[SerializeField] private float _angularSleepThreshold = 0.01f;
+		#endregion
 		
+		#region Private Members
 		//Internal Private
 		private bool _initialized;
 		private bool _registered;
 		private bool _disposing;
-		private BulletSharp.Math.Matrix _currentTransform;
+		private Matrix _currentTransform;
 		private BulletSharp.Math.Vector3 _localInternia;
 		
 		//Required components for a Bullet RigidBody
 		private BulletCollisionShape _bulletCollisionShape;
-		private BulletSharp.Math.Matrix _initialTransform;
+		private Matrix _initialTransform;
 		private DefaultMotionState _motionState;
 		private RigidBodyConstructionInfo _constructionInfo;
-		private BulletSharp.RigidBody _rigidBody;
+		private RigidBody _rigidBody;
+		#endregion
+
+		#region Public Properties
+		//Get Bullet RigidBody Instance
+		public RigidBody RigidBody {
+			get { return _rigidBody; }
+		}
 		
-		//Initialize the Bullet RigidBody and register with the simulation
+		//Get MotionState Instance
+		public MotionState MotionState {
+			get { return _motionState; }
+		}
+		
+		//Get or Set RigidBody Mass
+		public float Mass {
+			get { return _mass; }
+			set {
+				_mass = value;
+				_bulletCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
+				_rigidBody.SetMassProps(_mass, _localInternia);
+			}
+		}
+		
+		//Get or Set Linear Damping
+		public float LinearDamping {
+			get { return _linearDamping; }
+			set {
+				_linearDamping = value;
+				_rigidBody.SetDamping(_linearDamping, _angularDamping);
+			}
+		}
+		
+		//Get or Set Angular Damping
+		public float AngularDamping {
+			get { return _angularDamping; }
+			set {
+				_angularDamping = value;
+				_rigidBody.SetDamping(_linearDamping, _angularDamping);
+			}
+		}
+		
+		//Get or Set Restitution
+		public float Restitution {
+			get { return _restitution; }
+			set {
+				_restitution = value;
+				_rigidBody.Restitution = value;
+			}
+		}
+		
+		//Get or Set Friction
+		public float Friction {
+			get { return _friction; }
+			set {
+				_friction = value;
+				_rigidBody.Friction = _friction;
+			}
+		}
+		
+		//Get or Set Rolling Friction
+		public float RollingFriction {
+			get { return _rollingFriction; }
+			set {
+				_rollingFriction = value;
+				_rigidBody.RollingFriction = value;
+			}
+		}
+
+		#endregion
+
+		#region Public Methods
+		/// <summary>
+		/// Initializes the Bullet RigidBody and attempts to register it with the physics world.
+		/// This should generally only be called internally or from a physics world instance.
+		/// </summary>
 		public void InitializeRigidBody() {
 			//Check if already initialized
 			if (_initialized) return;
@@ -92,6 +168,8 @@ namespace Bullet4Unity {
 			
 			//Set sleeping flag
 			if (_neverSleep) _rigidBody.ActivationState = ActivationState.DisableDeactivation;
+			_rigidBody.CcdMotionThreshold = 0.5f;
+			_rigidBody.CcdSweptSphereRadius = 0.25f;
 			
 			//Register with the physics world
 			BulletPhysics.Register(_rigidBody);
@@ -101,10 +179,62 @@ namespace Bullet4Unity {
 			_initialized = true;
 		}
 		
-		//Dispose Method
+		/// <summary>
+		/// Applies a continuous force to the RigidBody
+		/// Should be called from BulletUpdate()
+		/// <param name="force">The continuous force to be applied</param>>
+		/// </summary>
+		public void ApplyForce(Vector3 force) {
+			if (!_initialized || _disposing || !_registered) return;
+			_rigidBody.ApplyCentralForce(force.ToBullet());
+		}
+		
+		/// <summary>
+		/// Applies a continuous force to the RigidBody at a specified position
+		/// Should be called from BulletUpdate()
+		/// <param name="force">The continuous force to be applied</param>>
+		/// <param name="position">Local position at which to apply the force</param>>
+		/// </summary>
+		public void ApplyForce(Vector3 force, Vector3 position) {
+			if (!_initialized || _disposing || !_registered) return;
+			_rigidBody.ApplyForce(force.ToBullet(), position.ToBullet());
+		}
+		
+		/// <summary>
+		/// Applies an instant force impulse to the RigidBody
+		/// Should be called from BulletUpdate()
+		/// </summary>
+		/// <param name="impulse"></param>
+		public void ApplyImpulse(Vector3 impulse) {
+			if (!_initialized || _disposing || !_registered) return;
+			_rigidBody.ApplyCentralImpulse(impulse.ToBullet());
+		}
+
+		/// <summary>
+		/// Applies an instant force impulse to the RigidBody at a specified position
+		/// Should be called from BulletUpdate()
+		/// </summary>
+		/// <param name="impulse">The force impulse to be applied</param>
+		/// <param name="position">Local position at which to apply the force</param>
+		public void ApplyImpulse(Vector3 impulse, Vector3 position) {
+			if (!_initialized || _disposing || !_registered) return;
+			_rigidBody.ApplyImpulse(impulse.ToBullet(), position.ToBullet());
+		}
+
+		public void ApplyTorque(Vector3 torque) {
+			if (!_initialized || _disposing || !_registered) return;
+			_rigidBody.ApplyTorque(torque.ToBullet());
+			
+		}
+		
+		/// <summary>
+		/// Disposes of the RigidBody
+		/// Should only be called internally or from a physics world instance.
+		/// </summary>
 		public void Dispose() {
 			//Dispose of all the components in reverse order
 			if (_disposing) return;
+			if (_registered) BulletPhysics.Unregister(_rigidBody);
 			
 			_disposing = true;
 			_rigidBody.Dispose();
@@ -112,11 +242,9 @@ namespace Bullet4Unity {
 			_motionState.Dispose();
 			_bulletCollisionShape.Dispose();
 		}
-
-        public BulletSharp.RigidBody GetUnderlyingRigidbodyInstance() {
-            return _rigidBody;
-        }
-
+		#endregion
+		
+		#region Private Methods
         //Unity OnEnable
         private void OnEnable() {
 			//Check if initialized and already registered
@@ -139,19 +267,19 @@ namespace Bullet4Unity {
 			BulletPhysics.Unregister(_rigidBody);
 			_registered = false;
 		}
-
-		// Update is called once per frame
-		private void Update() {
-			if (!_initialized || _disposing) return;
-			
-			_currentTransform = _motionState.WorldTransform;
-			transform.position = _currentTransform.Origin.ToUnity();
-			transform.rotation = _currentTransform.Orientation.ToUnity();
-		}
 		
+		//Unity Update
+		private void Update() {
+			//Pass transform data to Unity
+			_motionState.GetWorldTransform(out _currentTransform);
+			transform.position = BulletExtensionMethods.ExtractTranslationFromMatrix(ref _currentTransform);
+			transform.rotation = BulletExtensionMethods.ExtractRotationFromMatrix(ref _currentTransform);
+		}
+
 		//Unity Destroy
 		private void OnDestroy() {
 			Dispose();
 		}
+		#endregion
 	}
 }

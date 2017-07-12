@@ -36,7 +36,6 @@ namespace BulletSharp
 		[MonoPInvokeCallback(typeof(GetWorldTransformUnmanagedDelegate))]
         static void GetWorldTransformUnmanaged(IntPtr msPtr, out Matrix worldTrans)
         {
-			//UnityEngine.Debug.Log("Get" + msPtr.ToInt64());
 			MotionState ms = GCHandle.FromIntPtr(msPtr).Target as MotionState;
             ms.GetWorldTransform(out worldTrans);
         }

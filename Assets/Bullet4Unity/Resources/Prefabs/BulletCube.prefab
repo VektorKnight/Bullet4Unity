@@ -102,8 +102,8 @@ MonoBehaviour:
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
   _neverSleep: 0
-  _linearSleepThreshold: 0.1
-  _angularSleepThreshold: 0.1
+  _linearSleepThreshold: 0.01
+  _angularSleepThreshold: 0.01
 --- !u!114 &114549746252819344
 MonoBehaviour:
   m_ObjectHideFlags: 1

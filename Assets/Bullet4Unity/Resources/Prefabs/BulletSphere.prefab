@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5b25a6e9c82e8f1429abb53bedf676ec, type: 2}
+  - {fileID: 2100000, guid: 8f297af9b13c6a848bbd986cad7aa8cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,5 +116,5 @@ MonoBehaviour:
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
   _neverSleep: 0
-  _linearSleepThreshold: 0.1
-  _angularSleepThreshold: 0.1
+  _linearSleepThreshold: 0.01
+  _angularSleepThreshold: 0.01

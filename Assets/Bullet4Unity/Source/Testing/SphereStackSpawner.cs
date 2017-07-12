@@ -13,7 +13,7 @@ public class SphereStackSpawner : MonoBehaviour {
 		Instantiate(SpherePrefab, transform.position, Quaternion.identity);
 
 		for (var i = 1; i < Count; i++) {
-			Instantiate(SpherePrefab, transform.position + (Margin * i * Vector3.up), Quaternion.identity);
+			Instantiate(SpherePrefab, transform.position + (Margin * i * Vector3.up) + Random.insideUnitSphere, Quaternion.identity);
 		}
 	}
 	

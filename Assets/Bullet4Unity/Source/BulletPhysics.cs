@@ -5,6 +5,7 @@ using Bullet4Unity;
 using BulletSharp;
 using BulletSharp.SoftBody;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace Bullet4Unity {
 	/// <summary>
@@ -33,8 +34,8 @@ namespace Bullet4Unity {
             else {
                 Destroy(this);
             }
-
-            //_discretePhysicsWorld = new DiscreteRigidDynamicsWorld();
+            
+		    //Initialize the physics world
             _discretePhysicsWorld.Initialize();
 		}
 		
@@ -53,7 +54,8 @@ namespace Bullet4Unity {
 
             Dispose();
 		}
-
+        
+	    //Dispose
         public void Dispose() {
             if (_disposing)
                 return;
