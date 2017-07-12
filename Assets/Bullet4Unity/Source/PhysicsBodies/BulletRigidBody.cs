@@ -48,15 +48,11 @@ namespace Bullet4Unity {
 
 		#region Public Properties
 		//Get Bullet RigidBody Instance
-		public RigidBody RigidBody {
-			get { return _rigidBody; }
-		}
-		
+		public RigidBody RigidBody => _rigidBody;
+
 		//Get MotionState Instance
-		public MotionState MotionState {
-			get { return PhysicsMotionState; }
-		}
-		
+		public MotionState MotionState => PhysicsMotionState;
+
 		//Get or Set RigidBody Mass
 		public float Mass {
 			get { return _mass; }

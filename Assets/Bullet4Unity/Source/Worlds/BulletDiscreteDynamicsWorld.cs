@@ -26,17 +26,21 @@ namespace Bullet4Unity {
         [Tooltip("NNCG appears to be more accurate and faster for now")]
         [SerializeField] private WorldSolverType _solverType = WorldSolverType.NonSmoothNonLinearConjugate;
         [SerializeField] private int _solverIterations = 6;
-        [SerializeField] private int _maxSolverThreads = 64;
         [Tooltip("DynamicAABB for many dynamic objects, AxisSweep for mostly static objects")]
         [SerializeField] private WorldBroadphaseType _broadphaseType = WorldBroadphaseType.DynamicAabb;
         [Tooltip("How many units from origin on each axis that the AxisSweep broadphase will test")]
         [SerializeField] private Vector3 _axisSweepMargin = new Vector3(1000f, 1000f, 1000f);
+        
+        [Header("Multihreaded Solver Config")]
+        [SerializeField] private TaskSchedulerType _schedulerType = TaskSchedulerType.Ppl;
+        [SerializeField] private int _maxSolverThreads = 64;
         
         [Header("Physics World Debugging")]
         [SerializeField] private bool _debugging = false;
 
         //Inspector Advanced World Config Interop
         [Serializable] private enum WorldSolverType {SequentialImpulse, NonSmoothNonLinearConjugate, ExperimentalMultiThreaded}
+        [Serializable] private enum TaskSchedulerType {Sequential, OpenMp, Ppl}
         [Serializable] private enum WorldBroadphaseType { DynamicAabb, AxisSweep}
         
         //Public Debug Readout Property
@@ -78,10 +82,14 @@ namespace Bullet4Unity {
         }
         
         //Initialize the physics world
-        [STAThread]
         private void InitializeWorld(DynamicsWorld.InternalTickCallback tickCallBack) {
             //Collision configuration and dispatcher
-            _collisionConfig = new DefaultCollisionConfiguration();
+            var collisionConfigInfo = new DefaultCollisionConstructionInfo() {
+                DefaultMaxCollisionAlgorithmPoolSize = 40000,
+                DefaultMaxPersistentManifoldPoolSize = 40000
+            };
+            
+            _collisionConfig = new DefaultCollisionConfiguration(collisionConfigInfo);
             
             //Solver Type Config
             switch (_solverType) {
@@ -94,8 +102,19 @@ namespace Bullet4Unity {
                     _collisionDispatcher = new CollisionDispatcher(_collisionConfig);
                     break;
                 case WorldSolverType.ExperimentalMultiThreaded: //EXPERIMENTAL
-                    _threadedTaskScheduler = Threads.GetSequentialTaskScheduler();
-                    _threadedTaskScheduler.NumThreads = _threadedTaskScheduler.MaxNumThreads;
+                    switch (_schedulerType) {
+                        case TaskSchedulerType.Sequential:
+                            Threads.TaskScheduler = Threads.GetSequentialTaskScheduler();
+                            break;
+                        case TaskSchedulerType.OpenMp:
+                            Threads.TaskScheduler = Threads.GetOpenMPTaskScheduler();
+                            break;
+                        case TaskSchedulerType.Ppl:
+                            Threads.TaskScheduler = Threads.GetPplTaskScheduler();
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                     _threadedSolver = new ConstraintSolverPoolMultiThreaded(_maxSolverThreads);
                     _collisionDispatcher = new CollisionDispatcherMultiThreaded(_collisionConfig);
                     break;
