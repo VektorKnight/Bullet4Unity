@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using BulletSharp;
-using Bullet4Unity;
+﻿using BulletSharp;
 using UnityEngine;
 
 namespace Bullet4Unity {

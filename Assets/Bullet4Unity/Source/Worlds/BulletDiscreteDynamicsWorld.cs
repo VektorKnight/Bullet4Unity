@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using UnityEngine;
-using Bullet4Unity;
 using BulletSharp;
 using Object = UnityEngine.Object;
 
@@ -19,12 +15,12 @@ namespace Bullet4Unity {
         [Header("Physics World Config")] 
         [SerializeField] private bool _syncToRender = false;
         [SerializeField] private float _timeStep = 0.02f;
-        [SerializeField] private int _maxSubSteps = 10;
+        [SerializeField] private int _maxSubSteps = 4;
         [SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
 
         [Header("Advanced World Config")] 
         [Tooltip("NNCG appears to be more accurate and faster for now")]
-        [SerializeField] private WorldSolverType _solverType = WorldSolverType.NonSmoothNonLinearConjugate;
+        [SerializeField] private WorldSolverType _solverType = WorldSolverType.ExperimentalMultiThreaded;
         [SerializeField] private int _solverIterations = 6;
         [Tooltip("DynamicAABB for many dynamic objects, AxisSweep for mostly static objects")]
         [SerializeField] private WorldBroadphaseType _broadphaseType = WorldBroadphaseType.DynamicAabb;
@@ -33,8 +29,8 @@ namespace Bullet4Unity {
         
         [Header("Multihreaded Solver Config")]
         [SerializeField] private TaskSchedulerType _schedulerType = TaskSchedulerType.Ppl;
-        [SerializeField] private int _threadPoolSize = 8;
-        [SerializeField] private int _solverThreads = 4;
+        [SerializeField] private int _threadPoolSize = 4;
+        [SerializeField] private int _solverThreads = 2;
         
         [Header("Physics World Debugging")]
         [SerializeField] private bool _debugging = false;
@@ -86,8 +82,8 @@ namespace Bullet4Unity {
         private void InitializeWorld(DynamicsWorld.InternalTickCallback tickCallBack) {
             //Collision configuration and dispatcher
             var collisionConfigInfo = new DefaultCollisionConstructionInfo() {
-                DefaultMaxCollisionAlgorithmPoolSize = 40000,
-                DefaultMaxPersistentManifoldPoolSize = 40000
+                DefaultMaxCollisionAlgorithmPoolSize = 80000,
+                DefaultMaxPersistentManifoldPoolSize = 80000
             };
             
             _collisionConfig = new DefaultCollisionConfiguration(collisionConfigInfo);
@@ -95,7 +91,7 @@ namespace Bullet4Unity {
             //Solver Type Config
             switch (_solverType) {
                 case WorldSolverType.SequentialImpulse:
-                    _constraintSolver = new SequentialImpulseConstraintSolver();
+                    _constraintSolver = new MultiBodyConstraintSolver();
                     _collisionDispatcher = new CollisionDispatcher(_collisionConfig);
                     break;
                 case WorldSolverType.NonSmoothNonLinearConjugate:

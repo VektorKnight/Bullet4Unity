@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.IO;
-using System.Collections;
-using System.Reflection;
 
 namespace Bullet4Unity {
     /// <summary>
@@ -17,7 +13,7 @@ namespace Bullet4Unity {
         /// <param name="q">Quaternion to be converted</param>
         /// <returns></returns>
         public static BulletSharp.Math.Quaternion ToBullet(this UnityEngine.Quaternion q) {
-            return new BulletSharp.Math.Quaternion(q.x, q.y, q.z, -q.w);
+            return new BulletSharp.Math.Quaternion(q.x, q.y, q.z, q.w);
         }
         
         /// <summary>
@@ -26,7 +22,7 @@ namespace Bullet4Unity {
         /// <param name="q">Quaternion to be converted</param>
         /// <returns></returns>
         public static UnityEngine.Quaternion ToUnity(this BulletSharp.Math.Quaternion q) {
-            return new UnityEngine.Quaternion(q.X, q.Y, q.Z, -q.W);
+            return new UnityEngine.Quaternion(q.X, q.Y, q.Z, q.W);
         }
         
         /// <summary>
@@ -258,6 +254,8 @@ namespace Bullet4Unity {
             upwards.x = matrix.M21;
             upwards.y = matrix.M22;
             upwards.z = matrix.M23;
+            
+            
 
             return Quaternion.LookRotation(forward, upwards);
         }

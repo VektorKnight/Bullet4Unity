@@ -1,7 +1,6 @@
 ﻿using System;
 using BulletSharp;
 using BulletSharp.Math;
-using UnityEditor;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -24,7 +23,7 @@ namespace Bullet4Unity {
 		
 		[Header("Friction Settings")]
 		[SerializeField] private float _friction = 0.2f;
-		[SerializeField] private float _rollingFriction = 0.5f;
+		[SerializeField] private float _rollingFriction = 0.2f;
 
 		[Header("World Factors")] 
 		[SerializeField] private Vector3 _linearFactor = Vector3.one;
@@ -48,10 +47,14 @@ namespace Bullet4Unity {
 
 		#region Public Properties
 		//Get Bullet RigidBody Instance
-		public RigidBody RigidBody => _rigidBody;
+		public RigidBody RigidBody {
+			get { return _rigidBody; }
+		}
 
 		//Get MotionState Instance
-		public MotionState MotionState => PhysicsMotionState;
+		public MotionState MotionState {
+			get { return PhysicsMotionState; }
+		}
 
 		//Get or Set RigidBody Mass
 		public float Mass {
@@ -134,7 +137,7 @@ namespace Bullet4Unity {
 			InitialTransform = Matrix.AffineTransformation(1f, transform.rotation.ToBullet(), transform.position.ToBullet());
 
 			//Initialize the Bullet default motion state using the transform matrix
-			PhysicsMotionState = new DefaultMotionState(InitialTransform);
+			PhysicsMotionState = new BulletMotionState(transform);
 			
 			//Initialize the Bullet rigidbody construction info and assign the relevant values
 			_constructionInfo = new RigidBodyConstructionInfo(_mass, PhysicsMotionState, PhysicsCollisionShape.GetCollisionShape()) {
@@ -156,8 +159,8 @@ namespace Bullet4Unity {
 			
 			//Set sleeping flag
 			if (_neverSleep) _rigidBody.ActivationState = ActivationState.DisableDeactivation;
-			_rigidBody.CcdMotionThreshold = 0.5f;
-			_rigidBody.CcdSweptSphereRadius = 0.25f;
+			//_rigidBody.CcdMotionThreshold = 0.5f;
+			//_rigidBody.CcdSweptSphereRadius = 0.25f;
 			
 			//Register with the physics world
 			BulletPhysicsWorldManager.Register(_rigidBody);
@@ -256,15 +259,17 @@ namespace Bullet4Unity {
 			Registered = false;
 		}
 		
+		//TODO: Transform handoff is now handled in BulletMotionState (Performance Increase)
 		//Unity Update
-		private void Update() {
+		/*private void Update() {
 			if (!Initialized || Disposing || !_rigidBody.IsActive) return;
 			
 			//Pass transform data to Unity
 			_currentTransform = PhysicsMotionState.WorldTransform;
 			transform.position = BulletExtensionMethods.ExtractTranslationFromMatrix(ref _currentTransform);
-			transform.rotation = BulletExtensionMethods.ExtractRotationFromMatrix(ref _currentTransform);
-		}
+			//transform.rotation = BulletExtensionMethods.ExtractRotationFromMatrix(ref _currentTransform);
+			transform.rotation = _currentTransform.GetOrientation().ToUnity();
+		}*/
 
 		//Unity Destroy
 		protected override void OnDestroy() {

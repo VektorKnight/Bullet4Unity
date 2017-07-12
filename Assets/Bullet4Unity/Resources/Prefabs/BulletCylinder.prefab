@@ -113,7 +113,7 @@ MonoBehaviour:
   _angularDamping: 0.05
   _restitution: 0
   _friction: 0.2
-  _rollingFriction: 0.5
+  _rollingFriction: 0.2
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
   _neverSleep: 0

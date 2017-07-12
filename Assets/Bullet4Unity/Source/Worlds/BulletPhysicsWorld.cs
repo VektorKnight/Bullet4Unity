@@ -1,7 +1,6 @@
 ﻿using System;
 using BulletSharp;
 using BulletSharp.SoftBody;
-using UnityEngine;
 
 namespace Bullet4Unity {
     public abstract class BulletPhysicsWorld : IDisposable {

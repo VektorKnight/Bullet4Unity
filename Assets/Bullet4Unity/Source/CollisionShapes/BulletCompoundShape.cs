@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using BulletSharp;
-using Bullet4Unity;
 using BulletSharp.Math;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Bullet4Unity {
     /// <summary>

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Bullet4Unity;
+﻿using Bullet4Unity;
 using BulletSharp;
 using UnityEngine;
 

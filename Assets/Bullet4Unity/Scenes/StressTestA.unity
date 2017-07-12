@@ -264,7 +264,7 @@ Transform:
   m_GameObject: {fileID: 548650982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 0.01, z: 4}
+  m_LocalScale: {x: 4, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -435,10 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+  SpherePrefab: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
     type: 2}
   Margin: 1.25
-  Count: 100
+  Count: 150
 --- !u!4 &743629524
 Transform:
   m_ObjectHideFlags: 0
@@ -479,10 +479,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+  SpherePrefab: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
     type: 2}
   Margin: 1.25
-  Count: 100
+  Count: 150
 --- !u!4 &821867315
 Transform:
   m_ObjectHideFlags: 0
@@ -712,14 +712,15 @@ MonoBehaviour:
   _discretePhysicsWorld:
     _syncToRender: 0
     _timeStep: 0.02
-    _maxSubSteps: 1
+    _maxSubSteps: 4
     _gravity: {x: 0, y: -9.81, z: 0}
     _solverType: 2
     _solverIterations: 6
     _broadphaseType: 0
     _axisSweepMargin: {x: 1000, y: 1000, z: 1000}
     _schedulerType: 2
-    _maxSolverThreads: 8
+    _threadPoolSize: 4
+    _solverThreads: 2
     _debugging: 0
 --- !u!4 &1029683169
 Transform:
@@ -789,10 +790,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+  SpherePrefab: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
     type: 2}
   Margin: 1.25
-  Count: 100
+  Count: 150
 --- !u!4 &1385937981
 Transform:
   m_ObjectHideFlags: 0
@@ -924,10 +925,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+  SpherePrefab: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
     type: 2}
   Margin: 1.25
-  Count: 100
+  Count: 150
 --- !u!4 &1767545423
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,10 +1215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+  SpherePrefab: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
     type: 2}
   Margin: 1.25
-  Count: 100
+  Count: 150
 --- !u!4 &2067396210
 Transform:
   m_ObjectHideFlags: 0

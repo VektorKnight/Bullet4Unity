@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using BulletSharp;
-using Bullet4Unity;
+﻿using BulletSharp;
 using UnityEngine;
 
 namespace Bullet4Unity {
@@ -28,7 +24,7 @@ namespace Bullet4Unity {
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            Shape = new StaticPlaneShape(transform.up.ToBullet(), 1);
+            Shape = new StaticPlaneShape(transform.up.ToBullet(), 1f);
             return Shape;
         }
         

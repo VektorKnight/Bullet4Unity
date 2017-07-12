@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using BulletSharp;
+﻿using BulletSharp;
 using BulletSharp.Math;
 using UnityEngine;
-using CollisionFlags = BulletSharp.CollisionFlags;
 
 namespace Bullet4Unity {
 	/// <summary>

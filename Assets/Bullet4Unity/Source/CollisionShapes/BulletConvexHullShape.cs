@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using BulletSharp;
-using Bullet4Unity;
 using UnityEngine;
 
 namespace Bullet4Unity {

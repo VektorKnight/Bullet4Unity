@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using BulletSharp;
 using BulletSharp.Math;
 using UnityEngine;
@@ -18,7 +16,7 @@ namespace Bullet4Unity {
 
         protected BulletCollisionShape PhysicsCollisionShape;
         protected Matrix InitialTransform;
-        protected DefaultMotionState PhysicsMotionState;
+        protected BulletMotionState PhysicsMotionState;
 
         protected abstract void OnEnable();
         protected abstract void OnDisable();
