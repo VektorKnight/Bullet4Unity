@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dae09bc8-73ee-4dba-a9c3-288354dcf38f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysics.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletPhysics.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletRigidBody.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/DiscreteRigidBodyDynamicsWorld.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/DiscreteRigidBodyDynamicsWorld.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/PhysicsWorld.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/PhysicsWorld.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/SoftBody.meta" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Scenes/StressTestA.unity" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Scenes/StressTestA.unity" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletBehavior.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/BulletBehavior.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletBoxShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCapsuleShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCapsuleShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCollisionShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCollisionShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCompoundShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCompoundShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConeShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConeShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConvexHullShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletConvexHullShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCylinderShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletCylinderShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletSphereShape.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Testing/ForceTorqueTest.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Testing/ForceTorqueTest.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletDiscreteDynamicsWorld.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletDiscreteDynamicsWorld.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletPhysicsWorldManager.cs" afterPath="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletPhysicsWorldManager.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,39 +43,39 @@
       <file leaf-file-name="BulletDiscreteDynamicsWorld.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletDiscreteDynamicsWorld.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+            <state relative-caret-position="581">
+              <caret line="247" column="67" lean-forward="false" selection-start-line="247" selection-start-column="67" selection-end-line="247" selection-end-column="67" />
               <folding>
-                <marker date="1499834125886" expanded="false" signature="6:209" ph="..." />
-                <marker date="1499834125886" expanded="true" signature="234:11728" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="240:367" ph="/// Implements a Bullet Discrete Dynamics World ... " />
-                <marker date="1499834125886" expanded="true" signature="453:11726" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="2806:3284" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="3215:3274" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="3419:5269" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="3699:4125" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="4213:4657" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="5363:6293" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="5521:5588" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="5858:5903" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="6387:6871" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="6572:6690" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="6690:6861" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="6990:7848" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="7115:7382" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="7500:7652" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="7971:8832" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="8079:8302" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="8425:8640" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="8962:9761" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="9087:9361" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="9476:9635" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="9895:10701" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="10003:10242" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="10362:10567" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="10864:11720" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="10934:11433" ph="{...}" />
-                <marker date="1499834125886" expanded="true" signature="11633:11710" ph="{...}" />
+                <marker date="1499834630836" expanded="false" signature="6:209" ph="..." />
+                <marker date="1499834630836" expanded="true" signature="234:11723" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="240:367" ph="/// Implements a Bullet Discrete Dynamics World ... " />
+                <marker date="1499834630836" expanded="true" signature="453:11721" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="2806:3284" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="3215:3274" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="3419:5269" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="3699:4125" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="4213:4657" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="5363:6293" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="5521:5588" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="5858:5903" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="6387:6871" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="6572:6690" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="6690:6861" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="6990:7848" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="7115:7382" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="7500:7652" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="7971:8832" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="8079:8302" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="8425:8640" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="8962:9761" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="9087:9361" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="9476:9635" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="9895:10701" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="10003:10242" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="10362:10567" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="10864:11715" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="10934:11428" ph="{...}" />
+                <marker date="1499834630836" expanded="true" signature="11628:11705" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -103,34 +84,35 @@
       <file leaf-file-name="BulletPhysicsWorldManager.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletPhysicsWorldManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272">
-              <caret line="78" column="48" lean-forward="false" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
+            <state relative-caret-position="357">
+              <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
               <folding>
-                <marker date="1499827160609" expanded="false" signature="6:188" ph="..." />
-                <marker date="1499827160609" expanded="true" signature="213:5523" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="216:604" ph="/// Basic Bullet physics world implementation for Unity ... " />
-                <marker date="1499827160609" expanded="true" signature="807:5521" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="1033:1323" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="1108:1157" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="1157:1221" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="1378:1568" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="1617:1698" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="1753:1929" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="2026:2145" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="2214:2337" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="2399:2518" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="2582:2705" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="2765:2883" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="2945:3067" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="3077:5515" ph="StaticAccessors" />
-                <marker date="1499827160609" expanded="true" signature="3228:3347" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="3479:3600" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="3719:3839" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="3962:4084" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="4200:4319" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="4439:4560" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="4656:5358" ph="{...}" />
-                <marker date="1499827160609" expanded="true" signature="4673:5348" ph="{...}" />
+                <marker date="1499834730280" expanded="false" signature="6:188" ph="..." />
+                <marker date="1499834730280" expanded="true" signature="213:5814" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="216:604" ph="/// Basic Bullet physics world implementation for Unity ... " />
+                <marker date="1499834730280" expanded="true" signature="807:5812" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="1033:1323" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="1108:1157" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="1157:1221" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="1378:1568" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="1620:1858" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="1908:1989" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="2044:2220" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="2317:2436" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="2505:2628" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="2690:2809" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="2873:2996" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="3056:3174" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="3236:3358" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="3368:5806" ph="StaticAccessors" />
+                <marker date="1499834730280" expanded="true" signature="3519:3638" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="3770:3891" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="4010:4130" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="4253:4375" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="4491:4610" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="4730:4851" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="4947:5649" ph="{...}" />
+                <marker date="1499834730280" expanded="true" signature="4964:5639" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -309,6 +291,7 @@
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/PhysicsBodies/BulletStaticBody.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/CollisionShapes/BulletStaticPlaneShape.cs" />
         <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletDiscreteDynamicsWorld.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletPhysicsWorldManager.cs" />
       </list>
     </option>
   </component>
@@ -609,12 +592,12 @@
       <workItem from="1499756490929" duration="5238000" />
       <workItem from="1499796905295" duration="11904000" />
       <workItem from="1499811375018" duration="1851000" />
-      <workItem from="1499813315444" duration="18624000" />
+      <workItem from="1499813315444" duration="19214000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123098000" />
+    <option name="totallyTimeSpent" value="123688000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1301,73 +1284,74 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletDiscreteDynamicsWorld.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+        <state relative-caret-position="581">
+          <caret line="247" column="67" lean-forward="false" selection-start-line="247" selection-start-column="67" selection-end-line="247" selection-end-column="67" />
           <folding>
-            <marker date="1499834125886" expanded="false" signature="6:209" ph="..." />
-            <marker date="1499834125886" expanded="true" signature="234:11728" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="240:367" ph="/// Implements a Bullet Discrete Dynamics World ... " />
-            <marker date="1499834125886" expanded="true" signature="453:11726" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="2806:3284" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="3215:3274" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="3419:5269" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="3699:4125" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="4213:4657" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="5363:6293" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="5521:5588" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="5858:5903" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="6387:6871" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="6572:6690" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="6690:6861" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="6990:7848" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="7115:7382" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="7500:7652" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="7971:8832" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="8079:8302" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="8425:8640" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="8962:9761" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="9087:9361" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="9476:9635" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="9895:10701" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="10003:10242" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="10362:10567" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="10864:11720" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="10934:11433" ph="{...}" />
-            <marker date="1499834125886" expanded="true" signature="11633:11710" ph="{...}" />
+            <marker date="1499834630836" expanded="false" signature="6:209" ph="..." />
+            <marker date="1499834630836" expanded="true" signature="234:11723" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="240:367" ph="/// Implements a Bullet Discrete Dynamics World ... " />
+            <marker date="1499834630836" expanded="true" signature="453:11721" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="2806:3284" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="3215:3274" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="3419:5269" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="3699:4125" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="4213:4657" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="5363:6293" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="5521:5588" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="5858:5903" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="6387:6871" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="6572:6690" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="6690:6861" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="6990:7848" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="7115:7382" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="7500:7652" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="7971:8832" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="8079:8302" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="8425:8640" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="8962:9761" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="9087:9361" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="9476:9635" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="9895:10701" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="10003:10242" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="10362:10567" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="10864:11715" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="10934:11428" ph="{...}" />
+            <marker date="1499834630836" expanded="true" signature="11628:11705" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Bullet4Unity/Source/Worlds/BulletPhysicsWorldManager.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="78" column="48" lean-forward="false" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
+        <state relative-caret-position="357">
+          <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
           <folding>
-            <marker date="1499827160609" expanded="false" signature="6:188" ph="..." />
-            <marker date="1499827160609" expanded="true" signature="213:5523" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="216:604" ph="/// Basic Bullet physics world implementation for Unity ... " />
-            <marker date="1499827160609" expanded="true" signature="807:5521" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="1033:1323" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="1108:1157" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="1157:1221" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="1378:1568" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="1617:1698" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="1753:1929" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="2026:2145" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="2214:2337" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="2399:2518" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="2582:2705" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="2765:2883" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="2945:3067" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="3077:5515" ph="StaticAccessors" />
-            <marker date="1499827160609" expanded="true" signature="3228:3347" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="3479:3600" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="3719:3839" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="3962:4084" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="4200:4319" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="4439:4560" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="4656:5358" ph="{...}" />
-            <marker date="1499827160609" expanded="true" signature="4673:5348" ph="{...}" />
+            <marker date="1499834730280" expanded="false" signature="6:188" ph="..." />
+            <marker date="1499834730280" expanded="true" signature="213:5814" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="216:604" ph="/// Basic Bullet physics world implementation for Unity ... " />
+            <marker date="1499834730280" expanded="true" signature="807:5812" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="1033:1323" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="1108:1157" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="1157:1221" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="1378:1568" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="1620:1858" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="1908:1989" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="2044:2220" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="2317:2436" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="2505:2628" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="2690:2809" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="2873:2996" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="3056:3174" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="3236:3358" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="3368:5806" ph="StaticAccessors" />
+            <marker date="1499834730280" expanded="true" signature="3519:3638" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="3770:3891" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="4010:4130" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="4253:4375" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="4491:4610" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="4730:4851" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="4947:5649" ph="{...}" />
+            <marker date="1499834730280" expanded="true" signature="4964:5639" ph="{...}" />
           </folding>
         </state>
       </provider>

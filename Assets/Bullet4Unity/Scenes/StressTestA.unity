@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
+  SpherePrefab: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
     type: 2}
   Margin: 1.25
   Count: 100
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
+  SpherePrefab: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
     type: 2}
   Margin: 1.25
   Count: 100
@@ -663,7 +663,7 @@ MonoBehaviour:
     _solverIterations: 3
     _broadphaseType: 0
     _axisSweepMargin: {x: 1000, y: 1000, z: 1000}
-    _debugging: 0
+    _debugging: 1
 --- !u!4 &1029683169
 Transform:
   m_ObjectHideFlags: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
+  SpherePrefab: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
     type: 2}
   Margin: 1.25
   Count: 100
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
+  SpherePrefab: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
     type: 2}
   Margin: 1.25
   Count: 100
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
+  SpherePrefab: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
     type: 2}
   Margin: 1.25
   Count: 100

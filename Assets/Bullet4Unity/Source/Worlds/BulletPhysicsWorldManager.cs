@@ -46,8 +46,16 @@ namespace Bullet4Unity {
 
             _discretePhysicsWorld.StepSimulation();
 		}
-		
-		//Unity Destroy
+	    
+	    //Unity OnGUI
+	    private void OnGUI() {
+	        if (_discretePhysicsWorld.DebugReadout == string.Empty) return;
+	        var labelRect = new Rect(2f, 0f, 256f, 512f);
+	        GUI.color = Color.yellow;
+	        GUI.Label(labelRect, _discretePhysicsWorld.DebugReadout);
+	    }
+
+	    //Unity Destroy
 		private void OnDestroy() {
             if (_disposing)
                 return;

@@ -245,7 +245,7 @@ namespace Bullet4Unity {
                 DebugReadout = "[BulletDiscreteDynamicsWorld]\n" +
                                   string.Format("RenderDelta: {0:n3}(ms)\n", 1000f * Time.deltaTime) +
                                   string.Format("PhysicsDelta: {0:n3}(ms)\n", 1000f * bulletTimeStep) +
-                                  string.Format("Rigidbodies: {0} Active\n", _bulletRigidBodies.Count) +
+                                  string.Format("PhysicsBodies: {0}\n", _bulletRigidBodies.Count) +
                                   string.Format("SimCallback: {0} Listeners\n", _bulletBehaviors.Count);
             }
 
