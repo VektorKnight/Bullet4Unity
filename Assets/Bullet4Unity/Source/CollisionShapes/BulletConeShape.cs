@@ -31,6 +31,11 @@ namespace Bullet4Unity {
             if (Shape != null) return Shape;
             Shape = new ConeShape(_radius, _height) {LocalScaling = transform.localScale.ToBullet()};
             return Shape;
-        }  
+        }
+        
+        //Get Collision Shape Type
+        public override CollisionShapeType GetShapeType() {
+            return CollisionShapeType.Primitive;
+        }
     }
 }

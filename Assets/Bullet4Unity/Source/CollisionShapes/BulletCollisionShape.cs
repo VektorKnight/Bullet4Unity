@@ -11,6 +11,7 @@ namespace Bullet4Unity {
 	/// //TODO: Add a method to update parameters in Editor which depend on Transform
 	/// - Author: VektorKnight
 	/// </summary>
+	[DisallowMultipleComponent]
 	public abstract class BulletCollisionShape : MonoBehaviour, IDisposable {
 		
 		//Unity Inspector
@@ -29,6 +30,9 @@ namespace Bullet4Unity {
 		//Get Collision Shape
 		public abstract CollisionShape GetCollisionShape();
 		
+		//Get Collision Shape Type
+		public abstract CollisionShapeType GetShapeType();
+		
 		//IDisposable
 		public void Dispose() {
 			GC.SuppressFinalize(this);
@@ -42,4 +46,7 @@ namespace Bullet4Unity {
 			Shape = null;
 		}
 	}
+	
+	//Shape Type Enum
+	public enum CollisionShapeType {Primitive, Compound, ConvexHull, StaticPlane, StaticMesh}
 }

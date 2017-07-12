@@ -39,5 +39,10 @@ namespace Bullet4Unity {
             Shape = new CapsuleShape(_radius, _height) {LocalScaling = transform.localScale.ToBullet()};
             return Shape;
         }  
+        
+        //Get Collision Shape Type
+        public override CollisionShapeType GetShapeType() {
+            return CollisionShapeType.Primitive;
+        }
     }
 }

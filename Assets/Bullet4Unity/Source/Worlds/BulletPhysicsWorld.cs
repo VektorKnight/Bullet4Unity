@@ -4,7 +4,7 @@ using BulletSharp.SoftBody;
 using UnityEngine;
 
 namespace Bullet4Unity {
-    public abstract class PhysicsWorld : IDisposable {
+    public abstract class BulletPhysicsWorld : IDisposable {
         private const string UNSUPPORTED_WORLD_TYPE_MESSAGE = "Type not supported by world! Make sure you register the body with the correct world type. If you are extending this class do not call the base implementation as it is empty.";
 
         // Initialize the physics world

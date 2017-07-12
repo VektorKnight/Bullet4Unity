@@ -14,7 +14,6 @@ public class ForceTorqueTest : BulletBehavior {
 	// Use this for initialization
 	void Start () {
 		_rigidBody = GetComponent<BulletRigidBody>();
-		BulletPhysics.Register(this);
 	}
 
 	public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {

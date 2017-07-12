@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using BulletSharp;
-using Bullet4Unity;
 using BulletSharp.Math;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
-using Quaternion = UnityEngine.Quaternion;
 
 namespace Bullet4Unity {
 	/// <summary>
-	/// Interop class for a basic Bullet RigidBody
+	/// Interop class for a Bullet RigidBody
 	/// -Author: vektorKnight
 	/// </summary>
-	[AddComponentMenu("BulletPhysics/RigidBody")]
-	public class BulletRigidBody : MonoBehaviour, IDisposable {
+	[AddComponentMenu("BulletPhysics/PhysicsBodies/RigidBody")]
+	[DisallowMultipleComponent]
+	public class BulletRigidBody : BulletPhysicsBody, IDisposable {
 		
 		#region Unity Inspector
 		//Unity Inspector
@@ -40,16 +37,10 @@ namespace Bullet4Unity {
 		
 		#region Private Members
 		//Internal Private
-		private bool _initialized;
-		private bool _registered;
-		private bool _disposing;
 		private Matrix _currentTransform;
 		private BulletSharp.Math.Vector3 _localInternia;
 		
 		//Required components for a Bullet RigidBody
-		private BulletCollisionShape _bulletCollisionShape;
-		private Matrix _initialTransform;
-		private DefaultMotionState _motionState;
 		private RigidBodyConstructionInfo _constructionInfo;
 		private RigidBody _rigidBody;
 		#endregion
@@ -62,7 +53,7 @@ namespace Bullet4Unity {
 		
 		//Get MotionState Instance
 		public MotionState MotionState {
-			get { return _motionState; }
+			get { return PhysicsMotionState; }
 		}
 		
 		//Get or Set RigidBody Mass
@@ -70,7 +61,7 @@ namespace Bullet4Unity {
 			get { return _mass; }
 			set {
 				_mass = value;
-				_bulletCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
+				PhysicsCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
 				_rigidBody.SetMassProps(_mass, _localInternia);
 			}
 		}
@@ -127,29 +118,29 @@ namespace Bullet4Unity {
 		/// Initializes the Bullet RigidBody and attempts to register it with the physics world.
 		/// This should generally only be called internally or from a physics world instance.
 		/// </summary>
-		public void InitializeRigidBody() {
+		public override void InitializePhysicsBody() {
 			//Check if already initialized
-			if (_initialized) return;
+			if (Initialized) return;
 			
 			//Make sure a BulletCollisionShape is attached and reference it if possible
-			_bulletCollisionShape = GetComponent<BulletCollisionShape>();
-			if (_bulletCollisionShape == null) {
+			PhysicsCollisionShape = GetComponent<BulletCollisionShape>();
+			if (PhysicsCollisionShape == null) {
 				Debug.LogError("No Bullet collision shape is attached!\n" +
 				               "Please attach a Bullet collision shape to this object");
 				return;
 			}
 			
 			//Calculate the local intertial of the given shape
-			_bulletCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
+			PhysicsCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
 			
 			//Initialize the Bullet transform matrix and set the values based on Unity transform
-			_initialTransform = new Matrix { Origin = transform.position.ToBullet(), Orientation = transform.rotation.ToBullet() };
+			InitialTransform = new Matrix { Origin = transform.position.ToBullet(), Orientation = transform.rotation.ToBullet() };
 			
 			//Initialize the Bullet default motion state using the transform matrix
-			_motionState = new DefaultMotionState(_initialTransform);
+			PhysicsMotionState = new DefaultMotionState(InitialTransform);
 			
 			//Initialize the Bullet rigidbody construction info and assign the relevant values
-			_constructionInfo = new RigidBodyConstructionInfo(_mass, _motionState, _bulletCollisionShape.GetCollisionShape()) {
+			_constructionInfo = new RigidBodyConstructionInfo(_mass, PhysicsMotionState, PhysicsCollisionShape.GetCollisionShape()) {
 				LocalInertia = _localInternia,
 				LinearDamping = _linearDamping,
 				AngularDamping = _angularDamping,
@@ -172,11 +163,11 @@ namespace Bullet4Unity {
 			_rigidBody.CcdSweptSphereRadius = 0.25f;
 			
 			//Register with the physics world
-			BulletPhysics.Register(_rigidBody);
-			_registered = true;
+			BulletPhysicsWorldManager.Register(_rigidBody);
+			Registered = true;
 
 			//Initialization complete
-			_initialized = true;
+			Initialized = true;
 		}
 		
 		/// <summary>
@@ -185,7 +176,7 @@ namespace Bullet4Unity {
 		/// <param name="force">The continuous force to be applied</param>>
 		/// </summary>
 		public void ApplyForce(Vector3 force) {
-			if (!_initialized || _disposing || !_registered) return;
+			if (!Initialized || Disposing || !Registered) return;
 			_rigidBody.ApplyCentralForce(force.ToBullet());
 		}
 		
@@ -196,7 +187,7 @@ namespace Bullet4Unity {
 		/// <param name="position">Local position at which to apply the force</param>>
 		/// </summary>
 		public void ApplyForce(Vector3 force, Vector3 position) {
-			if (!_initialized || _disposing || !_registered) return;
+			if (!Initialized || Disposing || !Registered) return;
 			_rigidBody.ApplyForce(force.ToBullet(), position.ToBullet());
 		}
 		
@@ -206,7 +197,7 @@ namespace Bullet4Unity {
 		/// </summary>
 		/// <param name="impulse"></param>
 		public void ApplyImpulse(Vector3 impulse) {
-			if (!_initialized || _disposing || !_registered) return;
+			if (!Initialized || Disposing || !Registered) return;
 			_rigidBody.ApplyCentralImpulse(impulse.ToBullet());
 		}
 
@@ -217,12 +208,12 @@ namespace Bullet4Unity {
 		/// <param name="impulse">The force impulse to be applied</param>
 		/// <param name="position">Local position at which to apply the force</param>
 		public void ApplyImpulse(Vector3 impulse, Vector3 position) {
-			if (!_initialized || _disposing || !_registered) return;
+			if (!Initialized || Disposing || !Registered) return;
 			_rigidBody.ApplyImpulse(impulse.ToBullet(), position.ToBullet());
 		}
 
 		public void ApplyTorque(Vector3 torque) {
-			if (!_initialized || _disposing || !_registered) return;
+			if (!Initialized || Disposing || !Registered) return;
 			_rigidBody.ApplyTorque(torque.ToBullet());
 			
 		}
@@ -231,53 +222,55 @@ namespace Bullet4Unity {
 		/// Disposes of the RigidBody
 		/// Should only be called internally or from a physics world instance.
 		/// </summary>
-		public void Dispose() {
+		public override void Dispose() {
 			//Dispose of all the components in reverse order
-			if (_disposing) return;
-			if (_registered) BulletPhysics.Unregister(_rigidBody);
+			if (Disposing) return;
+			if (Registered) BulletPhysicsWorldManager.Unregister(_rigidBody);
 			
-			_disposing = true;
+			Disposing = true;
 			_rigidBody.Dispose();
 			_constructionInfo.Dispose();
-			_motionState.Dispose();
-			_bulletCollisionShape.Dispose();
+			PhysicsMotionState.Dispose();
+			PhysicsCollisionShape.Dispose();
 		}
 		#endregion
 		
 		#region Private Methods
         //Unity OnEnable
-        private void OnEnable() {
+        protected override void OnEnable() {
 			//Check if initialized and already registered
 			//TODO: Physics world should probably implement a method to return registration status
-			if (!_initialized) InitializeRigidBody();
-	        if (_registered) return;
+			if (!Initialized) InitializePhysicsBody();
+	        if (Registered) return;
 			
 			//Register with the physics world
-			BulletPhysics.Register(_rigidBody);
-			_registered = true;
+			BulletPhysicsWorldManager.Register(_rigidBody);
+			Registered = true;
 		}
 		
 		//Unity OnDisable
-		private void OnDisable() {
+		protected override void OnDisable() {
 			//Check if registered
 			//TODO: See OnEnable()
-			if (!_registered || !_initialized) return;
+			if (!Registered || !Initialized) return;
 			
 			//Unregister from the physics world
-			BulletPhysics.Unregister(_rigidBody);
-			_registered = false;
+			BulletPhysicsWorldManager.Unregister(_rigidBody);
+			Registered = false;
 		}
 		
 		//Unity Update
 		private void Update() {
+			if (!Initialized || Disposing || !_rigidBody.IsActive) return;
+			
 			//Pass transform data to Unity
-			_motionState.GetWorldTransform(out _currentTransform);
+			_currentTransform = PhysicsMotionState.WorldTransform;
 			transform.position = BulletExtensionMethods.ExtractTranslationFromMatrix(ref _currentTransform);
 			transform.rotation = BulletExtensionMethods.ExtractRotationFromMatrix(ref _currentTransform);
 		}
 
 		//Unity Destroy
-		private void OnDestroy() {
+		protected override void OnDestroy() {
 			Dispose();
 		}
 		#endregion

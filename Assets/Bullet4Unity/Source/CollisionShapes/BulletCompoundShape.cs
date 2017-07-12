@@ -61,6 +61,11 @@ namespace Bullet4Unity {
             return Shape;
         } 
         
+        //Get Collision Shape Type
+        public override CollisionShapeType GetShapeType() {
+            return CollisionShapeType.Compound;
+        }
+        
         //Overriden Dispose Method
         protected override void Dispose(bool disposing) {
             if (_compoundShape == null) return;

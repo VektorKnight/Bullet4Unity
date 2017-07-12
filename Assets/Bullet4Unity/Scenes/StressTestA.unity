@@ -121,7 +121,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -158,7 +158,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_Name
@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 548650985}
   - component: {fileID: 548650984}
   - component: {fileID: 548650983}
-  - component: {fileID: 548650988}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -200,20 +199,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 548650982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810a8098883bf784fb41dec38af8898c, type: 3}
+  m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mass: 0
-  _linearDamping: 0
-  _angularDamping: 0
-  _restitution: 0
-  _friction: 1
-  _rollingFriction: 0
-  _linearFactor: {x: 1, y: 1, z: 1}
-  _angularFactor: {x: 1, y: 1, z: 1}
-  _neverSleep: 0
-  _linearSleepThreshold: 1
-  _angularSleepThreshold: 1
 --- !u!114 &548650984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,12 +210,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 548650982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c563815dc84f543469140eca0f11d4e1, type: 3}
+  m_Script: {fileID: 11500000, guid: a84475f9d6f304d4fb60a7a07a90f916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 0, g: 0, b: 1, a: 1}
-  _extents: {x: 5, y: 5, z: 5}
+  GizmoColor: {r: 1, g: 0, b: 0, a: 0.372}
 --- !u!23 &548650985
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -280,20 +267,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &548650988
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 548650982}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &613053081
 Prefab:
   m_ObjectHideFlags: 0
@@ -307,7 +280,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -352,7 +325,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 23242894931101076, guid: 6de3f33afc4419c429d98f19d7dea87b,
         type: 2}
@@ -423,10 +396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1493466248527302, guid: ec7caefa86514c943933f1759260054b,
+  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
     type: 2}
   Margin: 1.25
-  Count: 120
+  Count: 100
 --- !u!4 &743629524
 Transform:
   m_ObjectHideFlags: 0
@@ -467,10 +440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
     type: 2}
   Margin: 1.25
-  Count: 120
+  Count: 100
 --- !u!4 &821867315
 Transform:
   m_ObjectHideFlags: 0
@@ -514,7 +487,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -555,7 +528,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 23242894931101076, guid: 6de3f33afc4419c429d98f19d7dea87b,
         type: 2}
@@ -687,7 +660,7 @@ MonoBehaviour:
     _maxSubSteps: 10
     _gravity: {x: 0, y: -9.81, z: 0}
     _solverType: 1
-    _solverIterations: 6
+    _solverIterations: 3
     _broadphaseType: 0
     _axisSweepMargin: {x: 1000, y: 1000, z: 1000}
     _debugging: 0
@@ -751,7 +724,7 @@ MonoBehaviour:
   SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
     type: 2}
   Margin: 1.25
-  Count: 120
+  Count: 100
 --- !u!4 &1385937981
 Transform:
   m_ObjectHideFlags: 0
@@ -792,10 +765,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
+  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
     type: 2}
   Margin: 1.25
-  Count: 120
+  Count: 100
 --- !u!4 &1767545423
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +972,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1044,7 +1017,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 23242894931101076, guid: 6de3f33afc4419c429d98f19d7dea87b,
         type: 2}
@@ -1081,10 +1054,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1827065c36e5fa34a89e4287f5a2eae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpherePrefab: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
+  SpherePrefab: {fileID: 1279091027810872, guid: ff50d925384029d4f80bc1e1f99ab4c7,
     type: 2}
   Margin: 1.25
-  Count: 120
+  Count: 100
 --- !u!4 &2067396210
 Transform:
   m_ObjectHideFlags: 0

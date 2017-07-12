@@ -7,17 +7,19 @@ using UnityEngine;
 
 namespace Bullet4Unity {
     /// <summary>
-    /// Interop class for a Bullet box collision shape
+    /// Interop class for a Bullet infinite static plane collision shape
     /// -Author: VektorKnight
     /// </summary>
-    [AddComponentMenu("BulletPhysics/Collision/BoxShape")]
-    public class BulletBoxShape : BulletCollisionShape {
+    [AddComponentMenu("BulletPhysics/Collision/StaticPlaneShape")]
+    [RequireComponent(typeof(BulletStaticBody))]
+    public class BulletStaticPlaneShape : BulletCollisionShape {
+        private RigidBody _staticBody;
+        private DefaultMotionState _motionState;
         
-        //Unity Inspector
-        [Header("Shape Config")] 
-        [SerializeField] private Vector3 _extents = new Vector3(0.5f, 0.5f, 0.5f);
-        
-        //Collision Shape Type
+        //Create Internal Static Body
+        private void Awake() {
+            _motionState = new DefaultMotionState();
+        }
         
         #if UNITY_EDITOR
         //Draw Shape Gizmo
@@ -26,21 +28,20 @@ namespace Bullet4Unity {
             if (!DrawGizmo) return;
             if (_shapeMesh == null) _shapeMesh = UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Bullet4Unity/Resources/Primitives/BulletCube.fbx");
             Gizmos.color = GizmoColor;
-            //Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(_localScale, 2f * _extents));
-            Gizmos.DrawWireMesh(_shapeMesh, transform.position, transform.rotation, Vector3.Scale(transform.localScale, 2f * _extents));
+            Gizmos.DrawMesh(_shapeMesh, transform.position - (Vector3.one * 0.01f), transform.rotation, new Vector3(1000f, 0f, 1000f));
         }
         #endif
-        
+
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {
             if (Shape != null) return Shape;
-            Shape = new BoxShape(_extents.ToBullet()) {LocalScaling = transform.localScale.ToBullet()};
+            Shape = new StaticPlaneShape(transform.up.ToBullet(), 1);
             return Shape;
         }
         
         //Get Collision Shape Type
         public override CollisionShapeType GetShapeType() {
-            return CollisionShapeType.Primitive;
+            return CollisionShapeType.StaticPlane;
         }
     }
 }

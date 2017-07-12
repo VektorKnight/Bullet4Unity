@@ -56,6 +56,11 @@ namespace Bullet4Unity {
             if (Shape != null) return Shape;
             GenerateOptimizedConvexHull();
             return Shape;
-        }  
+        } 
+        
+        //Get Collision Shape Type
+        public override CollisionShapeType GetShapeType() {
+            return CollisionShapeType.ConvexHull;
+        }
     }
 }

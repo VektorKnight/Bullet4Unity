@@ -16,12 +16,12 @@ namespace Bullet4Unity {
 	/// TODO: Implement interop code for inspector-friendly components
 	/// -Authors: VektorKnight, Techgeek1
 	/// </summary>
-	[AddComponentMenu("BulletPhysics/Worlds/PhysicsWorld")]
-    [ScriptExecutionOrder(Order = -30000)]
-	public class BulletPhysics : MonoBehaviour, IDisposable {
+	[AddComponentMenu("BulletPhysics/Worlds/PhysicsWorldManager")]
+    [ScriptExecutionOrder(Order = -30000)] //ITS LESS THAN -9000!!!!
+	public class BulletPhysicsWorldManager : MonoBehaviour, IDisposable {
 
         [SerializeField]
-        private DiscreteRigidDynamicsWorld _discretePhysicsWorld = new DiscreteRigidDynamicsWorld();
+        private BulletDiscreteDynamicsWorld _discretePhysicsWorld = new BulletDiscreteDynamicsWorld();
 
         private bool _disposing = false;
 
@@ -147,20 +147,20 @@ namespace Bullet4Unity {
         }
 
         //Static Singleton Instance
-        private static BulletPhysics Instance {
+        private static BulletPhysicsWorldManager Instance {
             get
             {
                 // Locate/Initialize instance if missing. Acts as a failsafe in the event the user doesn't manually configure the physics system
                 if (_instance != null) return _instance;
                 // Look for preexisting instance
-                _instance = FindObjectOfType<BulletPhysics>();
+                _instance = FindObjectOfType<BulletPhysicsWorldManager>();
                 if (_instance != null || !Application.isPlaying) return _instance;
-                var instanceObj = new GameObject("[BulletPhysics]") {hideFlags = HideFlags.HideAndDontSave};
-                _instance = instanceObj.AddComponent<BulletPhysics>();
+                var instanceObj = new GameObject("[BulletPhysicsWorldManager]") {hideFlags = HideFlags.HideAndDontSave};
+                _instance = instanceObj.AddComponent<BulletPhysicsWorldManager>();
                 return _instance;
             }
         }
-        private static BulletPhysics _instance = null;
+        private static BulletPhysicsWorldManager _instance = null;
 
         private static bool _decommisioning = false;
 

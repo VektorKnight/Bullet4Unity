@@ -14,7 +14,7 @@ namespace Bullet4Unity {
     /// - Authors: VektorKnight, Techgeek1
     /// </summary>
     [Serializable]
-    public class DiscreteRigidDynamicsWorld : PhysicsWorld {
+    public class BulletDiscreteDynamicsWorld : BulletPhysicsWorld {
         //Unity Inspector
         [Header("Physics World Config")] 
         [SerializeField] private bool _syncToRender = false;
@@ -33,11 +33,13 @@ namespace Bullet4Unity {
         
         [Header("Physics World Debugging")]
         [SerializeField] private bool _debugging = false;
-        private string _debugText;
-        
+
         //Inspector Advanced World Config Interop
         [Serializable] private enum WorldSolverType {SequentialImpulse, NonSmoothNonLinearConjugate}
         [Serializable] private enum WorldBroadphaseType { DynamicAabb, AxisSweep}
+        
+        //Public Debug Readout Property
+        public string DebugReadout { get; private set; }
 
         //Internal Private
         private bool _initlialized;
@@ -62,11 +64,11 @@ namespace Bullet4Unity {
             //Initialize the world if it hasn't already been initialized
             if (!_initlialized) InitializeWorld(BulletUpdate);
 
-            //Find all Bullet rigidbodies and tell them to initialize
-            var rigidBodies = (BulletRigidBody[])Object.FindObjectsOfType(typeof(BulletRigidBody));
+            //Find all Bullet physics bodies and tell them to initialize
+            var rigidBodies = (BulletPhysicsBody[])Object.FindObjectsOfType(typeof(BulletPhysicsBody));
             if (rigidBodies.Length == 0) return;
             foreach (var rb in rigidBodies) {
-                rb.InitializeRigidBody();
+                rb.InitializePhysicsBody();
             }
         }
         
@@ -154,8 +156,6 @@ namespace Bullet4Unity {
                 //Step with fixed interval (fixed timestep)
                 _dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
             }
-            
-            
         }
 
         //Register a Bullet RigidBody with the simulation
@@ -241,8 +241,8 @@ namespace Bullet4Unity {
         //Bullet callback method (equivalent to Unity's FixedUpdate but for Bullet)
         private void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
             //Log debug info if enabled
-            if (_debugging && _debugText != null) {
-                _debugText = "[BulletDiscreteDynamicsWorld]\n" +
+            if (_debugging) {
+                DebugReadout = "[BulletDiscreteDynamicsWorld]\n" +
                                   string.Format("RenderDelta: {0:n3}(ms)\n", 1000f * Time.deltaTime) +
                                   string.Format("PhysicsDelta: {0:n3}(ms)\n", 1000f * bulletTimeStep) +
                                   string.Format("Rigidbodies: {0} Active\n", _bulletRigidBodies.Count) +

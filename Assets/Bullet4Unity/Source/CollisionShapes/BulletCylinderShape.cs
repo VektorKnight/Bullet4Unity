@@ -31,5 +31,10 @@ namespace Bullet4Unity {
             Shape = new CylinderShape(_halfExtents.ToBullet()) {LocalScaling = transform.localScale.ToBullet()};
             return Shape;
         }  
+        
+        //Get Collision Shape Type
+        public override CollisionShapeType GetShapeType() {
+            return CollisionShapeType.Primitive;
+        }
     }
 }
