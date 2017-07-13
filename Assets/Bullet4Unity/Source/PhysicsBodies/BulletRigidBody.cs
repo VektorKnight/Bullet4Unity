@@ -40,83 +40,83 @@ namespace Bullet4Unity {
 		
 		#region Private Members
 		//Internal Private
+		private bool _isKinematic;
 		private Matrix _currentTransform;
 		private BulletSharp.Math.Vector3 _localInternia;
 		
 		//Required components for a Bullet RigidBody
 		private RigidBodyConstructionInfo _constructionInfo;
-		private RigidBody _rigidBody;
+
 		#endregion
 
 		#region Public Properties
 		//Get Bullet RigidBody Instance
-		public RigidBody RigidBody {
-			get { return _rigidBody; }
-		}
+		public RigidBody BRigidBody { get; private set; }
 
 		//Get MotionState Instance
-		public MotionState MotionState {
-			get { return PhysicsMotionState; }
-		}
+		public MotionState MotionState => PhysicsMotionState;
+		
+		//Get Collision Shape
+		public CollisionShape CollisionShape => PhysicsCollisionShape.GetCollisionShape();
 
-		//Get or Set RigidBody Mass
+		//Property: Mass
 		public float Mass {
 			get { return _mass; }
 			set {
 				_mass = value;
 				PhysicsCollisionShape.GetCollisionShape().CalculateLocalInertia(_mass, out _localInternia);
-				_rigidBody.SetMassProps(_mass, _localInternia);
+				BRigidBody.SetMassProps(_mass, _localInternia);
 			}
 		}
 		
-		//Get or Set Linear Damping
+		//Property: Linear Damping
 		public float LinearDamping {
 			get { return _linearDamping; }
 			set {
 				_linearDamping = value;
-				_rigidBody.SetDamping(_linearDamping, _angularDamping);
+				BRigidBody.SetDamping(_linearDamping, _angularDamping);
 			}
 		}
 		
-		//Get or Set Angular Damping
+		//Property: Angular Damping
 		public float AngularDamping {
 			get { return _angularDamping; }
 			set {
 				_angularDamping = value;
-				_rigidBody.SetDamping(_linearDamping, _angularDamping);
+				BRigidBody.SetDamping(_linearDamping, _angularDamping);
 			}
 		}
 		
-		//Get or Set Restitution
+		//Property: Restitution
 		public float Restitution {
 			get { return _restitution; }
 			set {
 				_restitution = value;
-				_rigidBody.Restitution = value;
+				BRigidBody.Restitution = value;
 			}
 		}
 		
-		//Get or Set Friction
+		//Property: Friction
 		public float Friction {
 			get { return _friction; }
 			set {
 				_friction = value;
-				_rigidBody.Friction = _friction;
+				BRigidBody.Friction = _friction;
 			}
 		}
 		
-		//Get or Set Rolling Friction
+		//Property: Rolling Friction
 		public float RollingFriction {
 			get { return _rollingFriction; }
 			set {
 				_rollingFriction = value;
-				_rigidBody.RollingFriction = value;
+				BRigidBody.RollingFriction = value;
 			}
 		}
 
 		#endregion
 
-		#region Public Methods
+		#region Public Utility Methods
 		/// <summary>
 		/// Initializes the Bullet RigidBody and attempts to register it with the physics world.
 		/// This should generally only be called internally or from a physics world instance.
@@ -155,18 +155,18 @@ namespace Bullet4Unity {
 			};
 			
 			//Create the Bullet RigidBody
-			_rigidBody = new RigidBody(_constructionInfo) {
+			BRigidBody = new RigidBody(_constructionInfo) {
 				LinearFactor = _linearFactor.ToBullet(),
 				AngularFactor = _angularFactor.ToBullet()
 			};
-			_rigidBody.CollisionFlags = CollisionFlags.CustomMaterialCallback;
+			BRigidBody.CollisionFlags = CollisionFlags.CustomMaterialCallback;
 			//Set sleeping flag
-			if (_neverSleep) _rigidBody.ActivationState = ActivationState.DisableDeactivation;
+			if (_neverSleep) BRigidBody.ActivationState = ActivationState.DisableDeactivation;
 			//_rigidBody.CcdMotionThreshold = 0.5f;
 			//_rigidBody.CcdSweptSphereRadius = 0.25f;
 			
 			//Register with the physics world
-			BulletPhysicsWorldManager.Register(_rigidBody);
+			BulletPhysicsWorldManager.Register(BRigidBody);
 			Registered = true;
 
 			//Initialization complete
@@ -174,13 +174,31 @@ namespace Bullet4Unity {
 		}
 		
 		/// <summary>
+		/// Disposes of the RigidBody
+		/// Should only be called internally or from a physics world instance.
+		/// </summary>
+		public override void Dispose() {
+			//Dispose of all the components in reverse order
+			if (Disposing) return;
+			if (Registered) BulletPhysicsWorldManager.Unregister(BRigidBody);
+			
+			Disposing = true;
+			BRigidBody.Dispose();
+			_constructionInfo.Dispose();
+			PhysicsMotionState.Dispose();
+			PhysicsCollisionShape.Dispose();
+		}
+		#endregion
+		
+		#region Forces & Torque
+		/// <summary>
 		/// Applies a continuous force to the RigidBody
 		/// Should be called from BulletUpdate()
 		/// <param name="force">The continuous force to be applied</param>>
 		/// </summary>
 		public void ApplyForce(Vector3 force) {
 			if (!Initialized || Disposing || !Registered) return;
-			_rigidBody.ApplyCentralForce(force.ToBullet());
+			BRigidBody.ApplyCentralForce(force.ToBullet());
 		}
 		
 		/// <summary>
@@ -191,7 +209,7 @@ namespace Bullet4Unity {
 		/// </summary>
 		public void ApplyForce(Vector3 force, Vector3 position) {
 			if (!Initialized || Disposing || !Registered) return;
-			_rigidBody.ApplyForce(force.ToBullet(), position.ToBullet());
+			BRigidBody.ApplyForce(force.ToBullet(), position.ToBullet());
 		}
 		
 		/// <summary>
@@ -201,7 +219,7 @@ namespace Bullet4Unity {
 		/// <param name="impulse"></param>
 		public void ApplyImpulse(Vector3 impulse) {
 			if (!Initialized || Disposing || !Registered) return;
-			_rigidBody.ApplyCentralImpulse(impulse.ToBullet());
+			BRigidBody.ApplyCentralImpulse(impulse.ToBullet());
 		}
 
 		/// <summary>
@@ -212,29 +230,27 @@ namespace Bullet4Unity {
 		/// <param name="position">Local position at which to apply the force</param>
 		public void ApplyImpulse(Vector3 impulse, Vector3 position) {
 			if (!Initialized || Disposing || !Registered) return;
-			_rigidBody.ApplyImpulse(impulse.ToBullet(), position.ToBullet());
-		}
-
-		public void ApplyTorque(Vector3 torque) {
-			if (!Initialized || Disposing || !Registered) return;
-			_rigidBody.ApplyTorque(torque.ToBullet());
-			
+			BRigidBody.ApplyImpulse(impulse.ToBullet(), position.ToBullet());
 		}
 		
 		/// <summary>
-		/// Disposes of the RigidBody
-		/// Should only be called internally or from a physics world instance.
+		/// Applies a torque force to the RigidBody
+		/// Should be called from BulletUpdate()
 		/// </summary>
-		public override void Dispose() {
-			//Dispose of all the components in reverse order
-			if (Disposing) return;
-			if (Registered) BulletPhysicsWorldManager.Unregister(_rigidBody);
-			
-			Disposing = true;
-			_rigidBody.Dispose();
-			_constructionInfo.Dispose();
-			PhysicsMotionState.Dispose();
-			PhysicsCollisionShape.Dispose();
+		/// <param name="torque">The torque force to be applied</param>
+		public void ApplyTorque(Vector3 torque) {
+			if (!Initialized || Disposing || !Registered) return;
+			BRigidBody.ApplyTorque(torque.ToBullet());
+		}
+		
+		/// <summary>
+		/// Applies a torque impulse to the RigidBody at a specified position
+		/// Should be called from BulletUpdate()
+		/// </summary>
+		/// <param name="torque">The torque impulse to be applied</param>
+		public void ApplyTorqueImpulse(Vector3 impulse) {
+			if (!Initialized || Disposing || !Registered) return;
+			BRigidBody.ApplyTorqueImpulse(impulse.ToBullet());
 		}
 		#endregion
 		
@@ -247,7 +263,7 @@ namespace Bullet4Unity {
 	        if (Registered) return;
 			
 			//Register with the physics world
-			BulletPhysicsWorldManager.Register(_rigidBody);
+			BulletPhysicsWorldManager.Register(BRigidBody);
 			Registered = true;
 		}
 		
@@ -258,7 +274,7 @@ namespace Bullet4Unity {
 			if (!Registered || !Initialized) return;
 			
 			//Unregister from the physics world
-			BulletPhysicsWorldManager.Unregister(_rigidBody);
+			BulletPhysicsWorldManager.Unregister(BRigidBody);
 			Registered = false;
 		}
 		

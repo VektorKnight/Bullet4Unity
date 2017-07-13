@@ -18,7 +18,7 @@ namespace Bullet4Unity {
 		
 		//Collision Added Callback
 		private void OnContactProcessed(ManifoldPoint cp, CollisionObject body0, CollisionObject body1) {
-			if (Equals(body0, RigidBody.RigidBody) || Equals(body1, RigidBody.RigidBody)) {
+			if (Equals(body0, RigidBody.BRigidBody) || Equals(body1, RigidBody.BRigidBody)) {
 				OnContactAdded(body0);
 			}
 		}
