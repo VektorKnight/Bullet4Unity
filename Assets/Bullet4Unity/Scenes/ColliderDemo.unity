@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 0, g: 0, b: 1, a: 0.441}
+  GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.25}
 --- !u!114 &548650984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,7 +940,7 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 136030050693127972, guid: ec7caefa86514c943933f1759260054b, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ec7caefa86514c943933f1759260054b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &687404812
@@ -1307,7 +1307,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4474103503169502, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 4474103503169502, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1392,11 +1392,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _discretePhysicsWorld:
-    _syncToRender: 0
     _timeStep: 0.02
     _maxSubSteps: 6
     _gravity: {x: 0, y: -9.81, z: 0}
-    _solverType: 2
+    _solverType: 0
     _solverIterations: 6
     _broadphaseType: 0
     _axisSweepMargin: {x: 1000, y: 1000, z: 1000}
@@ -2630,7 +2629,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4990088748642682, guid: 72f6146819d583d4f8bcc99330f1a9a0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 8.06
       objectReference: {fileID: 0}
     - target: {fileID: 4990088748642682, guid: 72f6146819d583d4f8bcc99330f1a9a0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2672,6 +2671,20 @@ Prefab:
         type: 2}
       propertyPath: _neverSleep
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990088748642682, guid: 72f6146819d583d4f8bcc99330f1a9a0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589691260012548, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+        type: 2}
+      propertyPath: GizmoColor.g
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589691260012548, guid: 72f6146819d583d4f8bcc99330f1a9a0,
+        type: 2}
+      propertyPath: GizmoColor.a
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72f6146819d583d4f8bcc99330f1a9a0, type: 2}

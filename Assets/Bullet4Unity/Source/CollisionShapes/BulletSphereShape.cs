@@ -17,7 +17,8 @@ namespace Bullet4Unity {
         //Draw Shape Gizmo
         protected override void OnDrawGizmosSelected() {
             if (!DrawGizmo) return;
-            BUtility.DebugDrawSphere(transform.position, transform.rotation, transform.localScale, _radius * Vector3.one, GizmoColor);
+            Gizmos.color = GizmoColor;
+            Gizmos.DrawWireSphere(transform.position, _radius * Mathf.Max(Mathf.Max(transform.localScale.x, transform.localScale.y), transform.localScale.z));
         }
         #endif
         

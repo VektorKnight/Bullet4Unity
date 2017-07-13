@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4988116181263740}
   - component: {fileID: 33069179083995040}
-  - component: {fileID: 136001008222714106}
   - component: {fileID: 23009759338176526}
   - component: {fileID: 114207666555291814}
   - component: {fileID: 114921048016249102}
@@ -119,16 +118,3 @@ MonoBehaviour:
   _neverSleep: 0
   _linearSleepThreshold: 0.01
   _angularSleepThreshold: 0.01
---- !u!136 &136001008222714106
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1279091027810872}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

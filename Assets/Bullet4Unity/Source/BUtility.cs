@@ -267,10 +267,8 @@ namespace Bullet4Unity {
         public static void DebugDrawCylinder(Vector3 position, Quaternion rotation, Vector3 scale, float radius, float halfHeight, int upAxis, Color color) {
             Gizmos.color = color;
             var start = position;
-            var offsetHeight = new Vector3(0, 0, 0);
-            offsetHeight[upAxis] = halfHeight;
-            var offsetRadius = new Vector3(0, 0, 0);
-            offsetRadius[(upAxis + 1) % 3] = radius;
+            var offsetHeight = new Vector3(0, 0, 0) {[upAxis] = halfHeight};
+            var offsetRadius = new Vector3(0, 0, 0) {[(upAxis + 1) % 3] = radius};
 
             offsetHeight.x *= scale.x; offsetHeight.y *= scale.y; offsetHeight.z *= scale.z;
             offsetRadius.x *= scale.x; offsetRadius.y *= scale.y; offsetRadius.z *= scale.z;
@@ -279,10 +277,8 @@ namespace Bullet4Unity {
             Gizmos.DrawLine(start + rotation * (offsetHeight - offsetRadius), start + rotation * (-offsetHeight - offsetRadius));
 
             // Drawing top and bottom caps of the cylinder
-            var yaxis = new Vector3(0, 0, 0);
-            yaxis[upAxis] = 1.0f;
-            var xaxis = new Vector3(0, 0, 0);
-            xaxis[(upAxis + 1) % 3] = 1.0f;
+            var yaxis = new Vector3(0, 0, 0) {[upAxis] = 1.0f};
+            var xaxis = new Vector3(0, 0, 0) {[(upAxis + 1) % 3] = 1.0f};
 
             var r = offsetRadius.magnitude;
             DebugDrawArc(start - rotation * (offsetHeight), rotation * yaxis, rotation * xaxis, r, r, 0, TWO_PI, color, false, 10.0f);

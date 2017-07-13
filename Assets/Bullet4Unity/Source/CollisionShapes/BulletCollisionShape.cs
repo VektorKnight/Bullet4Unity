@@ -14,7 +14,7 @@ namespace Bullet4Unity {
 		//Unity Inspector
 		[Header("Debug View")]
 		[SerializeField] protected bool DrawGizmo = true;
-		[SerializeField] protected Color GizmoColor = Color.blue;
+		[SerializeField] protected Color GizmoColor = new Color(0f, 0.125f, 1f, 0.25f);
 		
 		//Protected Internal
 		protected CollisionShape Shape;
