@@ -417,7 +417,7 @@ MonoBehaviour:
   SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
     type: 2}
   Margin: 1.25
-  Count: 200
+  Count: 0
 --- !u!4 &743629524
 Transform:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
     type: 2}
   Margin: 1.25
-  Count: 200
+  Count: 0
 --- !u!4 &821867315
 Transform:
   m_ObjectHideFlags: 0
@@ -677,7 +677,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _discretePhysicsWorld:
-    _syncToRender: 0
     _timeStep: 0.02
     _maxSubSteps: 4
     _gravity: {x: 0, y: -9.81, z: 0}
@@ -718,6 +717,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1118744916 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1003035683860414, guid: 6de3f33afc4419c429d98f19d7dea87b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1944063882}
+--- !u!114 &1118744917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1118744916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3c04600acb61d42aefc742237d2b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Force: {x: 0, y: 0, z: 0}
+  Torque: {x: 0, y: 0, z: 0}
 --- !u!1 &1385937979
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +765,7 @@ MonoBehaviour:
   SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
     type: 2}
   Margin: 1.25
-  Count: 200
+  Count: 0
 --- !u!4 &1385937981
 Transform:
   m_ObjectHideFlags: 0
@@ -931,7 +948,7 @@ MonoBehaviour:
   SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
     type: 2}
   Margin: 1.25
-  Count: 200
+  Count: 0
 --- !u!4 &1767545423
 Transform:
   m_ObjectHideFlags: 0
@@ -1093,6 +1110,48 @@ Prefab:
     - {fileID: 114442117152710278, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1944063882
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2067396208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1182,7 @@ MonoBehaviour:
   SpherePrefab: {fileID: 1741491945220952, guid: 72f6146819d583d4f8bcc99330f1a9a0,
     type: 2}
   Margin: 1.25
-  Count: 200
+  Count: 0
 --- !u!4 &2067396210
 Transform:
   m_ObjectHideFlags: 0

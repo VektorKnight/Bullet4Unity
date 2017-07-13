@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Security.Policy;
 using BulletSharp;
 using BulletSharp.Math;
 using UnityEngine;
+using UnityEngine.Networking;
+using CollisionFlags = BulletSharp.CollisionFlags;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Bullet4Unity {
@@ -156,6 +159,7 @@ namespace Bullet4Unity {
 				LinearFactor = _linearFactor.ToBullet(),
 				AngularFactor = _angularFactor.ToBullet()
 			};
+			_rigidBody.CollisionFlags = CollisionFlags.CustomMaterialCallback;
 			//Set sleeping flag
 			if (_neverSleep) _rigidBody.ActivationState = ActivationState.DisableDeactivation;
 			//_rigidBody.CcdMotionThreshold = 0.5f;

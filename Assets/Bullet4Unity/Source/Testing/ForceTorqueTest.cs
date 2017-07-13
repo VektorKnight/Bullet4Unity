@@ -18,4 +18,8 @@ public class ForceTorqueTest : BulletBehavior {
 		_rigidBody.ApplyForce(Force);
 		_rigidBody.ApplyTorque(Torque);
 	}
+
+	public override void OnContactAdded(CollisionObject other) {
+		Debug.Log("TestingBlarg");
+	}
 }

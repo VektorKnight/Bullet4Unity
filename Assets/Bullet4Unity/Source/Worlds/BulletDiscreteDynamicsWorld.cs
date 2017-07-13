@@ -138,9 +138,9 @@ namespace Bullet4Unity {
             else {
                 _dynamicsWorld = new DiscreteDynamicsWorld(_collisionDispatcher, _broadphaseInterface, _constraintSolver, _collisionConfig);
             }
-            
-
+           
             //Configure the physics world
+            
             _dynamicsWorld.SolverInfo.NumIterations = _solverIterations;
             _dynamicsWorld.SolverInfo.SolverMode = SolverModes.Simd | SolverModes.UseWarmStarting;
             _dynamicsWorld.SetInternalTickCallback(tickCallBack);
