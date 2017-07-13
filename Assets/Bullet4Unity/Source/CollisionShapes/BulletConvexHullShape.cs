@@ -2,6 +2,7 @@
 using System.Linq;
 using BulletSharp;
 using UnityEngine;
+using Vector3 = BulletSharp.Math.Vector3;
 
 namespace Bullet4Unity {
     /// <summary>
@@ -14,7 +15,7 @@ namespace Bullet4Unity {
         
         //Private Internal (Optimized Hull Generation)
         private Mesh _mesh;
-        private List<BulletSharp.Math.Vector3> _vertices = new List<BulletSharp.Math.Vector3>();
+        private List<Vector3> _vertices = new List<Vector3>();
         private ConvexHullShape _rawHull;
         private ShapeHull _optimizer;
 
@@ -43,7 +44,7 @@ namespace Bullet4Unity {
             if (!DrawGizmo) return;
             if (Shape ==null) GenerateOptimizedConvexHull();
             Gizmos.color = GizmoColor;
-            Gizmos.DrawWireCube(transform.position, Vector3.Scale(2f * _mesh.bounds.extents, transform.localScale));
+            Gizmos.DrawWireCube(transform.position, UnityEngine.Vector3.Scale(2f * _mesh.bounds.extents, transform.localScale));
         }
         #endif
         

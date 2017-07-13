@@ -1,5 +1,4 @@
 using UnityEngine;
-using BulletSharp;
 
 namespace Bullet4Unity {
     /// <summary>

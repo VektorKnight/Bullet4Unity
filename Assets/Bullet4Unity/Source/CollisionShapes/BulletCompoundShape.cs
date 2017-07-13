@@ -14,7 +14,7 @@ namespace Bullet4Unity {
         
         //Private Internal (Compound Shape Generation)
         private CompoundShape _compoundShape;
-        private BulletSharp.Math.Matrix _childTransform;
+        private Matrix _childTransform;
         private List<BulletCollisionShape> _childShapes = new List<BulletCollisionShape>();
 
         //Generate and return an optimized Bullet ConvexHullShape
@@ -30,7 +30,7 @@ namespace Bullet4Unity {
             }
             
             //Generate the compound collider
-            _compoundShape = new CompoundShape() {LocalScaling = transform.localScale.ToBullet()};
+            _compoundShape = new CompoundShape {LocalScaling = transform.localScale.ToBullet()};
             _childTransform = new Matrix();
             foreach (var child in _childShapes) {
                 if (child == this) continue;

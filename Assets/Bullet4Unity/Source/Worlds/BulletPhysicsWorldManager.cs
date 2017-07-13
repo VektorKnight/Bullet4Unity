@@ -19,7 +19,7 @@ namespace Bullet4Unity {
         [SerializeField]
         private BulletDiscreteDynamicsWorld _discretePhysicsWorld = new BulletDiscreteDynamicsWorld();
 
-        private bool _disposing = false;
+        private bool _disposing;
 
 		//Unity Pre-Initialization
 		private void Awake() {
@@ -166,9 +166,9 @@ namespace Bullet4Unity {
                 return _instance;
             }
         }
-        private static BulletPhysicsWorldManager _instance = null;
+        private static BulletPhysicsWorldManager _instance;
 
-        private static bool _decommisioning = false;
+        private static bool _decommisioning;
 
         #endregion StaticAccessors
     }

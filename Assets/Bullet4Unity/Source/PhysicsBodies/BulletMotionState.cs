@@ -1,7 +1,7 @@
 ﻿using BulletSharp;
 using BulletSharp.Math;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
+using Quaternion = BulletSharp.Math.Quaternion;
 
 namespace Bullet4Unity {
 	/// <summary>
@@ -28,7 +28,7 @@ namespace Bullet4Unity {
 		//Bullet callback updates Unity transform
 		public override void SetWorldTransform(ref Matrix m) {
 			_transform.position = BulletExtensionMethods.ExtractTranslationFromMatrix(ref m);
-			_transform.rotation = BulletExtensionMethods.ExtractRotationFromMatrix(ref m);
+			_transform.rotation = BulletExtensionMethods.GetUnityRotationFromMatrix(ref m);
 		}
 	}
 }

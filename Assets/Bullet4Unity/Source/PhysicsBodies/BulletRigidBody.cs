@@ -19,7 +19,7 @@ namespace Bullet4Unity {
 		[SerializeField] private float _mass = 1f;
 		[SerializeField] private float _linearDamping = 0.05f;
 		[SerializeField] private float _angularDamping = 0.05f;
-		[SerializeField] private float _restitution = 0f;
+		[SerializeField] private float _restitution;
 		
 		[Header("Friction Settings")]
 		[SerializeField] private float _friction = 0.2f;
@@ -30,7 +30,7 @@ namespace Bullet4Unity {
 		[SerializeField] private Vector3 _angularFactor = Vector3.one;
 
 		[Header("Sleep Settings")] 
-		[SerializeField] private bool _neverSleep = false;
+		[SerializeField] private bool _neverSleep;
 		[SerializeField] private float _linearSleepThreshold = 0.01f;
 		[SerializeField] private float _angularSleepThreshold = 0.01f;
 		#endregion
@@ -156,7 +156,6 @@ namespace Bullet4Unity {
 				LinearFactor = _linearFactor.ToBullet(),
 				AngularFactor = _angularFactor.ToBullet()
 			};
-			
 			//Set sleeping flag
 			if (_neverSleep) _rigidBody.ActivationState = ActivationState.DisableDeactivation;
 			//_rigidBody.CcdMotionThreshold = 0.5f;

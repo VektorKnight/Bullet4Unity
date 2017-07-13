@@ -2,7 +2,7 @@
 
 namespace Bullet4Unity {
     public class UnsupportedWorldTypeException : Exception {
-        public UnsupportedWorldTypeException() : base() { }
+        public UnsupportedWorldTypeException() { }
 
         public UnsupportedWorldTypeException(string message) : base(message) { }
 

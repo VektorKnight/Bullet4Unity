@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using BulletSharp.Math;
+using UnityEngine;
+using Quaternion = BulletSharp.Math.Quaternion;
+using Vector3 = BulletSharp.Math.Vector3;
+using Vector4 = UnityEngine.Vector4;
 
 namespace Bullet4Unity {
     /// <summary>
@@ -12,8 +17,8 @@ namespace Bullet4Unity {
         /// </summary>
         /// <param name="q">Quaternion to be converted</param>
         /// <returns></returns>
-        public static BulletSharp.Math.Quaternion ToBullet(this UnityEngine.Quaternion q) {
-            return new BulletSharp.Math.Quaternion(q.x, q.y, q.z, q.w);
+        public static Quaternion ToBullet(this UnityEngine.Quaternion q) {
+            return new Quaternion(q.x, q.y, q.z, q.w);
         }
         
         /// <summary>
@@ -21,7 +26,7 @@ namespace Bullet4Unity {
         /// </summary>
         /// <param name="q">Quaternion to be converted</param>
         /// <returns></returns>
-        public static UnityEngine.Quaternion ToUnity(this BulletSharp.Math.Quaternion q) {
+        public static UnityEngine.Quaternion ToUnity(this Quaternion q) {
             return new UnityEngine.Quaternion(q.X, q.Y, q.Z, q.W);
         }
         
@@ -30,8 +35,8 @@ namespace Bullet4Unity {
         /// </summary>
         /// <param name="v">Vector3 to be converted</param>
         /// <returns></returns>
-        public static BulletSharp.Math.Vector3 ToBullet(this UnityEngine.Vector3 v) {
-            return new BulletSharp.Math.Vector3(v.x, v.y, v.z);
+        public static Vector3 ToBullet(this UnityEngine.Vector3 v) {
+            return new Vector3(v.x, v.y, v.z);
         }
     
         /// <summary>
@@ -39,7 +44,7 @@ namespace Bullet4Unity {
         /// </summary>
         /// <param name="v">Vector3 to be converted</param>
         /// <returns></returns>
-        public static UnityEngine.Vector3 ToUnity(this BulletSharp.Math.Vector3 v) {
+        public static UnityEngine.Vector3 ToUnity(this Vector3 v) {
             return new UnityEngine.Vector3(v.X, v.Y, v.Z);
         }
 
@@ -48,7 +53,7 @@ namespace Bullet4Unity {
         /// </summary>
         /// <param name="bMatrix4x4">Matrix to be converted</param>
         /// <returns></returns>
-        public static UnityEngine.Matrix4x4 ToUnity(this BulletSharp.Math.Matrix bMatrix4x4) {
+        public static Matrix4x4 ToUnity(this Matrix bMatrix4x4) {
             var uMatrix4X4 = new Matrix4x4();
             uMatrix4X4[0, 0] = bMatrix4x4[0, 0];
             uMatrix4X4[0, 1] = bMatrix4x4[1, 0];
@@ -77,12 +82,12 @@ namespace Bullet4Unity {
         /// </summary>
         /// <param name="bMatrix4x4">Matrix from which to extract a rotatio</param>
         /// <returns></returns>
-        public static BulletSharp.Math.Quaternion GetOrientation(this BulletSharp.Math.Matrix bMatrix4x4) {
+        public static Quaternion GetOrientation(this Matrix bMatrix4x4) {
                 //Scaling is the length of the rows.
-                BulletSharp.Math.Vector3 scale;
-                scale.X = (float)System.Math.Sqrt((bMatrix4x4.M11 * bMatrix4x4.M11) + (bMatrix4x4.M12 * bMatrix4x4.M12) + (bMatrix4x4.M13 * bMatrix4x4.M13));
-                scale.Y = (float)System.Math.Sqrt((bMatrix4x4.M21 * bMatrix4x4.M21) + (bMatrix4x4.M22 * bMatrix4x4.M22) + (bMatrix4x4.M23 * bMatrix4x4.M23));
-                scale.Z = (float)System.Math.Sqrt((bMatrix4x4.M31 * bMatrix4x4.M31) + (bMatrix4x4.M32 * bMatrix4x4.M32) + (bMatrix4x4.M33 * bMatrix4x4.M33));
+                Vector3 scale;
+                scale.X = (float)Math.Sqrt((bMatrix4x4.M11 * bMatrix4x4.M11) + (bMatrix4x4.M12 * bMatrix4x4.M12) + (bMatrix4x4.M13 * bMatrix4x4.M13));
+                scale.Y = (float)Math.Sqrt((bMatrix4x4.M21 * bMatrix4x4.M21) + (bMatrix4x4.M22 * bMatrix4x4.M22) + (bMatrix4x4.M23 * bMatrix4x4.M23));
+                scale.Z = (float)Math.Sqrt((bMatrix4x4.M31 * bMatrix4x4.M31) + (bMatrix4x4.M32 * bMatrix4x4.M32) + (bMatrix4x4.M33 * bMatrix4x4.M33));
 
                 //Divide out scaling to get rotation
                 var mm11 = bMatrix4x4.M11 / scale.X;
@@ -101,9 +106,9 @@ namespace Bullet4Unity {
                 float sqrt;
                 float half;
                 var trace = mm11 + mm22 + mm33;
-                var result = new BulletSharp.Math.Quaternion();
+                var result = new Quaternion();
                 if (trace > 0.0f){
-                    sqrt = (float)UnityEngine.Mathf.Sqrt(trace + 1.0f);
+                    sqrt = Mathf.Sqrt(trace + 1.0f);
                     result.W = sqrt * 0.5f;
                     sqrt = 0.5f / sqrt;
 
@@ -112,7 +117,7 @@ namespace Bullet4Unity {
                     result.Z = (mm12 - mm21) * sqrt;
                 }
                 else if ((mm11 >= mm22) && (mm11 >= mm33)) {
-                    sqrt = (float)UnityEngine.Mathf.Sqrt(1.0f + mm11 - mm22 - mm33);
+                    sqrt = Mathf.Sqrt(1.0f + mm11 - mm22 - mm33);
                     half = 0.5f / sqrt;
 
                     result.X = 0.5f * sqrt;
@@ -121,7 +126,7 @@ namespace Bullet4Unity {
                     result.W = (mm23 - mm32) * half;
                 }
                 else if (mm22 > mm33) {
-                    sqrt = (float)UnityEngine.Mathf.Sqrt(1.0f + mm22 - mm11 - mm33);
+                    sqrt = Mathf.Sqrt(1.0f + mm22 - mm11 - mm33);
                     half = 0.5f / sqrt;
 
                     result.X = (mm21 + mm12) * half;
@@ -130,7 +135,7 @@ namespace Bullet4Unity {
                     result.W = (mm31 - mm13) * half;
                 }
                 else {
-                    sqrt = (float)UnityEngine.Mathf.Sqrt(1.0f + mm33 - mm11 - mm22);
+                    sqrt = Mathf.Sqrt(1.0f + mm33 - mm11 - mm22);
                     half = 0.5f / sqrt;
 
                     result.X = (mm31 + mm13) * half;
@@ -141,7 +146,7 @@ namespace Bullet4Unity {
                 return result;
         }
         
-        public static void SetOrientation(this BulletSharp.Math.Matrix bm, BulletSharp.Math.Quaternion q) {
+        public static void SetOrientation(this Matrix bm, Quaternion q) {
                 var xx = q.X * q.X;
                 var yy = q.Y * q.Y;
                 var zz = q.Z * q.Z;
@@ -163,13 +168,13 @@ namespace Bullet4Unity {
                 bm.M33 = 1.0f - (2.0f * (yy + xx));
         }
 
-        public static BulletSharp.Math.Matrix ToBullet(this UnityEngine.Matrix4x4 um) {
-            var bm = new BulletSharp.Math.Matrix();
+        public static Matrix ToBullet(this Matrix4x4 um) {
+            var bm = new Matrix();
             um.ToBullet(ref bm);
             return bm;
         }
 
-        public static void ToBullet(this UnityEngine.Matrix4x4 um, ref BulletSharp.Math.Matrix bm) {
+        public static void ToBullet(this Matrix4x4 um, ref Matrix bm) {
             bm[0, 0] = um[0, 0];
             bm[0, 1] = um[1, 0];
             bm[0, 2] = um[2, 0];
@@ -191,7 +196,7 @@ namespace Bullet4Unity {
             bm[3, 3] = um[3, 3];
         }
 
-        public static void SetTransformationFromBulletMatrix(this UnityEngine.Transform transform, BulletSharp.Math.Matrix bm) {
+        public static void SetTransformationFromBulletMatrix(this Transform transform, Matrix bm) {
             var matrix = bm.ToUnity();  //creates new Unity Matrix4x4
             transform.localPosition = ExtractTranslationFromMatrix(ref matrix);
             transform.localRotation = ExtractRotationFromMatrix(ref matrix);
@@ -206,16 +211,16 @@ namespace Bullet4Unity {
         /// <returns>
         /// Translation offset.
         /// </returns>
-        public static Vector3 ExtractTranslationFromMatrix(ref Matrix4x4 matrix) {
-            Vector3 translate;
+        public static UnityEngine.Vector3 ExtractTranslationFromMatrix(ref Matrix4x4 matrix) {
+            UnityEngine.Vector3 translate;
             translate.x = matrix.m03;
             translate.y = matrix.m13;
             translate.z = matrix.m23;
             return translate;
         }
 
-        public static Vector3 ExtractTranslationFromMatrix(ref BulletSharp.Math.Matrix matrix) {
-            Vector3 translate;
+        public static UnityEngine.Vector3 ExtractTranslationFromMatrix(ref Matrix matrix) {
+            UnityEngine.Vector3 translate;
             translate.x = matrix.M41;
             translate.y = matrix.M42;
             translate.z = matrix.M43;
@@ -230,34 +235,81 @@ namespace Bullet4Unity {
         /// <returns>
         /// Quaternion representation of rotation transform.
         /// </returns>
-        public static Quaternion ExtractRotationFromMatrix(ref Matrix4x4 matrix) {
-            Vector3 forward;
+        public static UnityEngine.Quaternion ExtractRotationFromMatrix(ref Matrix4x4 matrix) {
+            UnityEngine.Vector3 forward;
             forward.x = matrix.m02;
             forward.y = matrix.m12;
             forward.z = matrix.m22;
 
-            Vector3 upwards;
+            UnityEngine.Vector3 upwards;
             upwards.x = matrix.m01;
             upwards.y = matrix.m11;
             upwards.z = matrix.m21;
 
-            return Quaternion.LookRotation(forward, upwards);
+            return UnityEngine.Quaternion.LookRotation(forward, upwards);
         }
 
-        public static Quaternion ExtractRotationFromMatrix(ref BulletSharp.Math.Matrix matrix) {
-            Vector3 forward;
+        public static UnityEngine.Quaternion ExtractRotationFromMatrix(ref Matrix matrix) {
+            UnityEngine.Vector3 forward;
             forward.x = matrix.M31;
             forward.y = matrix.M32;
             forward.z = matrix.M33;
 
-            Vector3 upwards;
-            upwards.x = matrix.M21;
-            upwards.y = matrix.M22;
-            upwards.z = matrix.M23;
+            UnityEngine.Vector3 up;
+            up.x = matrix.M21;
+            up.y = matrix.M22;
+            up.z = matrix.M23;
             
+            return UnityEngine.Quaternion.LookRotation(forward, up);
             
-
-            return Quaternion.LookRotation(forward, upwards);
+        }
+        
+        /// <summary>
+        /// Directly extract a Unity Quaternion from Bullet Matrix
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="result"></param>
+        public static void GetUnityRotationFromMatrix(ref Matrix matrix, out UnityEngine.Quaternion result) {
+            var num1 = matrix.M11 + matrix.M22 + matrix.M33;
+            if (num1 > 0.0f) {
+                var num2 = Mathf.Sqrt(num1 + 1.0f);
+                result.w = num2 * 0.5f;
+                var num3 = 0.5f / num2;
+                result.x = (matrix.M23 - matrix.M32) * num3;
+                result.y = (matrix.M31 - matrix.M13) * num3;
+                result.z = (matrix.M12 - matrix.M21) * num3;
+            }
+            else if (matrix.M11 >= matrix.M22 && matrix.M11 >= matrix.M33) {
+                var num2 = Mathf.Sqrt(1.0f + matrix.M11 - matrix.M22 - matrix.M33);
+                var num3 = 0.5f / num2;
+                result.x = 0.5f * num2;
+                result.y = (matrix.M12 + matrix.M21) * num3;
+                result.z = (matrix.M13 + matrix.M31) * num3;
+                result.w = (matrix.M23 - matrix.M32) * num3;
+            }
+            else if (matrix.M22 > matrix.M33) {
+                var num2 = Mathf.Sqrt(1.0f + matrix.M22 - matrix.M11 - matrix.M33);
+                var num3 = 0.5f / num2;
+                result.x = (matrix.M21 + matrix.M12) * num3;
+                result.y = 0.5f * num2;
+                result.z = (matrix.M32 + matrix.M23) * num3;
+                result.w = (matrix.M31 - matrix.M13) * num3;
+            }
+            else {
+                var num2 = Mathf.Sqrt(1.0f + matrix.M33 - matrix.M11 - matrix.M22);
+                var num3 = 0.5f / num2;
+                result.x = (matrix.M31 + matrix.M13) * num3;
+                result.y = (matrix.M32 + matrix.M23) * num3;
+                result.z = 0.5f * num2;
+                result.w = (matrix.M12 - matrix.M21) * num3;
+            }
+        }
+        
+        public static UnityEngine.Quaternion GetUnityRotationFromMatrix(ref Matrix matrix)
+        {
+            UnityEngine.Quaternion result;
+            GetUnityRotationFromMatrix(ref matrix, out result);
+            return result;
         }
 
         /// <summary>
@@ -268,16 +320,16 @@ namespace Bullet4Unity {
         /// <returns>
         /// Scale vector.
         /// </returns>
-        public static Vector3 ExtractScaleFromMatrix(ref Matrix4x4 matrix) {
-            Vector3 scale;
+        public static UnityEngine.Vector3 ExtractScaleFromMatrix(ref Matrix4x4 matrix) {
+            UnityEngine.Vector3 scale;
             scale.x = new Vector4(matrix.m00, matrix.m10, matrix.m20, matrix.m30).magnitude;
             scale.y = new Vector4(matrix.m01, matrix.m11, matrix.m21, matrix.m31).magnitude;
             scale.z = new Vector4(matrix.m02, matrix.m12, matrix.m22, matrix.m32).magnitude;
             return scale;
         }
 
-        public static Vector3 ExtractScaleFromMatrix(ref BulletSharp.Math.Matrix matrix) {
-            Vector3 scale;
+        public static UnityEngine.Vector3 ExtractScaleFromMatrix(ref Matrix matrix) {
+            UnityEngine.Vector3 scale;
             scale.x = new Vector4(matrix.M11, matrix.M12, matrix.M13, matrix.M14).magnitude;
             scale.y = new Vector4(matrix.M21, matrix.M22, matrix.M23, matrix.M24).magnitude;
             scale.z = new Vector4(matrix.M31, matrix.M32, matrix.M33, matrix.M34).magnitude;
@@ -292,7 +344,7 @@ namespace Bullet4Unity {
         /// <param name="localPosition">Output position.</param>
         /// <param name="localRotation">Output rotation.</param>
         /// <param name="localScale">Output scale.</param>
-        public static void DecomposeMatrix(ref Matrix4x4 matrix, out Vector3 localPosition, out Quaternion localRotation, out Vector3 localScale) {
+        public static void DecomposeMatrix(ref Matrix4x4 matrix, out UnityEngine.Vector3 localPosition, out UnityEngine.Quaternion localRotation, out UnityEngine.Vector3 localScale) {
             localPosition = ExtractTranslationFromMatrix(ref matrix);
             localRotation = ExtractRotationFromMatrix(ref matrix);
             localScale = ExtractScaleFromMatrix(ref matrix);
@@ -319,7 +371,7 @@ namespace Bullet4Unity {
         /// <remarks>
         /// <para>It is faster to access this variation than <c>Quaternion.identity</c>.</para>
         /// </remarks>
-        public static readonly Quaternion IdentityQuaternion = Quaternion.identity;
+        public static readonly UnityEngine.Quaternion IdentityQuaternion = UnityEngine.Quaternion.identity;
         /// <summary>
         /// Identity matrix.
         /// </summary>
@@ -335,7 +387,7 @@ namespace Bullet4Unity {
         /// <returns>
         /// The translation transform matrix.
         /// </returns>
-        public static Matrix4x4 TranslationMatrix(Vector3 offset) {
+        public static Matrix4x4 TranslationMatrix(UnityEngine.Vector3 offset) {
             var matrix = IdentityMatrix;
             matrix.m03 = offset.x;
             matrix.m13 = offset.y;

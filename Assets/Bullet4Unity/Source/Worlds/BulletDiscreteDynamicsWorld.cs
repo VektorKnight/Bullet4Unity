@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using BulletSharp;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Bullet4Unity {
@@ -13,7 +13,6 @@ namespace Bullet4Unity {
     public class BulletDiscreteDynamicsWorld : BulletPhysicsWorld {
         //Unity Inspector
         [Header("Physics World Config")] 
-        [SerializeField] private bool _syncToRender = false;
         [SerializeField] private float _timeStep = 0.02f;
         [SerializeField] private int _maxSubSteps = 4;
         [SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
@@ -33,7 +32,7 @@ namespace Bullet4Unity {
         [SerializeField] private int _solverThreads = 2;
         
         [Header("Physics World Debugging")]
-        [SerializeField] private bool _debugging = false;
+        [SerializeField] private bool _debugging;
 
         //Inspector Advanced World Config Interop
         [Serializable] private enum WorldSolverType {SequentialImpulse, NonSmoothNonLinearConjugate, ExperimentalMultiThreaded}
@@ -81,7 +80,7 @@ namespace Bullet4Unity {
         //Initialize the physics world
         private void InitializeWorld(DynamicsWorld.InternalTickCallback tickCallBack) {
             //Collision configuration and dispatcher
-            var collisionConfigInfo = new DefaultCollisionConstructionInfo() {
+            var collisionConfigInfo = new DefaultCollisionConstructionInfo {
                 DefaultMaxCollisionAlgorithmPoolSize = 80000,
                 DefaultMaxPersistentManifoldPoolSize = 80000
             };
@@ -135,7 +134,6 @@ namespace Bullet4Unity {
             //Create the physics world
             if (_solverType == WorldSolverType.ExperimentalMultiThreaded) {
                 _dynamicsWorld = new DiscreteDynamicsWorldMultiThreaded(_collisionDispatcher, _broadphaseInterface, _threadedSolver, _collisionConfig);
-                Debug.LogWarning("USING EXPERIMENTAL THREADED SOLVER");
             }
             else {
                 _dynamicsWorld = new DiscreteDynamicsWorld(_collisionDispatcher, _broadphaseInterface, _constraintSolver, _collisionConfig);
@@ -185,16 +183,9 @@ namespace Bullet4Unity {
         public override void StepSimulation() {
             //Make sure we are in play mode and cleanup hasnt started
             if (_disposing) return;
-            
-            //Set the simulation
-            if (_syncToRender) {
-                //Step with renderer
-                _dynamicsWorld.StepSimulation(Time.deltaTime, 0);
-            }
-            else {
-                //Step with fixed interval (fixed timestep)
-                _dynamicsWorld.StepSimulation(Time.deltaTime, 10, _timeStep);
-            }
+    
+            //Step with fixed interval (fixed timestep)
+            _dynamicsWorld.StepSimulation(Time.deltaTime, _maxSubSteps, _timeStep);
         }
 
         //Register a Bullet RigidBody with the simulation
