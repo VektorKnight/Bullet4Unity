@@ -22,10 +22,10 @@ namespace Bullet4Unity {
 		[SerializeField] private float _mass = 1f;
 		[SerializeField] private float _linearDamping = 0.05f;
 		[SerializeField] private float _angularDamping = 0.05f;
-		[SerializeField] private float _restitution;
+		[SerializeField] [Range(0f,1f)] private float _restitution = 0.1f;
 		
 		[Header("Friction Settings")]
-		[SerializeField] private float _friction = 0.2f;
+		[SerializeField] private float _friction = 0.5f;
 		[SerializeField] private float _rollingFriction = 0.2f;
 
 		[Header("World Factors")] 
@@ -33,7 +33,7 @@ namespace Bullet4Unity {
 		[SerializeField] private Vector3 _angularFactor = Vector3.one;
 
 		[Header("Sleep Settings")] 
-		[SerializeField] private bool _neverSleep;
+		[SerializeField] private bool _allowSleeping = true;
 		[SerializeField] private float _linearSleepThreshold = 0.01f;
 		[SerializeField] private float _angularSleepThreshold = 0.01f;
 		#endregion
@@ -113,7 +113,52 @@ namespace Bullet4Unity {
 				BRigidBody.RollingFriction = value;
 			}
 		}
-
+		
+		//Property: Linear Factor
+		public Vector3 LinearFactor {
+			get { return _linearFactor; }
+			set {
+				_linearFactor = value;
+				BRigidBody.LinearFactor = value.ToBullet();
+			}
+		}
+		
+		//Property: Angular Factor
+		public Vector3 AngularFactor {
+			get { return _linearFactor; }
+			set {
+				_angularFactor = value;
+				BRigidBody.AngularFactor = value.ToBullet();
+			}
+		}
+		
+		//Property: Allow Sleeping
+		public bool AllowSleeping {
+			get { return _allowSleeping; }
+			set {
+				_allowSleeping = value;
+				if (_allowSleeping) BRigidBody.ActivationState -= ActivationState.DisableDeactivation;
+				else BRigidBody.ActivationState = ActivationState.DisableDeactivation;
+			}
+		}
+		
+		//Property: Linear Sleep Threshold
+		public float LinearSleepThreshold => _linearSleepThreshold;
+		
+		//Property: Angular Sleep Threshold
+		public float AngularSleepThreshold => _angularSleepThreshold;
+		
+		//Property: Linear Velocity
+		public Vector3 LinearVelocity {
+			get { return BRigidBody.LinearVelocity.ToUnity(); }
+			set { BRigidBody.LinearVelocity = value.ToBullet(); }
+		}
+		
+		//Property: Angular Velocity
+		public Vector3 AngularVelocity {
+			get { return BRigidBody.AngularVelocity.ToUnity(); }
+			set { BRigidBody.AngularVelocity = value.ToBullet(); }
+		}
 		#endregion
 
 		#region Public Utility Methods
@@ -161,7 +206,7 @@ namespace Bullet4Unity {
 			};
 			BRigidBody.CollisionFlags = CollisionFlags.CustomMaterialCallback;
 			//Set sleeping flag
-			if (_neverSleep) BRigidBody.ActivationState = ActivationState.DisableDeactivation;
+			if (!_allowSleeping) BRigidBody.ActivationState = ActivationState.DisableDeactivation;
 			//_rigidBody.CcdMotionThreshold = 0.5f;
 			//_rigidBody.CcdSweptSphereRadius = 0.25f;
 			

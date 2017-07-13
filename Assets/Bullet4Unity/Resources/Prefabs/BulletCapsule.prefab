@@ -111,11 +111,11 @@ MonoBehaviour:
   _mass: 1
   _linearDamping: 0.05
   _angularDamping: 0.05
-  _restitution: 0
-  _friction: 0.2
+  _restitution: 0.1
+  _friction: 0.5
   _rollingFriction: 0.2
   _linearFactor: {x: 1, y: 1, z: 1}
   _angularFactor: {x: 1, y: 1, z: 1}
-  _neverSleep: 0
+  _allowSleeping: 1
   _linearSleepThreshold: 0.01
   _angularSleepThreshold: 0.01

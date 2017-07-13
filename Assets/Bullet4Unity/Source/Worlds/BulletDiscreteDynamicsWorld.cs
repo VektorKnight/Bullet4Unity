@@ -140,7 +140,6 @@ namespace Bullet4Unity {
             }
            
             //Configure the physics world
-            
             _dynamicsWorld.SolverInfo.NumIterations = _solverIterations;
             _dynamicsWorld.SolverInfo.SolverMode = SolverModes.Simd | SolverModes.UseWarmStarting;
             _dynamicsWorld.SetInternalTickCallback(tickCallBack);

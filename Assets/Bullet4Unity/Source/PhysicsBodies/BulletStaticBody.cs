@@ -9,6 +9,11 @@ namespace Bullet4Unity {
 	/// </summary>
 	[AddComponentMenu("BulletPhysics/PhysicsBodies/StaticBody")]
 	public class BulletStaticBody : BulletPhysicsBody {
+		
+		//Unity Inspector
+		[Header("Basic Settings")]
+		[SerializeField] [Range(0f,1f)] private float _restitution = 0.1f;
+		[SerializeField] private float _friction = 0.5f;
 
 		//Required components for a Bullet StaticBody
 		private RigidBodyConstructionInfo _constructionInfo;
@@ -37,7 +42,11 @@ namespace Bullet4Unity {
 			if (PhysicsCollisionShape.GetShapeType() == CollisionShapeType.StaticPlane) InitialTransform.Origin = transform.position.ToBullet() - transform.up.ToBullet();
 
 			//Initialize the Bullet rigidbody construction info and assign the relevant values
-			_constructionInfo = new RigidBodyConstructionInfo(0f, null, PhysicsCollisionShape.GetCollisionShape()) {StartWorldTransform = InitialTransform};
+			_constructionInfo = new RigidBodyConstructionInfo(0f, null, PhysicsCollisionShape.GetCollisionShape()) {
+				StartWorldTransform = InitialTransform,
+				Friction = _friction,
+				Restitution = _restitution
+			};
 
 			//Create the Bullet RigidBody
 			_staticBody = new RigidBody(_constructionInfo);

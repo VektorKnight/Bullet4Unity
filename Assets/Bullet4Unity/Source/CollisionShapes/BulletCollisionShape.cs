@@ -12,7 +12,6 @@ namespace Bullet4Unity {
 	public abstract class BulletCollisionShape : MonoBehaviour, IDisposable {
 		
 		//Unity Inspector
-		[Header("Debug View")]
 		[SerializeField] protected bool DrawGizmo = true;
 		[SerializeField] protected Color GizmoColor = new Color(0f, 0.125f, 1f, 0.25f);
 		
