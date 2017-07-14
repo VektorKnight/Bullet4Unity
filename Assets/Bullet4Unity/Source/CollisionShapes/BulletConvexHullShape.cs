@@ -17,15 +17,12 @@ namespace Bullet4Unity {
         //Unity Inspector
         [Header("Shape Config")]
         [Tooltip("The mesh to use for convex hull generation")]
-        [SerializeField]
-        private Mesh _hullMesh;
+        [SerializeField] private Mesh _hullMesh;
         [Tooltip("Enable this to have Bullet automatically remove unnecessary geometry")]
-        [SerializeField]
-        private bool _optimizeHull = true;
+        [SerializeField] private bool _optimizeHull = true;
 
         //Private Internal (Hull Generation)
         private List<BVector3> _meshVertices = new List<BVector3>();
-        private List<Vector3> _hullVertices = new List<Vector3>();
 
         //Generate and return a Bullet Convex Hull Shape
         private void GenerateConvexHull() {
@@ -46,20 +43,12 @@ namespace Bullet4Unity {
                 if (((ConvexHullShape)Shape).NumPoints > 128) Debug.LogWarning("Convex hull contains more than 128 vertices!\n" +
                                                                 "Please consider enabling optimization or specifying an optimized hull mesh");
             }
-
-            //Fetch hull vertices for later use
-            ((ConvexHullShape)Shape).InitializePolyhedralFeatures();
-            for (var i = 0; i < ((ConvexHullShape)Shape).NumVertices; i++) {
-                BVector3 vertex;
-                ((ConvexHullShape)Shape).GetVertex(i, out vertex);
-                _hullVertices.Add(vertex.ToUnity());
-            }
-
+            
             //Cleanup
             _meshVertices.Clear();
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         private Mesh _gizmoMesh = null;
 
         //Draw Shape Gizmo
@@ -72,7 +61,7 @@ namespace Bullet4Unity {
 
             BulletGizmos.DrawConvexHull(Shape as ConvexHullShape, _gizmoMesh, transform, GizmoColor);
         }
-#endif
+        #endif
 
         //Get Collision shape
         public override CollisionShape GetCollisionShape() {

@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!114 &117430728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!1 &259767802 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f,
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!114 &259767804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!114 &355020008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!1001 &844082009
 Prefab:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!1 &959766234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,7 +1367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
 --- !u!1001 &1694772779
 Prefab:
   m_ObjectHideFlags: 0
@@ -1676,4 +1676,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawGizmo: 1
   GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
-  _radius: 0.5
+  _radius: 0.45
