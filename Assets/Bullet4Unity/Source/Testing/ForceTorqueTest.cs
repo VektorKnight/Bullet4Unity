@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class ForceTorqueTest : BulletBehaviour {
 
-	public Vector3 Force;
-	public Vector3 Torque;
+	public float Force;
 
-	private BulletRigidBody _rigidBody;
+	private Vector2 _input;
 
-	// Use this for initialization
-	void Start () {
-		_rigidBody = GetComponent<BulletRigidBody>();
+	private void Update() {
+		_input.x = Input.GetAxis("Horizontal");
+		_input.y = Input.GetAxis("Vertical");
 	}
 
 	public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
-		_rigidBody.ApplyForce(Force);
-		_rigidBody.ApplyTorque(Torque);
+		BRigidBody.ApplyImpulse(_input.x * Vector3.right * Force * bulletTimeStep);
+		BRigidBody.ApplyImpulse(_input.y * Vector3.forward * Force * bulletTimeStep);
 	}
 
 	public override void OnContactAdded(CollisionObject other) {
-		Debug.Log("TestingBlarg");
 	}
 }

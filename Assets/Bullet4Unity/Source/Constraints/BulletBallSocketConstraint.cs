@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BulletSharp;
 using UnityEngine;
@@ -19,13 +20,43 @@ namespace Bullet4Unity {
 		#if UNITY_EDITOR
 		protected override void OnDrawGizmos() {
 			if (_bodyA == null || _bodyB == null) return;
-			Debug.DrawLine(_bodyA.transform.position, _bodyB.transform.position, GizmoColor);
+			Gizmos.color = GizmoColor;
+			Gizmos.DrawLine(_bodyA.transform.TransformPoint(_pivotA), _bodyB.transform.TransformPoint(_pivotB));
+			Gizmos.color = Color.black;
+			Gizmos.DrawWireSphere(_bodyA.transform.TransformPoint(_pivotA), 0.05f);
+			Gizmos.DrawWireSphere(_bodyB.transform.TransformPoint(_pivotB), 0.05f);
 		}
 		#endif
-
+		
+		//Initialize and register the constraint
 		public override void InitializeConstraint() {
-			Constraint = new Point2PointConstraint(_bodyA.BRigidBody, _bodyB.BRigidBody, _pivotA.ToBullet(), _pivotB.ToBullet()) { };
+			if (Initialized) return;
+			Constraint = new Point2PointConstraint(_bodyA.BRigidBody, _bodyB.BRigidBody, _pivotA.ToBullet(), _pivotB.ToBullet());
+			Initialized = true;
+
+			if (Registered) return;
 			BulletPhysicsWorldManager.Register(Constraint);
+			Registered = true;
+		}
+		
+		//Initialize and/or register the constraint if needed
+		protected override void OnEnable() {
+			if (Disposing) return;
+			
+			if (!Initialized) InitializeConstraint();
+
+			if (Registered) return;
+			BulletPhysicsWorldManager.Register(Constraint);
+			Registered = true;
+		}
+		
+		//Unregister the constraint if needed
+		protected override void OnDisable() {
+			if (Disposing) return;
+
+			if (!Registered) return;
+			BulletPhysicsWorldManager.Unregister(Constraint);
+			Registered = false;
 		}
 
 		public override TypedConstraint GetConstraint() {

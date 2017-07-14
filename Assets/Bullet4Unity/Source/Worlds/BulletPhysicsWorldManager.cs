@@ -107,7 +107,7 @@ namespace Bullet4Unity {
 	    }
 
 	    private void Unregister_Internal(TypedConstraint constraint) {
-	        _discretePhysicsWorld.Register(constraint);
+	        _discretePhysicsWorld.Unregister(constraint);
 	    }
 
         #region StaticAccessors

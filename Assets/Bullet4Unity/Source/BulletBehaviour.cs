@@ -13,7 +13,6 @@ namespace Bullet4Unity {
 		protected virtual void Awake() {
 			BulletPhysicsWorldManager.Register(this);
 			BRigidBody = GetComponent<BulletRigidBody>();
-			PersistentManifold.ContactProcessed += OnContactProcessed;
 		}
 		
 		//Collision Added Callback
