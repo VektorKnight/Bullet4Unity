@@ -69,9 +69,9 @@ namespace Bullet4Unity {
 			if (Registered) BulletPhysicsWorldManager.Unregister(_staticBody);
 			
 			Disposing = true;
-			_staticBody.Dispose();
-			_constructionInfo.Dispose();
-			PhysicsCollisionShape.Dispose();
+			_staticBody?.Dispose();
+			_constructionInfo?.Dispose();
+			PhysicsCollisionShape?.Dispose();
 		}
 		
 		//Unity OnEnable
@@ -82,6 +82,7 @@ namespace Bullet4Unity {
 			if (Registered) return;
 			
 			//Register with the physics world
+			if (!Initialized) return;
 			BulletPhysicsWorldManager.Register(_staticBody);
 			Registered = true;
 		}
@@ -93,6 +94,7 @@ namespace Bullet4Unity {
 			if (!Registered || !Initialized) return;
 			
 			//Unregister from the physics world
+			if (!Initialized) return;
 			BulletPhysicsWorldManager.Unregister(_staticBody);
 			Registered = false;
 		}

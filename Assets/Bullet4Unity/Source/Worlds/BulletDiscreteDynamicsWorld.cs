@@ -49,9 +49,12 @@ namespace Bullet4Unity {
 
         //Bullet RigidBodies registered with the simulation
         private readonly List<RigidBody> _bulletRigidBodies = new List<RigidBody>();
+        
+        //Bullet Constraints registered with the simulation
+        private readonly  List<TypedConstraint> _bulletConstraints = new List<TypedConstraint>();
 
         //Bullet Behaviors to update with the simulation
-        private readonly List<BulletBehavior> _bulletBehaviors = new List<BulletBehavior>();
+        private readonly List<BulletBehaviour> _bulletBehaviors = new List<BulletBehaviour>();
 
         //Required components to initialize a Bullet Discrete Dynamics World
         private DefaultCollisionConfiguration _collisionConfig;
@@ -223,13 +226,61 @@ namespace Bullet4Unity {
                 return;
             }
 
-            //Unregister the Bullet object from the simulation and callback
+            //Remove any active constraints on the rigidbody
+            if (rigidBody.NumConstraintRefs > 0) {
+                for (var i = 0; i < rigidBody.NumConstraintRefs; i++) {
+                    var constraint = rigidBody.GetConstraintRef(i);
+                    rigidBody.RemoveConstraintRef(constraint);
+                }
+            }
+            
+            //Unregister the rigidbody with the simulation
             _bulletRigidBodies.Remove(rigidBody);
             _dynamicsWorld.RemoveRigidBody(rigidBody);
         }
+        
+        //Register a constraint with the simulation
+        public override void RegisterConstraint(TypedConstraint constraint) {
+            if (!_initlialized) {
+                InitializeWorld(BulletUpdate);
+                Debug.LogWarning("A Constraint attempted to register with the simulation before it was initialized!\n" +
+                                 "Please check your script execution order");
+            }
+            
+            //Check if already registered and warn the user
+            if (_bulletConstraints.Contains(constraint)) {
+                Debug.LogError("Specified Constraint has already been registered with the simulation!\n");
+                return;
+            }
+
+            //Register the Bullet RigidBody with the simulation and list for tracking
+            _bulletConstraints.Add(constraint);
+            _dynamicsWorld.AddConstraint(constraint);
+        }
+        
+        //Unregister a constraint with the simulation
+        public override void UnregisterConstraint(TypedConstraint constraint) {
+            //Warn the user if the physics world has not been initialized
+            if (!_initlialized) {
+                Debug.LogError("A Constraint attempted to unregister from the simulation before it was initialized!\n" +
+                               "Please check your scene setup!");
+                return;
+            }
+
+            //Check if the specified Object has been registered
+            if (!_bulletConstraints.Contains(constraint)) {
+                Debug.LogError("Specified Constraint has not been registered with this simulation!\n" +
+                               "Please check your scene setup!");
+                return;
+            }
+
+            //Unregister the Bullet object from the simulation and callback
+            _bulletConstraints.Remove(constraint);
+            _dynamicsWorld.RemoveConstraint(constraint);
+        }
 
         //Register a BulletBehavior with the simulation callback
-        public override void Register(BulletBehavior behavior) {
+        public override void Register(BulletBehaviour behavior) {
             //Initialize the world and warn the user if it hasn't already been initialized
             if (!_initlialized) {
                 InitializeWorld(BulletUpdate);
@@ -248,7 +299,7 @@ namespace Bullet4Unity {
         }
 
         //Unregister a BulletBehavior from the simulation callback
-        public override void Unregister(BulletBehavior behavior) {
+        public override void Unregister(BulletBehaviour behavior) {
             //Warn the user if the physics world has not been initialized
             if (!_initlialized) {
                 Debug.LogError("A BulletBehavior attempted to unregister from the simulation callback before it was initialized!\n" +

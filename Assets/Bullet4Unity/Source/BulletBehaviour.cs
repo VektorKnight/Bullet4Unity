@@ -5,20 +5,20 @@ namespace Bullet4Unity {
 	/// <summary>
 	/// Abstract base class for MonoBehaviors which intend to use Bullet
 	/// </summary>
-	public abstract class BulletBehavior : MonoBehaviour {
+	public abstract class BulletBehaviour : MonoBehaviour {
 
-		protected BulletRigidBody RigidBody;
+		protected BulletRigidBody BRigidBody;
 		
 		//Attempt to register with the physics world
 		protected virtual void Awake() {
 			BulletPhysicsWorldManager.Register(this);
-			RigidBody = GetComponent<BulletRigidBody>();
+			BRigidBody = GetComponent<BulletRigidBody>();
 			PersistentManifold.ContactProcessed += OnContactProcessed;
 		}
 		
 		//Collision Added Callback
 		private void OnContactProcessed(ManifoldPoint cp, CollisionObject body0, CollisionObject body1) {
-			if (Equals(body0, RigidBody.BRigidBody) || Equals(body1, RigidBody.BRigidBody)) {
+			if (Equals(body0, BRigidBody.BRigidBody) || Equals(body1, BRigidBody.BRigidBody)) {
 				OnContactAdded(body0);
 			}
 		}

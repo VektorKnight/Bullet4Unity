@@ -228,10 +228,10 @@ namespace Bullet4Unity {
 			if (Registered) BulletPhysicsWorldManager.Unregister(BRigidBody);
 			
 			Disposing = true;
-			BRigidBody.Dispose();
-			_constructionInfo.Dispose();
-			PhysicsMotionState.Dispose();
-			PhysicsCollisionShape.Dispose();
+			BRigidBody?.Dispose();
+			_constructionInfo?.Dispose();
+			PhysicsMotionState?.Dispose();
+			PhysicsCollisionShape?.Dispose();
 		}
 		#endregion
 		
@@ -308,6 +308,7 @@ namespace Bullet4Unity {
 	        if (Registered) return;
 			
 			//Register with the physics world
+	        if (!Initialized) return;
 			BulletPhysicsWorldManager.Register(BRigidBody);
 			Registered = true;
 		}
@@ -319,6 +320,7 @@ namespace Bullet4Unity {
 			if (!Registered || !Initialized) return;
 			
 			//Unregister from the physics world
+			if (!Initialized) return;
 			BulletPhysicsWorldManager.Unregister(BRigidBody);
 			Registered = false;
 		}
