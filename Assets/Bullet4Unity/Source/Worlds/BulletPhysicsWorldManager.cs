@@ -101,6 +101,15 @@ namespace Bullet4Unity {
             _discretePhysicsWorld.Unregister(softbody);
         }
 
+	    private void Register_Internal(TypedConstraint constraint) {
+	        //Do stufdf with things! (register constraint)
+	        _discretePhysicsWorld.Register(constraint);
+	    }
+
+	    private void Unregister_Internal(TypedConstraint constraint) {
+	        _discretePhysicsWorld.Register(constraint);
+	    }
+
         #region StaticAccessors
 
         //Register a BulletBehavior with the simulation callback
@@ -150,6 +159,19 @@ namespace Bullet4Unity {
 
             Instance.Unregister_Internal(softbody);
         }
+	    
+	    //Register a Constraint with the world
+	    public static void Register(TypedConstraint constraint) {
+	        if (_decommisioning) return;
+	        
+	        Instance.Register_Internal(constraint);
+	    }
+	    
+	    //Unregister a constraint with the physics world
+	    public static void Unregister(TypedConstraint constraint) {
+	        if (_decommisioning) return;
+	        Instance.Unregister_Internal(constraint);
+	    }
 
         //Static Singleton Instance
         private static BulletPhysicsWorldManager Instance {

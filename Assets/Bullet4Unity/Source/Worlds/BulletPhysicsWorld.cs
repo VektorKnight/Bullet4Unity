@@ -46,9 +46,9 @@ namespace Bullet4Unity {
         }
         
         // Register/Unregister constraint with the physics world
-        public abstract void RegisterConstraint(TypedConstraint constraint);
+        public abstract void Register(TypedConstraint constraint);
 
-        public abstract void UnregisterConstraint(TypedConstraint constraint);
+        public abstract void Unregister(TypedConstraint constraint);
 
     }
 }

@@ -78,6 +78,13 @@ namespace Bullet4Unity {
             foreach (var rb in rigidBodies) {
                 rb.InitializePhysicsBody();
             }
+            
+            //Find all constraints and tell them to initialize
+            var constraints = (BulletTypedConstraint[])Object.FindObjectsOfType(typeof(BulletTypedConstraint));
+            if (constraints.Length == 0) return;
+            foreach (var tc in constraints) {
+                tc.InitializeConstraint();
+            }
         }
         
         //Initialize the physics world
@@ -161,6 +168,13 @@ namespace Bullet4Unity {
             foreach (var rb in _bulletRigidBodies) {
                 _dynamicsWorld.RemoveRigidBody(rb);
             }
+            
+            //Find all constraints and tell them to dispose
+            var constraints = (BulletTypedConstraint[])Object.FindObjectsOfType(typeof(BulletTypedConstraint));
+            if (constraints.Length == 0) return;
+            foreach (var tc in constraints) {
+                tc.Dispose();
+            }
 
             //Find all Bullet rigidbody instances and tell them to dispose
             var rigidBodies = (BulletRigidBody[])Object.FindObjectsOfType(typeof(BulletRigidBody));
@@ -168,7 +182,6 @@ namespace Bullet4Unity {
             foreach (var rb in rigidBodies) {
                 rb.Dispose();
             }
-            rigidBodies = null;
 
             //Dispose of the physics world components in reverse order
             _disposing = true;
@@ -240,7 +253,7 @@ namespace Bullet4Unity {
         }
         
         //Register a constraint with the simulation
-        public override void RegisterConstraint(TypedConstraint constraint) {
+        public override void Register(TypedConstraint constraint) {
             if (!_initlialized) {
                 InitializeWorld(BulletUpdate);
                 Debug.LogWarning("A Constraint attempted to register with the simulation before it was initialized!\n" +
@@ -259,7 +272,7 @@ namespace Bullet4Unity {
         }
         
         //Unregister a constraint with the simulation
-        public override void UnregisterConstraint(TypedConstraint constraint) {
+        public override void Unregister(TypedConstraint constraint) {
             //Warn the user if the physics world has not been initialized
             if (!_initlialized) {
                 Debug.LogError("A Constraint attempted to unregister from the simulation before it was initialized!\n" +
