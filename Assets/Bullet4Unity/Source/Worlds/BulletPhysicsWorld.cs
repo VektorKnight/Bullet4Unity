@@ -16,12 +16,12 @@ namespace Bullet4Unity {
         public abstract void StepSimulation();
 
         // Register with the physics world
-        public virtual void Register(BulletBehavior behaviour) {
+        public virtual void Register(BulletBehaviour behaviour) {
             throw new UnsupportedWorldTypeException(UNSUPPORTED_WORLD_TYPE_MESSAGE);
         }
 
         // Unregister with the physics world
-        public virtual void Unregister(BulletBehavior behaviour) {
+        public virtual void Unregister(BulletBehaviour behaviour) {
             throw new UnsupportedWorldTypeException(UNSUPPORTED_WORLD_TYPE_MESSAGE);
         }
 
@@ -44,5 +44,11 @@ namespace Bullet4Unity {
         public virtual void Unregister(SoftBody softbody) {
             throw new UnsupportedWorldTypeException(UNSUPPORTED_WORLD_TYPE_MESSAGE);
         }
+        
+        // Register/Unregister constraint with the physics world
+        public abstract void Register(TypedConstraint constraint);
+
+        public abstract void Unregister(TypedConstraint constraint);
+
     }
 }

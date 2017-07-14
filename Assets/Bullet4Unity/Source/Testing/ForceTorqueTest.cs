@@ -2,7 +2,7 @@
 using BulletSharp;
 using UnityEngine;
 
-public class ForceTorqueTest : BulletBehavior {
+public class ForceTorqueTest : BulletBehaviour {
 
 	public Vector3 Force;
 	public Vector3 Torque;

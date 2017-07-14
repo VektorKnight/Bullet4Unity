@@ -9,7 +9,6 @@ namespace Bullet4Unity {
 	/// Currently only implements a Discrete Dynamics World
 	/// Based on Page 6 of the documentation located at:
 	/// https://github.com/bulletphysics/bullet3/blob/master/docs/BulletQuickstart.pdf
-	/// TODO: Implement interop code for inspector-friendly components
 	/// -Authors: VektorKnight, Techgeek1
 	/// </summary>
 	[AddComponentMenu("BulletPhysics/Worlds/PhysicsWorldManager")]
@@ -72,12 +71,12 @@ namespace Bullet4Unity {
         }
 
         // World registration
-        private void Register_Internal(BulletBehavior behaviour) {
+        private void Register_Internal(BulletBehaviour behaviour) {
             // Select the world and register with it
             _discretePhysicsWorld.Register(behaviour);
         }
 
-        private void Unregister_Internal(BulletBehavior behaviour) {
+        private void Unregister_Internal(BulletBehaviour behaviour) {
             // Select the world and unregister with it
             _discretePhysicsWorld.Unregister(behaviour);
         }
@@ -102,10 +101,19 @@ namespace Bullet4Unity {
             _discretePhysicsWorld.Unregister(softbody);
         }
 
+	    private void Register_Internal(TypedConstraint constraint) {
+	        //Do stufdf with things! (register constraint)
+	        _discretePhysicsWorld.Register(constraint);
+	    }
+
+	    private void Unregister_Internal(TypedConstraint constraint) {
+	        _discretePhysicsWorld.Register(constraint);
+	    }
+
         #region StaticAccessors
 
         //Register a BulletBehavior with the simulation callback
-        public static void Register(BulletBehavior behavior) {
+        public static void Register(BulletBehaviour behavior) {
             if (_decommisioning)
                 return;
 
@@ -113,7 +121,7 @@ namespace Bullet4Unity {
         }
 
         //Unregister a BulletBehavior from the simulation callback
-        public static void Unregister(BulletBehavior behavior) {
+        public static void Unregister(BulletBehaviour behavior) {
             if (_decommisioning)
                 return;
 
@@ -151,6 +159,19 @@ namespace Bullet4Unity {
 
             Instance.Unregister_Internal(softbody);
         }
+	    
+	    //Register a Constraint with the world
+	    public static void Register(TypedConstraint constraint) {
+	        if (_decommisioning) return;
+	        
+	        Instance.Register_Internal(constraint);
+	    }
+	    
+	    //Unregister a constraint with the physics world
+	    public static void Unregister(TypedConstraint constraint) {
+	        if (_decommisioning) return;
+	        Instance.Unregister_Internal(constraint);
+	    }
 
         //Static Singleton Instance
         private static BulletPhysicsWorldManager Instance {
