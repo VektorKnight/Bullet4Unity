@@ -7,10 +7,17 @@ using Vector4 = UnityEngine.Vector4;
 
 namespace Bullet4Unity {
     /// <summary>
-    /// Extension methods for converting common data types between BulletSharp and Unity
-    /// - Credit to Phong13 for oortions reimplemented from BulletSharpUnity3d
+    /// Extension methods for converting common data types between BulletSharp and Unity and extending some Unity API
+    /// - Credit to Phong13 for portions reimplemented from BulletSharpUnity3d
     /// </summary>
     public static class BulletExtensionMethods {
+        
+        //Transform point without scaling
+        public static UnityEngine.Vector3 TransformPointUnscaled(this Transform transform, UnityEngine.Vector3 position)
+        {
+            var localToWorldMatrix = Matrix4x4.TRS(transform.position, transform.rotation, UnityEngine.Vector3.one);
+            return localToWorldMatrix.MultiplyPoint3x4(position);
+        }
         
         /// <summary>
         /// Convert a Unity Quaternion to BulletSharp

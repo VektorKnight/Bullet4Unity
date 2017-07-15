@@ -18,7 +18,7 @@ namespace Bullet4Unity {
         [SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
 
         [Header("Advanced World Config")] 
-        [Tooltip("NNCG appears to be more accurate and faster for now")]
+        [Tooltip("Multithreaded solver is now the default")]
         [SerializeField] private WorldSolverType _solverType = WorldSolverType.ExperimentalMultiThreaded;
         [SerializeField] private int _solverIterations = 6;
         [Tooltip("DynamicAABB for many dynamic objects, AxisSweep for mostly static objects")]

@@ -10,7 +10,8 @@ namespace Bullet4Unity {
 	public class BulletBallSocketConstraint : BulletTypedConstraint {
 		
 		//Unity Inspector
-		[Header("Constraint Config")]
+		[Header("Constraint Config")] 
+		[SerializeField] private float _breakingForce = 0f;
 		[SerializeField] private BulletRigidBody _bodyA;
 		[SerializeField] private BulletRigidBody _bodyB;
 		[SerializeField] private Vector3 _pivotA;
@@ -21,10 +22,10 @@ namespace Bullet4Unity {
 		protected override void OnDrawGizmos() {
 			if (_bodyA == null || _bodyB == null) return;
 			Gizmos.color = GizmoColor;
-			Gizmos.DrawLine(_bodyA.transform.TransformPoint(_pivotA), _bodyB.transform.TransformPoint(_pivotB));
+			Gizmos.DrawLine(_bodyA.transform.TransformPointUnscaled(_pivotA), _bodyB.transform.TransformPointUnscaled(_pivotB));
 			Gizmos.color = Color.black;
-			Gizmos.DrawWireSphere(_bodyA.transform.TransformPoint(_pivotA), 0.05f);
-			Gizmos.DrawWireSphere(_bodyB.transform.TransformPoint(_pivotB), 0.05f);
+			Gizmos.DrawWireSphere(_bodyA.transform.TransformPointUnscaled(_pivotA), 0.05f);
+			Gizmos.DrawWireSphere(_bodyB.transform.TransformPointUnscaled(_pivotB), 0.05f);
 		}
 		#endif
 		
@@ -32,6 +33,7 @@ namespace Bullet4Unity {
 		public override void InitializeConstraint() {
 			if (Initialized) return;
 			Constraint = new Point2PointConstraint(_bodyA.BRigidBody, _bodyB.BRigidBody, _pivotA.ToBullet(), _pivotB.ToBullet());
+			if (_breakingForce > 0f) Constraint.BreakingImpulseThreshold = _breakingForce;
 			Initialized = true;
 
 			if (Registered) return;
