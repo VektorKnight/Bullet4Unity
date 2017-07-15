@@ -3,9 +3,9 @@ The aim of this project is to fully integrate the Bullet physics engine with Uni
 
 Project Goals:
 - Clean and efficient interop code with thorough documentation
-- Implement all features of Bullet physics
+- Implement all features of Bullet Physics
 
-Implemented:
+What Works:
 - Discrete Dynamics World
 - Sequential Impulse Solver
 - Non-smooth Non-linear Conjugant Gradient Solver
@@ -13,5 +13,6 @@ Implemented:
 - Basic RigidBody Dynamics
 
 This project is still mostly incomplete and therefore not recommended for use in any situation other than curiosity.
+A demo showing basic physics interactions and the Point-to-Point constraint can be found in the "ConstraintTesting" scene.
 
 
