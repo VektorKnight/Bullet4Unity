@@ -13,15 +13,20 @@ namespace Bullet4Unity {
 	public abstract class BulletTypedConstraint : MonoBehaviour {
 		//Unity Inspector
 		[SerializeField] protected bool DrawGizmo = true;
-		[SerializeField] protected Color GizmoColor = new Color(1f, 0.33f, 0f, 1f);
+		[SerializeField] protected Color GizmoColor = Color.black;
 		
 		//Protected Internal
+		protected BulletRigidBody BRigidBody;
 		protected TypedConstraint Constraint;
 		protected bool Initialized;
 		protected bool Registered;
 		protected bool Disposing;
 		
 		//Initialize the constraint
+		private void Initialize(BulletWorldManager.BulletObjectTypes objectType) {
+			if (objectType == BulletWorldManager.BulletObjectTypes.PhysicsConstraint) InitializeConstraint();
+		}
+		
 		public abstract void InitializeConstraint();
 		
 		//Get Constraint
@@ -30,6 +35,10 @@ namespace Bullet4Unity {
 		//Get Constraint Type
 		public abstract ConstraintType GetConstraintType();
 		
+		public void RegisterEvent() {
+			BulletWorldManager.OnInitializeObjects += Initialize;
+		}
+
 		//Unity OnEnable
 		protected abstract void OnEnable();
 		
@@ -39,7 +48,7 @@ namespace Bullet4Unity {
 		//Unity OnDestroy
 		private void OnDestroy() {
 			if (!Registered) return;
-			BulletPhysicsWorldManager.Unregister(Constraint);
+			BulletWorldManager.Unregister(BRigidBody.GetWorldName(), Constraint);
 			Dispose();
 		}
 

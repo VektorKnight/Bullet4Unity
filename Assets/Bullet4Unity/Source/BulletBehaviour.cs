@@ -7,19 +7,23 @@ namespace Bullet4Unity {
 	/// </summary>
 	public abstract class BulletBehaviour : MonoBehaviour {
 
-		protected BulletRigidBody BRigidBody;
+		protected BulletPhysicsBody PhysicsBody;
 		
-		//Attempt to register with the physics world
-		protected virtual void Awake() {
-			BulletPhysicsWorldManager.Register(this);
-			BRigidBody = GetComponent<BulletRigidBody>();
+		public void RegisterEvent() {
+			BulletWorldManager.OnInitializeObjects += Initialize;
 		}
-		
-		//Collision Added Callback
-		private void OnContactProcessed(ManifoldPoint cp, CollisionObject body0, CollisionObject body1) {
-			if (Equals(body0, BRigidBody.BRigidBody) || Equals(body1, BRigidBody.BRigidBody)) {
-				OnContactAdded(body0);
+
+		private void Initialize(BulletWorldManager.BulletObjectTypes objectType) {
+			if (objectType != BulletWorldManager.BulletObjectTypes.PhysicsBehaviour) return;
+			PhysicsBody = GetComponent<BulletPhysicsBody>();
+
+			if (PhysicsBody == null) {
+				Debug.LogError("A BulletBehavior requires a Bullet Physics Body to be attached in order to function!\n" +
+				               "Please attach a Bullet Physics Body or switch to a normal MonoBehavior");
+				return;
 			}
+			
+			BulletWorldManager.Register(PhysicsBody.GetWorldName(), this);
 		}
 
 		/// <summary>

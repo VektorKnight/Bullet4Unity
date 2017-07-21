@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using BulletSharp;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Bullet4Unity {
     /// <summary>
     /// Implements a Bullet Discrete Dynamics World
     /// - Authors: VektorKnight, Techgeek1
     /// </summary>
-    [Serializable]
+    [AddComponentMenu("BulletPhysics/Worlds/RigidBodyDynamics")]
     public class BulletDiscreteDynamicsWorld : BulletPhysicsWorld {
         //Unity Inspector
         [Header("Physics World Config")] 
-        [SerializeField] private float _timeStep = 0.02f;
+        [SerializeField] private string _worldName;
+        [SerializeField] private float _timeStep = 0.01666667f;
         [SerializeField] private int _maxSubSteps = 4;
         [SerializeField] private Vector3 _gravity = new Vector3(0f, -9.81f, 0f);
 
         [Header("Advanced World Config")] 
         [Tooltip("Multithreaded solver is now the default")]
         [SerializeField] private WorldSolverType _solverType = WorldSolverType.ExperimentalMultiThreaded;
-        [SerializeField] private int _solverIterations = 6;
+        [SerializeField] private int _solverIterations = 12;
         [Tooltip("DynamicAABB for many dynamic objects, AxisSweep for mostly static objects")]
         [SerializeField] private WorldBroadphaseType _broadphaseType = WorldBroadphaseType.DynamicAabb;
         [Tooltip("How many units from origin on each axis that the AxisSweep broadphase will test")]
@@ -43,7 +43,7 @@ namespace Bullet4Unity {
         public string DebugReadout { get; private set; }
 
         //Internal Private
-        private bool _initlialized;
+        private bool _initialized;
         private bool _disposing;
         private BulletSharp.Math.Vector3 _btGravity;
 
@@ -63,32 +63,36 @@ namespace Bullet4Unity {
         private ConstraintSolver _constraintSolver;
         private DiscreteDynamicsWorld _dynamicsWorld;
         
-        //EXPERIMENTAL: Multithreaded Physics Simulation
+        //Multithreaded Physics Simulation
         private TaskScheduler _threadedTaskScheduler;
         private ConstraintSolverPoolMultiThreaded _threadedSolver;
         
+        //Public GetWorldName function
+        public override string GetWorldName() {
+            //The first world (0) must be default
+            if (Index == 0) {
+                _worldName = "default";
+                return _worldName;
+            }
+            
+            //Generate a name if one isn't specified
+            if (_worldName == string.Empty) {
+                _worldName = $"DiscreteWorld{Index}";
+            }
+            return _worldName;
+        }
+
         //Public initialize method
         public override void Initialize() {
             //Initialize the world if it hasn't already been initialized
-            if (!_initlialized) InitializeWorld(BulletUpdate);
-
-            //Find all Bullet physics bodies and tell them to initialize
-            var rigidBodies = (BulletPhysicsBody[])Object.FindObjectsOfType(typeof(BulletPhysicsBody));
-            if (rigidBodies.Length == 0) return;
-            foreach (var rb in rigidBodies) {
-                rb.InitializePhysicsBody();
-            }
-            
-            //Find all constraints and tell them to initialize
-            var constraints = (BulletTypedConstraint[])Object.FindObjectsOfType(typeof(BulletTypedConstraint));
-            if (constraints.Length == 0) return;
-            foreach (var tc in constraints) {
-                tc.InitializeConstraint();
-            }
+            if (!_initialized) InitializeWorld(BulletUpdate);
         }
         
         //Initialize the physics world
         private void InitializeWorld(DynamicsWorld.InternalTickCallback tickCallBack) {
+            //Increment the world index counter
+            Index++;
+            
             //Collision configuration and dispatcher
             var collisionConfigInfo = new DefaultCollisionConstructionInfo {
                 DefaultMaxCollisionAlgorithmPoolSize = 80000,
@@ -155,8 +159,7 @@ namespace Bullet4Unity {
             _dynamicsWorld.SetInternalTickCallback(tickCallBack);
             _btGravity = _gravity.ToBullet();
             _dynamicsWorld.SetGravity(ref _btGravity);
-            _initlialized = true;
-            if (_debugging) Debug.Log("<b>Bullet4Unity:</b> Initialized Bullet Physics World");
+            _initialized = true;
         }
         
         //Dispose of components and clean up
@@ -170,14 +173,14 @@ namespace Bullet4Unity {
             }
             
             //Find all constraints and tell them to dispose
-            var constraints = (BulletTypedConstraint[])Object.FindObjectsOfType(typeof(BulletTypedConstraint));
+            var constraints = (BulletTypedConstraint[])FindObjectsOfType(typeof(BulletTypedConstraint));
             if (constraints.Length == 0) return;
             foreach (var tc in constraints) {
                 tc.Dispose();
             }
 
             //Find all Bullet rigidbody instances and tell them to dispose
-            var rigidBodies = (BulletRigidBody[])Object.FindObjectsOfType(typeof(BulletRigidBody));
+            var rigidBodies = (BulletRigidBody[])FindObjectsOfType(typeof(BulletRigidBody));
             if (rigidBodies.Length == 0) return;
             foreach (var rb in rigidBodies) {
                 rb.Dispose();
@@ -206,7 +209,7 @@ namespace Bullet4Unity {
         //Register a Bullet RigidBody with the simulation
         public override void Register(RigidBody rigidBody) {
             //Initialize the world and warn the user if it hasn't already been initialized
-            if (!_initlialized) {
+            if (!_initialized) {
                 InitializeWorld(BulletUpdate);
                 Debug.LogWarning("A Bullet RigidBody attempted to register with the simulation before it was initialized!\n" +
                                  "Please check your script execution order");
@@ -226,7 +229,7 @@ namespace Bullet4Unity {
         //Unregister a Bullet RigidBody from the simulation
         public override void Unregister(RigidBody rigidBody) {
             //Warn the user if the physics world has not been initialized
-            if (!_initlialized) {
+            if (!_initialized) {
                 Debug.LogError("An object attempted to unregister from the simulation before it was initialized!\n" +
                                "Please check your scene setup!");
                 return;
@@ -254,7 +257,7 @@ namespace Bullet4Unity {
         
         //Register a constraint with the simulation
         public override void Register(TypedConstraint constraint) {
-            if (!_initlialized) {
+            if (!_initialized) {
                 InitializeWorld(BulletUpdate);
                 Debug.LogWarning("A Constraint attempted to register with the simulation before it was initialized!\n" +
                                  "Please check your script execution order");
@@ -274,7 +277,7 @@ namespace Bullet4Unity {
         //Unregister a constraint with the simulation
         public override void Unregister(TypedConstraint constraint) {
             //Warn the user if the physics world has not been initialized
-            if (!_initlialized) {
+            if (!_initialized) {
                 Debug.LogError("A Constraint attempted to unregister from the simulation before it was initialized!\n" +
                                "Please check your scene setup!");
                 return;
@@ -295,7 +298,7 @@ namespace Bullet4Unity {
         //Register a BulletBehavior with the simulation callback
         public override void Register(BulletBehaviour behavior) {
             //Initialize the world and warn the user if it hasn't already been initialized
-            if (!_initlialized) {
+            if (!_initialized) {
                 InitializeWorld(BulletUpdate);
                 Debug.LogWarning("A BulletBehavior attempted to register with the simulation callback before it was initialized!\n" +
                                  "Please check your script execution order");
@@ -314,7 +317,7 @@ namespace Bullet4Unity {
         //Unregister a BulletBehavior from the simulation callback
         public override void Unregister(BulletBehaviour behavior) {
             //Warn the user if the physics world has not been initialized
-            if (!_initlialized) {
+            if (!_initialized) {
                 Debug.LogError("A BulletBehavior attempted to unregister from the simulation callback before it was initialized!\n" +
                                "Please check your scene setup!");
                 return;

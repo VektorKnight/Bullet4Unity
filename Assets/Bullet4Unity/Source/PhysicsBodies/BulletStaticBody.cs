@@ -52,7 +52,7 @@ namespace Bullet4Unity {
 			_staticBody = new RigidBody(_constructionInfo);
 
 			//Register with the physics world
-			BulletPhysicsWorldManager.Register(_staticBody);
+			BulletWorldManager.Register(GetWorldName(), _staticBody);
 			Registered = true;
 
 			//Initialization complete
@@ -66,7 +66,7 @@ namespace Bullet4Unity {
 		public override void Dispose() {
 			//Dispose of all the components in reverse order
 			if (Disposing) return;
-			if (Registered) BulletPhysicsWorldManager.Unregister(_staticBody);
+			if (Registered) BulletWorldManager.Unregister(GetWorldName(), _staticBody);
 			
 			Disposing = true;
 			_staticBody?.Dispose();
@@ -83,7 +83,7 @@ namespace Bullet4Unity {
 			
 			//Register with the physics world
 			if (!Initialized) return;
-			BulletPhysicsWorldManager.Register(_staticBody);
+			BulletWorldManager.Register(GetWorldName(), _staticBody);
 			Registered = true;
 		}
 		
@@ -95,7 +95,7 @@ namespace Bullet4Unity {
 			
 			//Unregister from the physics world
 			if (!Initialized) return;
-			BulletPhysicsWorldManager.Unregister(_staticBody);
+			BulletWorldManager.Unregister(GetWorldName(), _staticBody);
 			Registered = false;
 		}
 

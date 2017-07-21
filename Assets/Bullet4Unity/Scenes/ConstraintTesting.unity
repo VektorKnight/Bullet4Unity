@@ -653,6 +653,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -694,10 +698,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 117430726}
-  _bodyB: {fileID: 355020006}
+  _connectedBody: {fileID: 355020006}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!4 &119112999 stripped
@@ -1515,6 +1519,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -1556,10 +1564,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 238726264}
-  _bodyB: {fileID: 737624755}
+  _connectedBody: {fileID: 737624755}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!4 &243086430 stripped
@@ -1756,10 +1764,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 1694772780}
-  _bodyB: {fileID: 1231632465}
+  _connectedBody: {fileID: 1231632465}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!1001 &263796434
@@ -2204,6 +2212,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -2245,10 +2257,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 355020006}
-  _bodyB: {fileID: 238726264}
+  _connectedBody: {fileID: 238726264}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!4 &363161193 stripped
@@ -2420,6 +2432,11 @@ Prefab:
         type: 2}
       propertyPath: _mass
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114442117152710278, guid: 6de3f33afc4419c429d98f19d7dea87b,
+        type: 2}
+      propertyPath: PhysicsWorld
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
@@ -3336,6 +3353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicsWorld: 
   _restitution: 0.1
   _friction: 0.5
 --- !u!23 &548650985
@@ -4450,6 +4468,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -4477,10 +4499,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 737624755}
-  _bodyB: {fileID: 923149699}
+  _connectedBody: {fileID: 923149699}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &737624757
@@ -4695,6 +4717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicsWorld: 
   _restitution: 0.1
   _friction: 0.5
 --- !u!4 &752327607 stripped
@@ -5261,6 +5284,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -5288,10 +5315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 824243800}
-  _bodyB: {fileID: 1971387775}
+  _connectedBody: {fileID: 1971387775}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &824243802
@@ -5507,6 +5534,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -5534,10 +5565,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 844082011}
-  _bodyB: {fileID: 117430726}
+  _connectedBody: {fileID: 117430726}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &844082013
@@ -5899,6 +5930,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -5926,10 +5961,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 923149699}
-  _bodyB: {fileID: 1230685217}
+  _connectedBody: {fileID: 1230685217}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &923149701
@@ -6119,10 +6154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 959766240}
-  _bodyB: {fileID: 1694772780}
+  _connectedBody: {fileID: 1694772780}
   _pivotA: {x: 0, y: -0.825, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &959766236
@@ -6206,6 +6241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810a8098883bf784fb41dec38af8898c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicsWorld: 
   _mass: 64
   _linearDamping: 0.05
   _angularDamping: 0.05
@@ -6758,8 +6794,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1029683169}
   - component: {fileID: 1029683168}
+  - component: {fileID: 1029683170}
   m_Layer: 0
-  m_Name: BulletPhysicsWorld
+  m_Name: BulletWorldManager
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6773,21 +6810,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029683167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f0e13183a7924a801218703495d96, type: 3}
+  m_Script: {fileID: 11500000, guid: 350379e21a9faf34685fe1f3f7b27ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _discretePhysicsWorld:
-    _timeStep: 0.016666668
-    _maxSubSteps: 6
-    _gravity: {x: 0, y: -9.81, z: 0}
-    _solverType: 2
-    _solverIterations: 6
-    _broadphaseType: 0
-    _axisSweepMargin: {x: 1000, y: 1000, z: 1000}
-    _schedulerType: 2
-    _threadPoolSize: 3
-    _solverThreads: 2
-    _debugging: 1
 --- !u!4 &1029683169
 Transform:
   m_ObjectHideFlags: 0
@@ -6801,6 +6826,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029683170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1029683167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e186653d4b8014cb43e2b733cc6dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _worldName: default
+  _timeStep: 0.02
+  _maxSubSteps: 4
+  _gravity: {x: 0, y: -9.81, z: 0}
+  _solverType: 2
+  _solverIterations: 12
+  _broadphaseType: 0
+  _axisSweepMargin: {x: 1000, y: 1000, z: 1000}
+  _schedulerType: 2
+  _threadPoolSize: 4
+  _solverThreads: 2
+  _debugging: 0
 --- !u!4 &1031734518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4988116181263740, guid: ff50d925384029d4f80bc1e1f99ab4c7,
@@ -6919,6 +6967,11 @@ Prefab:
         type: 2}
       propertyPath: _mass
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114442117152710278, guid: 6de3f33afc4419c429d98f19d7dea87b,
+        type: 2}
+      propertyPath: PhysicsWorld
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
@@ -8214,6 +8267,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -8335,6 +8392,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -8362,10 +8423,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 1231632465}
-  _bodyB: {fileID: 824243800}
+  _connectedBody: {fileID: 824243800}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &1231632467
@@ -8380,7 +8441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 0, g: 0.125, b: 1, a: 0.772}
+  GizmoColor: {r: 0, g: 0.125, b: 1, a: 1}
   _radius: 0.45
 --- !u!1001 &1232460163
 Prefab:
@@ -8695,6 +8756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicsWorld: 
   _restitution: 0.1
   _friction: 0.5
 --- !u!4 &1243833838 stripped
@@ -9919,6 +9981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicsWorld: 
   _restitution: 0.1
   _friction: 0.5
 --- !u!4 &1409073056 stripped
@@ -11358,6 +11421,106 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6de3f33afc4419c429d98f19d7dea87b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1660476236
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224990638924073878, guid: a7340466080a37941997c0854248c78f,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a7340466080a37941997c0854248c78f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &1664762106 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4988116181263740, guid: ff50d925384029d4f80bc1e1f99ab4c7,
@@ -11390,7 +11553,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4474103503169502, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.9710026
+      value: 2.069
       objectReference: {fileID: 0}
     - target: {fileID: 4474103503169502, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11459,6 +11622,10 @@ Prefab:
     - target: {fileID: 4474103503169502, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -11942,6 +12109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae1e2a43b38364a940847be7df3ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicsWorld: 
   _restitution: 0.1
   _friction: 0.5
 --- !u!4 &1784379340 stripped
@@ -13234,6 +13402,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 1521815857809712, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114940410758928102, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1a7a61e13479a484fac0bf064600c01f, type: 2}
@@ -13261,10 +13433,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  _errorColor: {r: 1, g: 0, b: 0, a: 1}
   _breakingForce: 0
-  _bodyA: {fileID: 1971387775}
-  _bodyB: {fileID: 844082011}
+  _connectedBody: {fileID: 844082011}
   _pivotA: {x: 0, y: -0.55, z: 0}
   _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &1971387777

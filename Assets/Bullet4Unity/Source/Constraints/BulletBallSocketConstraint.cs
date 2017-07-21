@@ -7,37 +7,48 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Bullet4Unity {
 	[AddComponentMenu("BulletPhysics/Constraints/BallSocketConstraint")]
+	[RequireComponent(typeof(BulletRigidBody))]
 	public class BulletBallSocketConstraint : BulletTypedConstraint {
 		
-		//Unity Inspector
-		[Header("Constraint Config")] 
+		//Unity Inspector: Gizmos
+		[SerializeField] private Color _errorColor = Color.red;
+		
+		//Unity Inspector: Constraint Config
+		[Header("Constraint Config")]
+		[Tooltip("Force impulse required to break the constraint, a force of zero makes it unbreakable")]
 		[SerializeField] private float _breakingForce = 0f;
-		[SerializeField] private BulletRigidBody _bodyA;
-		[SerializeField] private BulletRigidBody _bodyB;
+		[SerializeField] private BulletRigidBody _connectedBody;
 		[SerializeField] private Vector3 _pivotA;
 		[SerializeField] private Vector3 _pivotB;
 		
 		//Draw Gizmo
 		#if UNITY_EDITOR
 		protected override void OnDrawGizmos() {
-			if (_bodyA == null || _bodyB == null) return;
+			if (BRigidBody == null) BRigidBody = GetComponent<BulletRigidBody>();
+			if (BRigidBody == null || _connectedBody == null) return;
+			Gizmos.color = _errorColor;
+			Gizmos.DrawLine(BRigidBody.transform.TransformPointUnscaled(_pivotA), _connectedBody.transform.TransformPointUnscaled(_pivotB));
 			Gizmos.color = GizmoColor;
-			Gizmos.DrawLine(_bodyA.transform.TransformPointUnscaled(_pivotA), _bodyB.transform.TransformPointUnscaled(_pivotB));
-			Gizmos.color = Color.black;
-			Gizmos.DrawWireSphere(_bodyA.transform.TransformPointUnscaled(_pivotA), 0.05f);
-			Gizmos.DrawWireSphere(_bodyB.transform.TransformPointUnscaled(_pivotB), 0.05f);
+			Gizmos.DrawWireSphere(BRigidBody.transform.TransformPointUnscaled(_pivotA), 0.05f);
+			Gizmos.DrawWireSphere(_connectedBody.transform.TransformPointUnscaled(_pivotB), 0.05f);
 		}
 		#endif
 		
 		//Initialize and register the constraint
 		public override void InitializeConstraint() {
 			if (Initialized) return;
-			Constraint = new Point2PointConstraint(_bodyA.BRigidBody, _bodyB.BRigidBody, _pivotA.ToBullet(), _pivotB.ToBullet());
+			
+			if (BRigidBody == null) BRigidBody = GetComponent<BulletRigidBody>();
+			
+			Constraint = new Point2PointConstraint(BRigidBody.RigidBody, _connectedBody.RigidBody, _pivotA.ToBullet(), _pivotB.ToBullet());
 			if (_breakingForce > 0f) Constraint.BreakingImpulseThreshold = _breakingForce;
+			
 			Initialized = true;
 
 			if (Registered) return;
-			BulletPhysicsWorldManager.Register(Constraint);
+			
+			BulletWorldManager.Register(BRigidBody.GetWorldName(), Constraint);
+			
 			Registered = true;
 		}
 		
@@ -48,7 +59,7 @@ namespace Bullet4Unity {
 			if (!Initialized) InitializeConstraint();
 
 			if (Registered) return;
-			BulletPhysicsWorldManager.Register(Constraint);
+			BulletWorldManager.Register(BRigidBody.GetWorldName(), Constraint);
 			Registered = true;
 		}
 		
@@ -57,7 +68,7 @@ namespace Bullet4Unity {
 			if (Disposing) return;
 
 			if (!Registered) return;
-			BulletPhysicsWorldManager.Unregister(Constraint);
+			BulletWorldManager.Unregister(BRigidBody.GetWorldName(), Constraint);
 			Registered = false;
 		}
 

@@ -7,6 +7,11 @@ public class ForceTorqueTest : BulletBehaviour {
 	public float Force;
 
 	private Vector2 _input;
+	private BulletRigidBody _rigidBody;
+
+	private void Start() {
+		_rigidBody = GetComponent<BulletRigidBody>();
+	}
 
 	private void Update() {
 		_input.x = Input.GetAxis("Horizontal");
@@ -14,8 +19,8 @@ public class ForceTorqueTest : BulletBehaviour {
 	}
 
 	public override void BulletUpdate(DynamicsWorld world, float bulletTimeStep) {
-		BRigidBody.ApplyImpulse(_input.x * Vector3.right * Force * bulletTimeStep);
-		BRigidBody.ApplyImpulse(_input.y * Vector3.forward * Force * bulletTimeStep);
+		_rigidBody.ApplyImpulse(_input.x * Vector3.right * Force * bulletTimeStep);
+		_rigidBody.ApplyImpulse(_input.y * Vector3.forward * Force * bulletTimeStep);
 	}
 
 	public override void OnContactAdded(CollisionObject other) {
