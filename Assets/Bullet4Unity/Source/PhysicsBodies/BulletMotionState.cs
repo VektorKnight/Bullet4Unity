@@ -27,8 +27,10 @@ namespace Bullet4Unity {
 
 		//Bullet callback updates Unity transform
 		public override void SetWorldTransform(ref Matrix m) {
-			_transform.position = BulletExtensionMethods.ExtractTranslationFromMatrix(ref m);
-			_transform.rotation = BulletExtensionMethods.GetUnityRotationFromMatrix(ref m);
+            UnityEngine.Vector3 position = BulletExtensionMethods.ExtractTranslationFromMatrix(ref m);
+            UnityEngine.Quaternion rotation = BulletExtensionMethods.GetUnityRotationFromMatrix(ref m);
+
+            _transform.SetPositionAndRotation(position, rotation);
 		}
 	}
 }
