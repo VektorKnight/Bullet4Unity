@@ -137,8 +137,7 @@ namespace Bullet4Unity {
 			get { return _allowSleeping; }
 			set {
 				_allowSleeping = value;
-				if (_allowSleeping) RigidBody.ActivationState -= ActivationState.DisableDeactivation;
-				else RigidBody.ActivationState = ActivationState.DisableDeactivation;
+                RigidBody.ActivationState = (_allowSleeping) ? ActivationState.ActiveTag : ActivationState.DisableDeactivation;
 			}
 		}
 		
@@ -206,7 +205,8 @@ namespace Bullet4Unity {
 				CollisionFlags = CollisionFlags.CustomMaterialCallback
 			};
 			//Set sleeping flag
-			if (!_allowSleeping) RigidBody.ActivationState = ActivationState.DisableDeactivation;
+			if (!_allowSleeping)
+                RigidBody.ActivationState = ActivationState.DisableDeactivation;
 			//_rigidBody.CcdMotionThreshold = 0.5f;
 			//_rigidBody.CcdSweptSphereRadius = 0.25f;
 			
