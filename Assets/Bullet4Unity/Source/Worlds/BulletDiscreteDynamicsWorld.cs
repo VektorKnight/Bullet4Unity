@@ -78,13 +78,6 @@ namespace Bullet4Unity {
             foreach (var rb in rigidBodies) {
                 rb.InitializePhysicsBody();
             }
-            
-            //Find all constraints and tell them to initialize
-            var constraints = (BulletTypedConstraint[])Object.FindObjectsOfType(typeof(BulletTypedConstraint));
-            if (constraints.Length == 0) return;
-            foreach (var tc in constraints) {
-                tc.InitializeConstraint();
-            }
         }
         
         //Initialize the physics world
@@ -170,7 +163,7 @@ namespace Bullet4Unity {
             }
             
             //Find all constraints and tell them to dispose
-            var constraints = (BulletTypedConstraint[])Object.FindObjectsOfType(typeof(BulletTypedConstraint));
+            var constraints = (BulletConstraint[])Object.FindObjectsOfType(typeof(BulletConstraint));
             if (constraints.Length == 0) return;
             foreach (var tc in constraints) {
                 tc.Dispose();

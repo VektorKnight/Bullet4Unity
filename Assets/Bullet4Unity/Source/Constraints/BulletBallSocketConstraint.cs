@@ -6,67 +6,58 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Bullet4Unity {
-	[AddComponentMenu("BulletPhysics/Constraints/BallSocketConstraint")]
-	public class BulletBallSocketConstraint : BulletTypedConstraint {
-		
-		//Unity Inspector
-		[Header("Constraint Config")] 
-		[SerializeField] private float _breakingForce = 0f;
-		[SerializeField] private BulletRigidBody _bodyA;
-		[SerializeField] private BulletRigidBody _bodyB;
-		[SerializeField] private Vector3 _pivotA;
-		[SerializeField] private Vector3 _pivotB;
-		
-		//Draw Gizmo
-		#if UNITY_EDITOR
-		protected override void OnDrawGizmos() {
-			if (_bodyA == null || _bodyB == null) return;
-			Gizmos.color = GizmoColor;
-			Gizmos.DrawLine(_bodyA.transform.TransformPointUnscaled(_pivotA), _bodyB.transform.TransformPointUnscaled(_pivotB));
-			Gizmos.color = Color.black;
-			Gizmos.DrawWireSphere(_bodyA.transform.TransformPointUnscaled(_pivotA), 0.05f);
-			Gizmos.DrawWireSphere(_bodyB.transform.TransformPointUnscaled(_pivotB), 0.05f);
-		}
-		#endif
-		
-		//Initialize and register the constraint
-		public override void InitializeConstraint() {
-			if (Initialized) return;
-			Constraint = new Point2PointConstraint(_bodyA.BRigidBody, _bodyB.BRigidBody, _pivotA.ToBullet(), _pivotB.ToBullet());
-			if (_breakingForce > 0f) Constraint.BreakingImpulseThreshold = _breakingForce;
-			Initialized = true;
+    [AddComponentMenu("BulletPhysics/Constraints/BallSocketConstraint")]
+    [RequireComponent(typeof(BulletRigidBody))]
+    public sealed class BulletBallSocketConstraint : BulletConstraint {
+        [Header("Constraint Config")]
 
-			if (Registered) return;
-			BulletPhysicsWorldManager.Register(Constraint);
-			Registered = true;
-		}
-		
-		//Initialize and/or register the constraint if needed
-		protected override void OnEnable() {
-			if (Disposing) return;
-			
-			if (!Initialized) InitializeConstraint();
+        [SerializeField]
+        private BulletRigidBody _connectedBody;
 
-			if (Registered) return;
-			BulletPhysicsWorldManager.Register(Constraint);
-			Registered = true;
-		}
-		
-		//Unregister the constraint if needed
-		protected override void OnDisable() {
-			if (Disposing) return;
+        [SerializeField]
+        private bool _autoConfigurePivots = true;
 
-			if (!Registered) return;
-			BulletPhysicsWorldManager.Unregister(Constraint);
-			Registered = false;
-		}
+        [SerializeField]
+        private Vector3 _connectedPivot = Vector3.zero;
 
-		public override TypedConstraint GetConstraint() {
-			throw new System.NotImplementedException();
-		}
+        [SerializeField]
+        private Vector3 _localPivot = Vector3.zero;
 
-		public override ConstraintType GetConstraintType() {
-			throw new System.NotImplementedException();
-		}
-	}
+        [SerializeField]
+        private float _breakingForce = 0f;
+
+        private BulletRigidBody _localBody;
+
+        //Draw Gizmo
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected() {
+            if (_connectedBody == null)
+                return;
+
+            Gizmos.color = GIZMO_COLOR;
+            Gizmos.DrawLine(transform.TransformPointUnscaled(_localPivot), _connectedBody.transform.TransformPointUnscaled(_connectedPivot));
+            Gizmos.color = Color.black;
+            Gizmos.DrawWireSphere(transform.TransformPointUnscaled(_localPivot), 0.05f);
+            Gizmos.DrawWireSphere(_connectedBody.transform.TransformPointUnscaled(_connectedPivot), 0.05f);
+        }
+
+        private void OnValidate() {
+            if (_autoConfigurePivots && _connectedBody != null) {
+                Vector3 pivotOffset = (_connectedBody.transform.position - transform.position) * 0.5f;
+
+                _localPivot = transform.InverseTransformVector(pivotOffset);
+                _connectedPivot = _connectedBody.transform.InverseTransformVector(-pivotOffset);
+            }
+        }
+#endif
+
+        //Initialize and register the constraint
+        protected override void InitializeConstraint() {
+            _localBody = GetComponent<BulletRigidBody>();
+            _constraint = new Point2PointConstraint(_localBody.BodyInstance, _connectedBody.BodyInstance, _localPivot.ToBullet(), _connectedPivot.ToBullet());
+
+            if (_breakingForce > 0f)
+                _constraint.BreakingImpulseThreshold = _breakingForce;
+        }
+    }
 }

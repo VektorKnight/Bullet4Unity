@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &12696217
 Prefab:
@@ -693,13 +698,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 355020006}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.5000003, z: -0.0000004172325}
+  _localPivot: {x: 0, y: -0.5000003, z: 0.0000004172325}
   _breakingForce: 0
-  _bodyA: {fileID: 117430726}
-  _bodyB: {fileID: 355020006}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!4 &119112999 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b,
@@ -1555,13 +1558,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  _connectedBody: {fileID: 737624755}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.5149999, z: 0.000000059604645}
+  _localPivot: {x: 0, y: -0.5149999, z: -0.000000059604645}
   _breakingForce: 0
-  _bodyA: {fileID: 238726264}
-  _bodyB: {fileID: 737624755}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!4 &243086430 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4092439522220960, guid: 6de3f33afc4419c429d98f19d7dea87b,
@@ -1755,13 +1756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 1231632465}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.50000113, z: -0.0000004172325}
+  _localPivot: {x: 0, y: -0.50000113, z: 0.0000004172325}
   _breakingForce: 0
-  _bodyA: {fileID: 1694772780}
-  _bodyB: {fileID: 1231632465}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!1001 &263796434
 Prefab:
   m_ObjectHideFlags: 0
@@ -2244,13 +2243,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  _connectedBody: {fileID: 238726264}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.52350074, z: 0.000000059604645}
+  _localPivot: {x: 0, y: -0.52350074, z: -0.000000059604645}
   _breakingForce: 0
-  _bodyA: {fileID: 355020006}
-  _bodyB: {fileID: 238726264}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!4 &363161193 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4988116181263740, guid: ff50d925384029d4f80bc1e1f99ab4c7,
@@ -3347,9 +3344,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 192acc26f7e30a941ac9ef243c032e73, type: 2}
   m_StaticBatchInfo:
@@ -3362,6 +3361,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -4476,13 +4476,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  _connectedBody: {fileID: 923149699}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.5145002, z: 0.000000059604645}
+  _localPivot: {x: 0, y: -0.5145002, z: -0.000000059604645}
   _breakingForce: 0
-  _bodyA: {fileID: 737624755}
-  _bodyB: {fileID: 923149699}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &737624757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5287,13 +5285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 1971387775}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.49999952, z: 0.0000005066395}
+  _localPivot: {x: 0, y: -0.49999952, z: -0.0000005066395}
   _breakingForce: 0
-  _bodyA: {fileID: 824243800}
-  _bodyB: {fileID: 1971387775}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &824243802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5533,13 +5529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 117430726}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.49999982, z: 0.000000029802322}
+  _localPivot: {x: 0, y: -0.49999982, z: -0.000000029802322}
   _breakingForce: 0
-  _bodyA: {fileID: 844082011}
-  _bodyB: {fileID: 117430726}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &844082013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5925,13 +5919,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.33, b: 0, a: 1}
+  _connectedBody: {fileID: 1230685217}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.52399975, z: 0.000000059604645}
+  _localPivot: {x: 0, y: -0.52399975, z: -0.000000059604645}
   _breakingForce: 0
-  _bodyA: {fileID: 923149699}
-  _bodyB: {fileID: 1230685217}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &923149701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6118,13 +6110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 1694772780}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.7694994, z: 0.0000005364418}
+  _localPivot: {x: 0, y: -0.51299965, z: -0.00000035762787}
   _breakingForce: 0
-  _bodyA: {fileID: 959766240}
-  _bodyB: {fileID: 1694772780}
-  _pivotA: {x: 0, y: -0.825, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &959766236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6150,9 +6140,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: dbb792d20f14d944ebe59f9f880f3182, type: 2}
   m_StaticBatchInfo:
@@ -6165,6 +6157,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -6548,11 +6541,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &1010703114
 Transform:
   m_ObjectHideFlags: 0
@@ -8361,13 +8354,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 824243800}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.50000066, z: -0.0000004172325}
+  _localPivot: {x: 0, y: -0.50000066, z: 0.0000004172325}
   _breakingForce: 0
-  _bodyA: {fileID: 1231632465}
-  _bodyB: {fileID: 824243800}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &1231632467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12512,20 +12503,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -13260,13 +13237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983cdd850a315e40b2f29e274c2e3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawGizmo: 1
-  GizmoColor: {r: 1, g: 0.18620694, b: 0, a: 1}
+  _connectedBody: {fileID: 844082011}
+  _autoConfigurePivots: 1
+  _connectedPivot: {x: 0, y: 0.49999964, z: 0.0000002682209}
+  _localPivot: {x: 0, y: -0.49999964, z: -0.0000002682209}
   _breakingForce: 0
-  _bodyA: {fileID: 1971387775}
-  _bodyB: {fileID: 844082011}
-  _pivotA: {x: 0, y: -0.55, z: 0}
-  _pivotB: {x: 0, y: 0.55, z: 0}
 --- !u!114 &1971387777
 MonoBehaviour:
   m_ObjectHideFlags: 0
