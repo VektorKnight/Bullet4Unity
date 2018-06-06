@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using BulletSharp;
+﻿using BulletSharp;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -9,10 +6,7 @@ namespace Bullet4Unity {
     [AddComponentMenu("BulletPhysics/Constraints/BallSocketConstraint")]
     [RequireComponent(typeof(BulletRigidBody))]
     public sealed class BulletBallSocketConstraint : BulletConstraint {
-        [Header("Constraint Config")]
-
-        [SerializeField]
-        private BulletRigidBody _connectedBody;
+        [Header("Ball & Socket")]
 
         [SerializeField]
         private bool _autoConfigurePivots = true;
@@ -24,9 +18,13 @@ namespace Bullet4Unity {
         private Vector3 _localPivot = Vector3.zero;
 
         [SerializeField]
-        private float _breakingForce = 0f;
+        private float _damping;
 
-        private BulletRigidBody _localBody;
+        [SerializeField]
+        private float _impulseClamp;
+
+        [SerializeField]
+        private float _tau;
 
         //Draw Gizmo
 #if UNITY_EDITOR
@@ -34,14 +32,20 @@ namespace Bullet4Unity {
             if (_connectedBody == null)
                 return;
 
+            Vector3 localPivot = transform.TransformPointUnscaled(_localPivot);
+            Vector3 connectedPivot = _connectedBody.transform.TransformPointUnscaled(_connectedPivot);
+
             Gizmos.color = GIZMO_COLOR;
-            Gizmos.DrawLine(transform.TransformPointUnscaled(_localPivot), _connectedBody.transform.TransformPointUnscaled(_connectedPivot));
-            Gizmos.color = Color.black;
-            Gizmos.DrawWireSphere(transform.TransformPointUnscaled(_localPivot), 0.05f);
-            Gizmos.DrawWireSphere(_connectedBody.transform.TransformPointUnscaled(_connectedPivot), 0.05f);
+            Gizmos.DrawLine(localPivot, connectedPivot);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(localPivot, 0.05f);
+            Gizmos.DrawWireSphere(connectedPivot, 0.05f);
         }
 
-        private void OnValidate() {
+        protected override void OnValidate() {
+            base.OnValidate();
+
             if (_autoConfigurePivots && _connectedBody != null) {
                 Vector3 pivotOffset = (_connectedBody.transform.position - transform.position) * 0.5f;
 
@@ -53,11 +57,63 @@ namespace Bullet4Unity {
 
         //Initialize and register the constraint
         protected override void InitializeConstraint() {
-            _localBody = GetComponent<BulletRigidBody>();
-            _constraint = new Point2PointConstraint(_localBody.BodyInstance, _connectedBody.BodyInstance, _localPivot.ToBullet(), _connectedPivot.ToBullet());
+            _constraint = new Point2PointConstraint(_rigidbody.BodyInstance, _connectedBody.BodyInstance, _localPivot.ToBullet(), _connectedPivot.ToBullet());
+        }
 
-            if (_breakingForce > 0f)
-                _constraint.BreakingImpulseThreshold = _breakingForce;
+        public Vector3 LocalPivot {
+            get {
+                return _localPivot;
+            }
+            set {
+                _localPivot = value;
+
+                if (_constraint != null) {
+                    ((Point2PointConstraint)_constraint).PivotInA = value.ToBullet();
+                }
+            }
+        }
+
+        public Vector3 ConnectedPivot {
+            get {
+                return _connectedPivot;
+            }
+            set {
+                _connectedPivot = value;
+
+                if (_constraint != null) {
+                    ((Point2PointConstraint)_constraint).PivotInB = value.ToBullet();
+                }
+            }
+        }
+
+        public float Damping {
+            get {
+                return _damping;
+            }
+            set {
+                _damping = value;
+                ((Point2PointConstraint)_constraint).Setting.Damping = value;
+            }
+        }
+
+        public float ImpulseClamp {
+            get {
+                return _impulseClamp;
+            }
+            set {
+                _impulseClamp = value;
+                ((Point2PointConstraint)_constraint).Setting.ImpulseClamp = value;
+            }
+        }
+
+        public float Tau {
+            get {
+                return _tau;
+            }
+            set {
+                _tau = value;
+                ((Point2PointConstraint)_constraint).Setting.Tau = value;
+            }
         }
     }
 }
